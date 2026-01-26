@@ -298,13 +298,13 @@ Course goals:
 
 Addition means the topic came up several times
 
-- 2 Shared Data problem, and its causes
-- 2 Double Maintenance problem, and its causes
-- 2 Simultaneous Update problem, and its causes
-- 2 Difference between revisions and variants 
-- 3 + 1 Construction site metaphor and theory
-- 3 Motivation for running a workshop
-- 3 What a metaphor is and why they are used 
+- ~~2 Shared Data problem, and its causes~~
+- ~~2 Double Maintenance problem, and its causes~~
+- ~~2 Simultaneous Update problem, and its causes~~
+- ~~2 + 2 + 4 Revisions and variants ~~
+- ~~3 + 1 Construction site metaphor and theory~~
+- ~~3 Motivation for running a workshop~~
+- ~~3 What a metaphor is and why they are used ~~
 - 2 + 4 + 2 + 4 The different cases of distributed development. Complications of distributed development and the major SCM-related issues in distributed development. how SCM can support distributed development
 - 4 + 4 + 4 + 4 + 3 Problems and solution in regards to team co-ordination and communication . how SCM can support team co-ordination and communication. the different co-ordination strategies
 - 4 + 3 + 4 Baselines, why and how to use them, the need for and the distinction between baselines and the private workspace
@@ -336,7 +336,6 @@ Addition means the topic came up several times
 - 1 CM Plan construction
 - 2 Different roles and responsibilities connected with CM. 
 - 2 + 4 Agile. How SCM should be carried out in an Agile context.
-- 2 + 4 Variants
 - 2 + 4. PDM. The potential consequences of the similarities and differences between PDM and SCM.
 - 2 + 4 DevOps. SCM in a DevOps context. 
 
@@ -352,3 +351,80 @@ Addition means the topic came up several times
 - 1 the main concepts of the two work models. Reflect on the strong and weak sides of the models.
 - 4 + 4 + 4 experience with carrying out an SCM-plan writing workshop with focus on helping people co-ordinate. experience with carrying out an SCM-plan writing workshop with focus on helping people in their individual work
 - 2 the SCM strategies used to deal with these issues 
+
+---
+
+# First summary draft
+!!! = needs a second look
++++ = additions I thought were relevant
+
+
+## Concurrency problems
+### Shared data problem !!!
+Occurs when several developers are simultaneously accessing the same files. A modification made by one developer in one file may break functionality which another file depends on. [1]
+
+### Double maintenance problem
+When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. If unchecked, this can over time lead to divergence between the versions. [1]
+
+### Simultaneous update problem !!!
+When several developers simultaneously access the same files, they can overwrite each-others changes by accident. [1]
+
+## Version management 
+### Revisions 
+A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
+
+### Variants / Variations
+An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1]
+
+A set of them is called a variation set. [1] 
+
+## Metaphors
+Metaphors intend to describe an abstract concept through real-world intuitions, preferably entirely unrelated to the subject. Thus, facilitating faster learning. [2]
+
+### Construction site metaphor
+In a construction site, people of several trades need to work simultaneously on the same project. This can lead to situations where, for example, the drywall contractors have not finished mudding the walls, but the painters need to start painting. However some tasks can still be done in parallel, to varied success.
+
+In the context of software, this is equivalent to a project where several developers need to work at the same time. Since software is not made out of rooms, the concept of a drywall contractor finishing the drywall in one room as a painter paints another room is not immediately transferable. To work on the software simultaneously, the developers need their own copies of the artefact. This immediately presents issues in the form of the double maintenance, shared data, and simultaneous update problems. [2]
+
+The easy solution is to prohibit anything but serialized work. The obvious downside being decreased productivity. The other option is to implement some of the techniques within CM, in addition to a good change management system in order to increase traceability. [2]
+### Study metaphor
+### Library metaphor
+
+## Uncategorized
+
+### Distributed development
+
+### Workshops
+The purpose of workshops are to involve developers in the construction of CM plans and processes. Secondarily, to increase their knowledge about CM practices. [2]
+
+The pros include:
+- On the job training [2]
+- Development of company-wide CM plans and processes [2]
+- Spread of knowledge and experience between employees [2]
+
+It is conducted in three stages:
+1. Prepare: select who should participate, when to conduct the workshop, and what background material needs to be made available [2]
+2. Execute: present the objectives of the workshop and present the content (such as the three metaphors) [2]
+3. Document: draft the CM plan, review it, and publish it [2]
+### Team co-ordination and communication
+Since communication cannot always be ensured, it is important that it is also carried out indirectly, such as through documentation or comments. [2]
+
+### Baselines
+
+### Private workspaces
+
+### Change management +++
+The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
+
+This increases traceability. [2]
+
+### Traceability +++
+The ability to understand who made a change, where, and when. [0]
+
+
+---
+
+# Sources
+0. Own intuition or experiences
+1. https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
+2. Bendix, Vinter
