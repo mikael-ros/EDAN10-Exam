@@ -355,7 +355,7 @@ Addition means the topic came up several times
 ---
 
 # First summary draft
-!!! = needs a second look
+!!! = needs further work
 +++ = additions I thought were relevant
 
 
@@ -386,11 +386,23 @@ In a construction site, people of several trades need to work simultaneously on 
 
 In the context of software, this is equivalent to a project where several developers need to work at the same time. Since software is not made out of rooms, the concept of a drywall contractor finishing the drywall in one room as a painter paints another room is not immediately transferable. To work on the software simultaneously, the developers need their own copies of the artefact. This immediately presents issues in the form of the double maintenance, shared data, and simultaneous update problems. [2]
 
-The easy solution is to prohibit anything but serialized work. The obvious downside being decreased productivity. The other option is to implement some of the techniques within CM, in addition to a good change management system in order to increase traceability. [2]
+The easy solution is to prohibit anything but serialized work. The obvious downside being decreased productivity. The other option is to maintain good communication in addition to implementing a good change management system in order to increase traceability and responsibility. [2, 3] One option is locking, but this presents the issue of someone forgetting to release their lock. [3]
+
+It is also important that build processes and tooling are consistent. [3]
 ### Study metaphor
+In a study, you bring in your study materials (books, e.t.c.), which you work with and produce new works, such as notes. You do so undisturbed, on your own. [2]
+
+In the context of software, this is equivalent to copying the software to your own machine to work on it, producing new artifacts. You then contribute these back to the repository. The repository is considered immutable, and the developers must create their own mutable copies. As such, the CM tool must provide the ability to create personal workspaces. In order to facilitate consistency between workspaces, it must also provide synchronization for configurations -- e.g. versions of dependencies. [2] This can cause the double maintenance problem without proper task assignment. [0]
+
 ### Library metaphor
+We keep knowledge in libraries, organized in such a way that it is easy to retrieve and store information. Sometimes several people need access to the same information at the same time, which requires some form of management system. [2]
+
+In software, this is comparable to tracking artifacts involved in the project. We need a way to store, recreate, and register the history of an artifact. [2]
 
 ## Uncategorized
+
+### Artifact +++
+A piece of software or documentation. The history of an artifact is tracked in log entries, and the differences between versions are called deltas. [2]
 
 ### Distributed development
 
@@ -409,17 +421,22 @@ It is conducted in three stages:
 ### Team co-ordination and communication
 Since communication cannot always be ensured, it is important that it is also carried out indirectly, such as through documentation or comments. [2]
 
-### Baselines
+### Baselines !!!
+Certain bound configurations can form a baseline, e.g. a basis for further development with formal change management. [2]
 
 ### Private workspaces
 
-### Change management +++
+### Change management +++ !!!
 The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
 
 This increases traceability. [2]
 
-### Traceability +++
+### Traceability +++ !!!
 The ability to understand who made a change, where, and when. [0]
+
+### Configuration items
+### Partially bound and bound configurations +++ !!!
+In partially bound configurations, versions of dependencies can vary so long as they are satisfied. In bound configurations, they are static. [2]
 
 
 ---
@@ -428,3 +445,4 @@ The ability to understand who made a change, where, and when. [0]
 0. Own intuition or experiences
 1. https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 2. Bendix, Vinter
+3. Mikkelsen, Pherigo
