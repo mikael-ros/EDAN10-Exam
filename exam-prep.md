@@ -405,6 +405,52 @@ In software, this is comparable to tracking artifacts involved in the project. W
 A piece of software or documentation. The history of an artifact is tracked in log entries, and the differences between versions are called deltas. [2]
 
 ### Distributed development
+Occurs when developers are physically, particularly geographically, separated. [4]
+
+Challenges include decreased communication, and reliance on the internet. It can also lower team morale and knowledge spread. [4]
+
+#### Cases of distributed development
+##### Locally
+All developers are on-site in the same location. [4]
+- Common file system [4]
+- Complete development and test environment [4]
+- Synchronization can be achieved through meetings, but also opportunistically [4]
+- Less security issues, as less services are exposed [4]
+##### Distance working
+Some developers are working off-site, such as from home. This is either achieved by allowing developers to bring a copy home (likely very uncommon these days) or by letting them remote login to the worksite. [4]
+- Poorer communication, less opportunities for spontaneous synchronization [4]
+- More security issues, as more services need to be exposed [4]
+##### Outsourcing
+Some components of the system are developed by third parties, who work in a different location. [4]
+- Requires clear instructions from the purchaser [4]
+- Supplier must be able to update the development and test environments [4]
+- The purchaser and supplier may not use the same tools, particularly CM and build tools, which may complicate integration [4]
+##### Co-located groups
+Work is performed in groups, but the groups are in different locations. Such as different divisions of a company. [4]
+- Different file systems, hopefully same CM tools [4]
+- The groups deliver subproducts to eachother rather than developing together [4]
+- Synchronization is achieved solely through planned meetings [4]
+- Change management becomes particularly important [4]
+##### Distributed groups
+Work is performed in groups. Group members may be spread geographically. Similar to the case of distance working.CCan usually be avoided by subgrouping. [4]
+- Communication becomes very important [4]
+- Simultaneous access must be possible [4]
+- Solutions using locking work poorly [4]
+
+#### Architectures
+##### One server / site
+###### Locally to a server
+All developers are in the same location, working on the same server. [4]
+###### Remote login 
+Some developers are in the same location, some are distributed. They all remote to the same server [4]
+##### Several servers / sites
+###### Several sites by Master-Slave connections
+One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
+###### Several sites with differing areas of responsibility
+One site has responsibility of one part of the repository, another the other. Essentially, piece-wise "Master-Slave". [4]
+###### Several sites with equal servers
+All sites are synchronized with eachother and act like one logical site. Developers remote into the logical site, and get connected to whichever site makes most sense [4]
+
 
 ### Workshops
 The purpose of workshops are to involve developers in the construction of CM plans and processes. Secondarily, to increase their knowledge about CM practices. [2]
