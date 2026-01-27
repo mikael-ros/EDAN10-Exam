@@ -401,13 +401,28 @@ In software, this is comparable to tracking artifacts involved in the project. W
 
 ## Uncategorized
 
+### Awareness +++
+The collective understanding of the project within the team, particularly in regards to who is doing what. [0, 5]
+
 ### Artifact +++
 A piece of software or documentation. The history of an artifact is tracked in log entries, and the differences between versions are called deltas. [2]
 
 ### Distributed development
-Occurs when developers are physically, particularly geographically, separated. [4]
+Occurs when developers are physically, particularly geographically, separated. [4, 5] An increasingly common practice, as it allows companies to reach talent in different locations. [5]
 
-Challenges include decreased communication, and reliance on the internet. It can also lower team morale and knowledge spread. [4]
+#### Challenges !!!
+Challenges include decreased communication, and reliance on the internet and good CM practices. It can also lower team morale and knowledge spread. [4]
+
+- Distributed groups usually do not get information on what other groups are doing, [4, 5] e.g. the group awareness is lowered [5]
+    **Strategies:** Have well defined tasks and clear areas of responsibility. [5] 
+- Merge requests usually take longer, due to timezones and lowered group awareness. The CCB may not recognize some of the code submitted, which creates research overhead. [5]
+    **Strategies:** Improving communication and documentation. Having well defined tasks and clear areas of responsibility.
+- Different SCM environments lead to merge requests being handled differently [5]
+    **Strategies:** Make sure all members adhere to the same CM plan. [5]
+- Lack of a planned baseline. [5]
+    **Strategies:** Establish baseline before development starts, and make sure all developers have adequate knowledge about it. [5]
+- Lack of SCM principles [5]
+    **Strategies:** Implement them... [5]
 
 #### Cases of distributed development
 ##### Locally
@@ -432,7 +447,7 @@ Work is performed in groups, but the groups are in different locations. Such as 
 - Synchronization is achieved solely through planned meetings [4]
 - Change management becomes particularly important [4]
 ##### Distributed groups
-Work is performed in groups. Group members may be spread geographically. Similar to the case of distance working.CCan usually be avoided by subgrouping. [4]
+Work is performed in groups. Group members may be spread geographically. Similar to the case of distance working. Can usually be avoided by subgrouping. [4]
 - Communication becomes very important [4]
 - Simultaneous access must be possible [4]
 - Solutions using locking work poorly [4]
@@ -489,7 +504,9 @@ In partially bound configurations, versions of dependencies can vary so long as 
 
 # Sources
 0. Own intuition or experiences
-1. https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
+1. Babich; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 2. Bendix, Vinter
 3. Mikkelsen, Pherigo
 4. Asklund
+5. Fauzi, et. al.
+6. White
