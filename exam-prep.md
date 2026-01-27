@@ -305,7 +305,7 @@ Addition means the topic came up several times
 - ~~3 + 1 Construction site metaphor and theory~~
 - ~~3 Motivation for running a workshop~~
 - ~~3 What a metaphor is and why they are used ~~
-- 2 + 4 + 2 + 4 The different cases of distributed development. Complications of distributed development and the major SCM-related issues in distributed development. how SCM can support distributed development
+- 2 + 4 + 2 + 4 ~~The different cases of distributed development. Complications of distributed development and the major SCM-related issues in distributed development. how SCM can support distributed development~~
 - 4 + 4 + 4 + 4 + 3 Problems and solution in regards to team co-ordination and communication . how SCM can support team co-ordination and communication. the different co-ordination strategies
 - 4 + 3 + 4 Baselines, why and how to use them, the need for and the distinction between baselines and the private workspace
 - 2 The three scenarios
@@ -414,15 +414,18 @@ Occurs when developers are physically, particularly geographically, separated. [
 Challenges include decreased communication, and reliance on the internet and good CM practices. It can also lower team morale and knowledge spread. [4]
 
 - Distributed groups usually do not get information on what other groups are doing, [4, 5] e.g. the group awareness is lowered [5]
-    **Strategies:** Have well defined tasks and clear areas of responsibility. [5] 
+    > **Strategies:** Have well defined tasks and clear areas of responsibility. [5] 
 - Merge requests usually take longer, due to timezones and lowered group awareness. The CCB may not recognize some of the code submitted, which creates research overhead. [5]
-    **Strategies:** Improving communication and documentation. Having well defined tasks and clear areas of responsibility.
+    > **Strategies:** Improving communication and documentation. Having well defined tasks and clear areas of responsibility.
 - Different SCM environments lead to merge requests being handled differently [5]
-    **Strategies:** Make sure all members adhere to the same CM plan. [5]
+    > **Strategies:** Make sure all members adhere to the same CM plan. [5]
 - Lack of a planned baseline. [5]
-    **Strategies:** Establish baseline before development starts, and make sure all developers have adequate knowledge about it. [5]
+    > **Strategies:** Establish baseline before development starts, and make sure all developers have adequate knowledge about it. [5]
 - Lack of SCM principles [5]
-    **Strategies:** Implement them... [5]
+    > **Strategies:** Implement them... [5]
+- Tasks are not always clearly distributed [6]
+- Lowered communication [6]
+
 
 #### Cases of distributed development
 ##### Locally
@@ -452,12 +455,29 @@ Work is performed in groups. Group members may be spread geographically. Similar
 - Simultaneous access must be possible [4]
 - Solutions using locking work poorly [4]
 
+#### White's three scenarios
+##### Multiple teams: Producer/consumer
+An example of outsourcing.
+
+Teams are geographically distributed and share components in a producer/consumer relationship. [6]
+##### Multiple teams: Shared source code
+Teams are geographically distributed, but modify the same shared software. [6]
+
+##### Single team: Distributed members
+An example of the distance working or distributed groups cases.
+
+Members are geographically distributed, but not organized into teams. They modify the same shared software. [6]
+
+
+
 #### Architectures
 ##### One server / site
 ###### Locally to a server
 All developers are in the same location, working on the same server. [4]
 ###### Remote login 
-Some developers are in the same location, some are distributed. They all remote to the same server [4]
+Some developers are in the same location, some are distributed. They all remote to the same server [4, 6]
+###### Web access
+Same as remote login, but through the HTTP/HTTPS protocol. [6]
 ##### Several servers / sites
 ###### Several sites by Master-Slave connections
 One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
@@ -465,7 +485,11 @@ One site is considered "Master", and is synchronized to by the "Slaves". It is i
 One site has responsibility of one part of the repository, another the other. Essentially, piece-wise "Master-Slave". [4]
 ###### Several sites with equal servers
 All sites are synchronized with eachother and act like one logical site. Developers remote into the logical site, and get connected to whichever site makes most sense [4]
-
+##### Other
+###### Local access
+Developers make a copy to bring home. [4, 6]
+###### Disconnected access
+Developers login to the server to make a copy, then disconnect. Similar to local access, just the transfer process is different. [6]
 
 ### Workshops
 The purpose of workshops are to involve developers in the construction of CM plans and processes. Secondarily, to increase their knowledge about CM practices. [2]
