@@ -457,18 +457,28 @@ Work is performed in groups. Group members may be spread geographically. Similar
 
 #### White's three scenarios
 ##### Multiple teams: Producer/consumer
-An example of outsourcing.
+Teams are geographically distributed and share components in a producer/consumer relationship. The producer develops the component, and the consumer only uses it -- the consumer does NOT modify it. Can sometimes be an example of outsourcing, but often it could be co-located groups. It could be interpreted as one group producing a component for the other to incorporate. White argues that this decreases the amount of integration problems. It is, of course, necessary that the component breakdown makes sense, so some foresight is necessary. [6]
 
-Teams are geographically distributed and share components in a producer/consumer relationship. [6]
+This presents some challenges:
+1. you'll need to identify the versions of each component and establish component baselines [6]
+2. components need a reliable way of being delivered to other teams / consumers [6]
+3. components need to be planned in advance, e.g. prepare stubs so that it integrates seamlessly when it's delivered [6]
+
 ##### Multiple teams: Shared source code
 Teams are geographically distributed, but modify the same shared software. [6]
+
+White advises to avoid this as much as possible, unless, in one of these (non-exhaustive) situations:
+- Monolithic architecture [6]
+- System is in maintenance mode [6]
+- Several teams NEED to access it simultaneously [6]
+- Organization has a feature-based approach, e.g. developers modify any code relevant to the feature they've been assigned [6]
 
 ##### Single team: Distributed members
 An example of the distance working or distributed groups cases.
 
 Members are geographically distributed, but not organized into teams. They modify the same shared software. [6]
 
-
+Architecture and management occurs at the site where most developers are located. Like the previous examples, the system is divided into components. In this case, components are assigned to individuals rather than teams. Shared code is inevetable, though. [6]
 
 #### Architectures
 ##### One server / site
