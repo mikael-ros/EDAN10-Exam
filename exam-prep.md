@@ -384,25 +384,25 @@ Metaphors intend to describe an abstract concept through real-world intuitions, 
 ### Construction site metaphor
 In a construction site, people of several trades need to work simultaneously on the same project. This can lead to situations where, for example, the drywall contractors have not finished mudding the walls, but the painters need to start painting. However some tasks can still be done in parallel, to varied success.
 
-In the context of software, this is equivalent to a project where several developers need to work at the same time. Since software is not made out of rooms, the concept of a drywall contractor finishing the drywall in one room as a painter paints another room is not immediately transferable. To work on the software simultaneously, the developers need their own copies of the artefact. This immediately presents issues in the form of the double maintenance, shared data, and simultaneous update problems. [2]
+In the context of software, this is equivalent to a project where several developers need to work at the same time. Since software is not made out of rooms, the concept of a drywall contractor finishing the drywall in one room as a painter paints another room is not immediately transferable. To work on the software simultaneously, the developers need their own copies of the ***artifact***. This immediately presents issues in the form of the ***Double Maintenance***, ***Shared Data***, and ***Simultaneous Update*** problems. [2]
 
-The easy solution is to prohibit anything but serialized work. The obvious downside being decreased productivity. The other option is to maintain good communication in addition to implementing a good change management system in order to increase traceability and responsibility. [2, 3] One option is locking, but this presents the issue of someone forgetting to release their lock. [3]
+The easy solution is to prohibit anything but serialized work. The obvious downside being decreased productivity. The other option is to maintain good communication in addition to implementing a good ***change management system*** in order to increase ***traceability*** and responsibility. [2, 3] One option is ***locking***, but this presents the issue of someone forgetting to release their ***lock***. [3]
 
 It is also important that build processes and tooling are consistent. [3]
 ### Study metaphor
 In a study, you bring in your study materials (books, e.t.c.), which you work with and produce new works, such as notes. You do so undisturbed, on your own. [2]
 
-In the context of software, this is equivalent to copying the software to your own machine to work on it, producing new artifacts. You then contribute these back to the repository. The repository is considered immutable, and the developers must create their own mutable copies. As such, the CM tool must provide the ability to create personal workspaces. In order to facilitate consistency between workspaces, it must also provide synchronization for configurations -- e.g. versions of dependencies. [2] This can cause the double maintenance problem without proper task assignment. [0]
+In the context of software, this is equivalent to copying the software to your own machine to work on it, producing new ***artifacts***. You then contribute these back to the ***repository***. The ***repository*** is considered immutable, and the developers must create their own mutable copies. As such, the CM tool must provide the ability to create personal ***workspaces***. In order to facilitate consistency between ***workspaces***, it must also provide synchronization for configurations -- e.g. versions of dependencies. [2] This can cause the ***Double Maintenance problem*** without proper task assignment. [0]
 
 ### Library metaphor
 We keep knowledge in libraries, organized in such a way that it is easy to retrieve and store information. Sometimes several people need access to the same information at the same time, which requires some form of management system. [2]
 
-In software, this is comparable to tracking artifacts involved in the project. We need a way to store, recreate, and register the history of an artifact. [2]
+In software, this is comparable to tracking ***artifacts*** involved in the project. We need a way to store, recreate, and register the history of an ***artifact***. [2]
 
 ## Uncategorized
 
 ### Awareness +++
-The collective understanding of the project within the team, particularly in regards to who is doing what. [0, 5]
+The collective understanding of the project within the team, particularly in regards to who is doing what. [0, 5, 7] One facet of this is provding versioning and a way to see the difference between two versions of the software, such as through a command like ``diff``. [7]
 
 ### Artifact +++
 A piece of software or documentation. The history of an artifact is tracked in log entries, and the differences between versions are called deltas. [2]
@@ -413,14 +413,14 @@ Occurs when developers are physically, particularly geographically, separated. [
 #### Challenges !!!
 Challenges include decreased communication, and reliance on the internet and good CM practices. It can also lower team morale and knowledge spread. [4]
 
-- Distributed groups usually do not get information on what other groups are doing, [4, 5] e.g. the group awareness is lowered [5]
+- Distributed groups usually do not get information on what other groups are doing, [4, 5] e.g. the group ***awareness*** is lowered [5]
     > **Strategies:** Have well defined tasks and clear areas of responsibility. [5] 
-- Merge requests usually take longer, due to timezones and lowered group awareness. The CCB may not recognize some of the code submitted, which creates research overhead. [5]
+- Merge requests usually take longer, due to timezones and lowered group ***awareness***. The ***CCB*** may not recognize some of the code submitted, which creates research overhead. [5]
     > **Strategies:** Improving communication and documentation. Having well defined tasks and clear areas of responsibility.
 - Different SCM environments lead to merge requests being handled differently [5]
     > **Strategies:** Make sure all members adhere to the same CM plan. [5]
-- Lack of a planned baseline. [5]
-    > **Strategies:** Establish baseline before development starts, and make sure all developers have adequate knowledge about it. [5]
+- Lack of a planned ***baseline***. [5]
+    > **Strategies:** Establish ***baseline*** before development starts, and make sure all developers have adequate knowledge about it. [5]
 - Lack of SCM principles [5]
     > **Strategies:** Implement them... [5]
 - Tasks are not always clearly distributed [6]
@@ -448,7 +448,7 @@ Work is performed in groups, but the groups are in different locations. Such as 
 - Different file systems, hopefully same CM tools [4]
 - The groups deliver subproducts to eachother rather than developing together [4]
 - Synchronization is achieved solely through planned meetings [4]
-- Change management becomes particularly important [4]
+- ***Change management*** becomes particularly important [4]
 ##### Distributed groups
 Work is performed in groups. Group members may be spread geographically. Similar to the case of distance working. Can usually be avoided by subgrouping. [4]
 - Communication becomes very important [4]
@@ -457,10 +457,10 @@ Work is performed in groups. Group members may be spread geographically. Similar
 
 #### White's three scenarios
 ##### Multiple teams: Producer/consumer
-Teams are geographically distributed and share components in a producer/consumer relationship. The producer develops the component, and the consumer only uses it -- the consumer does NOT modify it. Can sometimes be an example of outsourcing, but often it could be co-located groups. It could be interpreted as one group producing a component for the other to incorporate. White argues that this decreases the amount of integration problems. It is, of course, necessary that the component breakdown makes sense, so some foresight is necessary. [6]
+Teams are geographically distributed and share components in a producer/consumer relationship. The producer develops the component, and the consumer only uses it -- the consumer does NOT modify it. Can sometimes be an example of ***outsourcing***, but often it could be ***co-located groups***. It could be interpreted as one group producing a component for the other to incorporate. White argues that this decreases the amount of integration problems. It is, of course, necessary that the component breakdown makes sense, so some foresight is necessary. [6]
 
 This presents some challenges:
-1. you'll need to identify the versions of each component and establish component baselines [6]
+1. you'll need to identify the versions of each component and establish component ***baselines*** [6]
 2. components need a reliable way of being delivered to other teams / consumers [6]
 3. components need to be planned in advance, e.g. prepare stubs so that it integrates seamlessly when it's delivered [6]
 
@@ -511,20 +511,31 @@ The pros include:
 
 It is conducted in three stages:
 1. Prepare: select who should participate, when to conduct the workshop, and what background material needs to be made available [2]
-2. Execute: present the objectives of the workshop and present the content (such as the three metaphors) [2]
+2. Execute: present the objectives of the workshop and present the content (such as the three ***metaphors***) [2]
 3. Document: draft the CM plan, review it, and publish it [2]
 ### Team co-ordination and communication
 Since communication cannot always be ensured, it is important that it is also carried out indirectly, such as through documentation or comments. [2]
 
+#### Co-ordination strategies
+##### Turn-taking / Locking
+We simply lock the file that we are working on, so no-one else can modify it. The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+
+### Split-combine
+Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor locking. [7]
+
+### Copy-merge
+We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
+
+
 ### Baselines !!!
-Certain bound configurations can form a baseline, e.g. a basis for further development with formal change management. [2]
+Certain bound configurations can form a baseline, e.g. a basis for further development with formal ***change management***. [2]
 
 ### Private workspaces
 
 ### Change management +++ !!!
 The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
 
-This increases traceability. [2]
+This increases ***traceability***. [2]
 
 ### Traceability +++ !!!
 The ability to understand who made a change, where, and when. [0]
@@ -532,6 +543,20 @@ The ability to understand who made a change, where, and when. [0]
 ### Configuration items
 ### Partially bound and bound configurations +++ !!!
 In partially bound configurations, versions of dependencies can vary so long as they are satisfied. In bound configurations, they are static. [2]
+
+### Checkout/checkin model
+A seperation of where files are stored, and where they are modified. The developer checks out into their personal workspace a copy of the repository, and checks in when they are done. This solves the ***Shared Data problem***, but causes the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. Additionally, to facilitate the check-in process, we would also need merge functionality. It may also be advantageous to provide branching support. [7]
+
+### Transactions
+A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7]
+#### Long transactions
+A chain of several modifications, to several files. When we try to commit, the ***version control tool*** will check if we are up-to-date on all files. If not, it forces us to pull the latest changes and merge them into our ***workspace***. This can cause issues, however, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. [7] 
+#### Strict long transactions
+Strict long transactions enforce the constraint that the software needs to work as intended. This means that any logical conflicts will be refused until resolved. [7]
+
+### Automation
+We can automate trivial and repetetive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
+
 
 
 ---
@@ -544,3 +569,4 @@ In partially bound configurations, versions of dependencies can vary so long as 
 4. Asklund
 5. Fauzi, et. al.
 6. White
+7. Bendix (the study metaphor)
