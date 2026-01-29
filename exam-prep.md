@@ -579,13 +579,13 @@ Strict long transactions enforce the constraint that the software needs to work 
 We can automate trivial and repetetive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
 
 ### Continuous Delivery
-A process which facilitates the ability to release at any point, negating the need for timelines. [10]
+A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11]
 
-When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10]
+When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
 
-On the business end, it also allows us to keep up with competition. Instead of releasing a competetive version of the software next release cycle, we can release it as soon as possible. [10]
+On the business end, it also allows us to keep up with competition. Instead of releasing a competetive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
 
-Integrating CI into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer branches (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10]
+Integrating CI into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer branches (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10] Some corners may also have to be cut, such as the traditional ***change request board***. [11]
 
 Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
 
