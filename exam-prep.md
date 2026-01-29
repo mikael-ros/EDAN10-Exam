@@ -518,19 +518,24 @@ Since communication cannot always be ensured, it is important that it is also ca
 
 #### Co-ordination strategies
 ##### Turn-taking / Locking
-We simply lock the file that we are working on, so no-one else can modify it. The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+We simply lock the file that we are working on, so no-one else can modify it. [7, 8] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
 ### Split-combine
-Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor locking. [7]
+Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor locking. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8]
 
 ### Copy-merge
 We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
 
 
-### Baselines !!!
+### Baselines (repositories)
+A shared project database, containing all artifacts / components for the software. [8] It also contains details on configuration, such as which dependencies the project relies on.
+
+It is where known good code goes. A developer should not commit from their workspace any faulty code. [8]
+
 Certain bound configurations can form a baseline, e.g. a basis for further development with formal ***change management***. [2]
 
 ### Private workspaces
+Each developer has their own private workspace, containing a copy of the repository or ***baseline***. When the developer is done, and has tested their code, they can contribute it to the baseline, [8] as in the ***checkout/checkin model***. 
 
 ### Change management +++ !!!
 The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
@@ -563,10 +568,11 @@ We can automate trivial and repetetive tasks. An early example of this is ``make
 
 # Sources
 0. Own intuition or experiences
-1. Babich; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
+1. Babich chapter 1-2; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 2. Bendix, Vinter
 3. Mikkelsen, Pherigo
 4. Asklund
 5. Fauzi, et. al.
 6. White
 7. Bendix (the study metaphor)
+8. Babich chapter 5; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
