@@ -397,7 +397,7 @@ In the context of software, this is equivalent to copying the software to your o
 ### Library metaphor
 We keep knowledge in libraries, organized in such a way that it is easy to retrieve and store information. Sometimes several people need access to the same information at the same time, which requires some form of management system. [2]
 
-In software, this is comparable to tracking ***artifacts*** involved in the project. We need a way to store, recreate, and register the history of an ***artifact***. [2]
+In software, this is comparable to tracking ***artifacts*** involved in the project. We need a way to store, recreate, and register the history of an ***artifact***. [2] At a CM level, the place where ***artifacts*** or ***configuration items*** are stored is referred to as a library. This includes both physical and digital items, [12] however the latter is far more common today. Like real libraries, items stored within them have permissions associated with them -- not just anyone could retrieve a brittle old book, for example. [12]
 
 ## Uncategorized
 
@@ -557,6 +557,13 @@ Similar to the ***checkout/checkin*** model, we use repositories and workspaces,
 #### The change set model !!!
 Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased traceability, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
 
+#### Two-tier model
+Development is seperated into two tiers; formal configuration control, and development (version control only). Code is worked on in ***personal workspaces*** and subsequently pushed to the development tier, and is not fully ironed out until pushed onto the formal configuration control tier. As such, developers are less burdened by overhead during development, but the end product remains well-tested and traceability is maintained. [12] 
+
+A ***configuration item*** may progress from the development stage to the formal configuration control stage once it has been dry-run tested or if it is acutely needed for review or use. If the latter is the case, it must be abundantly clear that the feature may have deficiencies. [12]
+
+The limitiations to this model used to be space, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
+
 ### Configurations
 #### System model
 A representation of the hierarchy of components used within the software. Relies on ***version selection rules***. [9]
@@ -567,6 +574,11 @@ Versions are static, e.g. specific versions of components are used. [2, 9] Gener
 #### Partially bound configurations
 Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
 #### Configuration items
+Configuration items are formally defined as anything which can be independently identified. They may be nested within eachother, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item). [12] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
+
+Kelly further defines "stepping stone" items, which are interim items that are not worth storing, [12] such as testing results.
+
+Configuration items are kept in the controlled area, sometimes referred to as a CM ***library (see metaphor)***. [12] 
 
 ### Transactions
 A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7, 9]
@@ -604,3 +616,5 @@ Neely and Stolt suggest using feature toggles. That way, features can be rolled 
 9. Feiler
 10. Neely, Stolt
 11. Chen
+12. Kelly
+13. Babich chapter 3;
