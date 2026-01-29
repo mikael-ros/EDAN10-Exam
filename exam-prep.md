@@ -516,26 +516,27 @@ It is conducted in three stages:
 ### Team co-ordination and communication
 Since communication cannot always be ensured, it is important that it is also carried out indirectly, such as through documentation or comments. [2]
 
-#### Co-ordination strategies
-##### Turn-taking / Locking
-We simply lock the file that we are working on, so no-one else can modify it. [7, 8] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+#### Co-ordination strategies 
+*also known as concurrency control schemes* [9]
+##### Turn-taking / Locking / Conservative scheme
+We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
 ### Split-combine
 Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor locking. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8]
 
-### Copy-merge
-We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
+### Copy-merge / Optimistic scheme
+We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
 
 
 ### Baselines (repositories)
 A shared project database, containing all artifacts / components for the software. [8] It also contains details on configuration, such as which dependencies the project relies on.
 
-It is where known good code goes. A developer should not commit from their workspace any faulty code. [8]
+It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for versioning. [9]
 
 Certain bound configurations can form a baseline, e.g. a basis for further development with formal ***change management***. [2]
 
 ### Private workspaces
-Each developer has their own private workspace, containing a copy of the repository or ***baseline***. When the developer is done, and has tested their code, they can contribute it to the baseline, [8] as in the ***checkout/checkin model***. 
+Each developer has their own private workspace, containing a copy of the repository or ***baseline*** and current changes. When the developer is done, and has tested their code, they can contribute it to the baseline, [8, 9] as in the ***checkout/checkin model***. 
 
 ### Change management +++ !!!
 The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
@@ -545,17 +546,32 @@ This increases ***traceability***. [2]
 ### Traceability +++ !!!
 The ability to understand who made a change, where, and when. [0]
 
-### Configuration items
-### Partially bound and bound configurations +++ !!!
-In partially bound configurations, versions of dependencies can vary so long as they are satisfied. In bound configurations, they are static. [2]
 
-### Checkout/checkin model
-A seperation of where files are stored, and where they are modified. The developer checks out into their personal workspace a copy of the repository, and checks in when they are done. This solves the ***Shared Data problem***, but causes the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. Additionally, to facilitate the check-in process, we would also need merge functionality. It may also be advantageous to provide branching support. [7]
+### Models
+#### Checkout/checkin model
+A seperation of where files are stored, and where they are modified. The developer checks out into their personal workspace a copy of the repository, and checks in when they are done. [7, 9] This solves the ***Shared Data problem***, but causes the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. Additionally, to facilitate the check-in process, we would also need merge functionality. It may also be advantageous to provide branching support. [7]
+
+#### The composition model
+Similar to the ***checkout/checkin*** model, we use repositories and workspaces, in addition to concurrency control through locking. However, configuratinos are based on system models and selection rules. [9]
+
+#### The change set model !!!
+Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased traceability, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
+
+### Configurations
+#### System model
+A representation of the hierarchy of components used within the software. Relies on ***version selection rules***. [9]
+#### Version selection rules
+The version selection rules indicate which versions of the dependencies and modules are being used. [9]
+#### Bound configurations
+Versions are static, e.g. specific versions of components are used. [2, 9] Generally more stable. [9]
+#### Partially bound configurations
+Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
+#### Configuration items
 
 ### Transactions
-A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7]
-#### Long transactions
-A chain of several modifications, to several files. When we try to commit, the ***version control tool*** will check if we are up-to-date on all files. If not, it forces us to pull the latest changes and merge them into our ***workspace***. This can cause issues, however, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. [7] 
+A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7, 9]
+#### The long transaction model
+A chain of several modifications, to several files, in a workspace -- a "logic change". When we try to commit, a concurrency control scheme is executed. [9] Usually, this means that the ***version control tool*** will check if we are up-to-date on all files. If not, it forces us to pull the latest changes and merge them into our ***workspace***. This can cause issues, however, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. [7] 
 #### Strict long transactions
 Strict long transactions enforce the constraint that the software needs to work as intended. This means that any logical conflicts will be refused until resolved. [7]
 
@@ -576,3 +592,4 @@ We can automate trivial and repetetive tasks. An early example of this is ``make
 6. White
 7. Bendix (the study metaphor)
 8. Babich chapter 5; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
+9. Feiler
