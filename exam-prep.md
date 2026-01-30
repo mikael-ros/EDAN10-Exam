@@ -359,6 +359,9 @@ Addition means the topic came up several times
 +++ = additions I thought were relevant
 
 
+## Configuration Control
+The control of changes to hardware, software, firmware, and documentation. [16]
+
 ## Concurrency problems
 ### Shared data problem !!!
 Occurs when several developers are simultaneously accessing the same files. A modification made by one developer in one file may break functionality which another file depends on. [1]
@@ -569,15 +572,33 @@ Concerns within branching include safety, liveness, reusability, teamwork, and S
 3. Change Propagation Queues (S6)
     Define relationships between branches such that changes are propagated in the order they were made. [14]
 
-### Baselines (repositories)
-A shared project database, containing all artifacts / components for the software. [8] It also contains details on configuration, such as which dependencies the project relies on.
+### Baselines !!!
+A shared project database, containing all artifacts / components for the software. [8] It also contains details on configuration, such as which dependencies the project relies on. ??????
 
-It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for versioning. [9]
+It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for versioning. [9] ???????
 
-Certain bound configurations can form a baseline, [2, 14] sometimes referred to as a baselevel, [14] e.g. a basis for further development with formal ***change management***. [2]
+Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
+
+Daniels identifies three primary forms of baselines:
+- functional baseline (FBL) [16]
+- allocated baseline (ABL) [16]
+- product baseline (PBL) [16]
 
 ### Private workspaces
 Each developer has their own private workspace, containing a copy of the repository or ***baseline*** and current changes. When the developer is done, and has tested their code, they can contribute it to the baseline, [8, 9] as in the ***checkout/checkin model***. 
+
+### Status accounting
+A means of documenting the status of ***configuration items***. It also provides for ***communication*** and ***traceability***, and provides updates on ***CCB*** activities. [16]
+
+The aim is continually trace the development, such that all progress is attributed and dated. [16]
+
+Daniels outlines that an effective status accounting system satisfies:
+- is capable of handling many elements [16]
+- is flexible (can be adjusted to current needs) [16]
+- is easy to use [16]
+- can be controlled [16]
+- produces varied reports [16]
+- can account for security needs [16]
 
 ### Change management +++ !!!
 The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
@@ -610,8 +631,14 @@ The version selection rules indicate which versions of the dependencies and modu
 Versions are static, e.g. specific versions of components are used. [2, 9] Generally more stable. [9]
 #### Partially bound configurations
 Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
+#### Configuration identification
+The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. Done by a configuration manager. Good configuration identification addresses ***traceability***. [16]
 #### Configuration items
-Configuration items are formally defined as anything which can be independently identified. They may be nested within eachother, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item). [12] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
+*sometimes referred to as computer program / software configuration items (CPCI / CSCI)* [16]
+
+Configuration items are formally defined as anything which can be independently identified. They may be nested within eachother, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item) [12] -- this is sometimes referred to as the "lowest replaceable unit (LRU)". [16] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
+
+Daniels proposes a recursive method of defining configuration items, where there are several levels to a hierarchy. What counts as a configuration item is at the eye of the beholder. [16]
 
 Kelly further defines "stepping stone" items, which are interim items that are not worth storing, [12] such as testing results.
 
@@ -670,6 +697,8 @@ Tracking the status of different tasks, such as whether something is ready for t
 #### Variants
 The reconfiguration of the product to fit many purposes, such as different operating systems. [15]
 
+### Technical documentation +++
+Covers the baseline, and the changes to the baseline. [16]
 
 ---
 
@@ -690,4 +719,4 @@ The reconfiguration of the product to fit many purposes, such as different opera
 13. Babich chapter 3;
 14. Appleton, et. al.
 15. Van den Hamer, Lepoeter
-16. Daniels
+16. M.A. Daniels, chapters 2-4 (mostly 3-4)
