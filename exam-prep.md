@@ -639,7 +639,7 @@ Integrating CI into the workflow presents challenges, however. A lot of things n
 Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
 
 ### Derivations
-The hisory of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
+The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 ### Reproducibility
 We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
@@ -656,6 +656,20 @@ How the software is structured. [14]
 Structures, such as directory hierarchy. Things that are defined at the start of development. [14]
 #### Maintaining
 Day-to-day processes at the organization. The line between this pattern and process defining is slightly blurry. [14]
+
+### The Five Dimensions
+The following dimensions can be used in isolation, or combined. 
+#### Version
+Each step of development warrants a new version. It is important that versions do not overwrite eachother, it should be possible to ***reproduce*** earlier versions. [15]
+#### Views
+The development is divided into constituent and sequential parts of a process. For example, source code is made into compiled code, sketches are made into blueprints, e.t.c. Views encapsulate the steps contained within the development of one aspect of the project. [15]
+#### Hierarchy
+Development is subdivided into subtasks, until it is made digestible. Another benefit is that if said deliverables are common witin the project, such as a helper function, it can promote **reuse**. [15] It could be seen as a further compartmentalization of the view dimension. 
+#### Status
+Tracking the status of different tasks, such as whether something is ready for testing. [15]
+#### Variants
+The reconfiguration of the product to fit many purposes, such as different operating systems. [15]
+
 
 ---
 
@@ -675,3 +689,5 @@ Day-to-day processes at the organization. The line between this pattern and proc
 12. Kelly
 13. Babich chapter 3;
 14. Appleton, et. al.
+15. Van den Hamer, Lepoeter
+16. Daniels
