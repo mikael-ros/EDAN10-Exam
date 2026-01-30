@@ -601,6 +601,12 @@ Integrating CI into the workflow presents challenges, however. A lot of things n
 
 Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
 
+### Derivations
+The hisory of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
+
+### Reproducibility
+We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13]
+
 ---
 
 # Sources
