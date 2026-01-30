@@ -518,22 +518,63 @@ Since communication cannot always be ensured, it is important that it is also ca
 
 #### Co-ordination strategies 
 *also known as concurrency control schemes* [9]
-##### Turn-taking / Locking / Conservative scheme
-We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+##### Turn-taking / Locking / Conservative scheme / Serial development
+We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
 ### Split-combine
-Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor locking. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8]
+Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor ***locking***. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8]
 
 ### Copy-merge / Optimistic scheme
 We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
 
+### Branching
+We create a copy of the ***repository*** at a certain point in time and give it a new identifier. The development on the "main" branch continues as normal, while the new branch acts like a secondary ***repository*** from which another set of developers can work on. This may be used in conjunction with ***locking***, where the branching concept provides the ability for a developer to branch the ***repository*** to get around someones ***lock*** safely. [14] 
+
+When changes within a branch need to be integrated into another, we merge. This is sometimes referred to as syncing or propagating. [14]
+
+Branching can exist on several levels. We may just branch the code, or we may branch the entire configuration. In some cases, we may branch the team itself. [14]
+
+Branches may visually be represented as tree diagrams. [14]
+
+Concerns within branching include safety, liveness, reusability, teamwork, and SCM tool support. [14]
+
+#### Branch creation patterns
+*only including the ones we needed to read about!*
+1. Branch per Task (C2)
+    Create a branch for each task. [14]
+    1. Branch per Major Task: create a branch when implementing very large features or bug-fixes [14]
+    2. Branch per ***Merge / Change request*** [14]
+    3. Personal activity branch: pet branch used by one developer [14]
+2. Codeline per Codeline (C3)
+    Use a seperate codeline for each major and minor release (whatever codeline means...) [14]
+3. Subproject Line (C4)
+    Create a branch for a set of tasks. [14]
+    1. Personal: again, a pet branch [14]
+    2. Experimental: a pet branch for several developers [14]
+    3. Multi-project: seperating components into branches. Branches are used together when creating release build. [14]
+#### Branch policy patterns
+*only including the ones we needed to read about!*
+1. Merge Early and Often (P5)
+    Merge contributions as soon as they are satisfiable and tested [14]
+2. Early Branching (P7)
+    Create the branch as soon as it is needed, don't dwell on it. [14]
+3. Deferred Branching (P8)
+    Do not create a branch unless it is strictly needed, such as when it starts conflicting with parallel work. [14]
+#### Branch structuring patterns
+*only including the ones we needed to read about!*
+1. Parallel Maintenance / Development Lines (S2)
+    Split maintenance and developement into seperate branches. Maintenance merges into the development branch. [14] (is that not backwards?)
+2. Staged Integration Lines (S5)
+    Using several branches to represent a hierarchy, such as alpha -> beta -> development. Features work themselves upward in the hierarchy until ready for release. [14]
+3. Change Propagation Queues (S6)
+    Define relationships between branches such that changes are propagated in the order they were made. [14]
 
 ### Baselines (repositories)
 A shared project database, containing all artifacts / components for the software. [8] It also contains details on configuration, such as which dependencies the project relies on.
 
 It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for versioning. [9]
 
-Certain bound configurations can form a baseline, e.g. a basis for further development with formal ***change management***. [2]
+Certain bound configurations can form a baseline, [2, 14] sometimes referred to as a baselevel, [14] e.g. a basis for further development with formal ***change management***. [2]
 
 ### Private workspaces
 Each developer has their own private workspace, containing a copy of the repository or ***baseline*** and current changes. When the developer is done, and has tested their code, they can contribute it to the baseline, [8, 9] as in the ***checkout/checkin model***. 
@@ -543,22 +584,18 @@ The process of handling changes, including the approval process and attribution.
 
 This increases ***traceability***. [2]
 
-### Traceability +++ !!!
-The ability to understand who made a change, where, and when. [0]
-
-
 ### Models
 #### Checkout/checkin model
-A seperation of where files are stored, and where they are modified. The developer checks out into their personal workspace a copy of the repository, and checks in when they are done. [7, 9] This solves the ***Shared Data problem***, but causes the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. Additionally, to facilitate the check-in process, we would also need merge functionality. It may also be advantageous to provide branching support. [7]
+A seperation of where files are stored, and where they are modified. The developer checks out into their personal workspace a copy of the repository, and checks in when they are done. [7, 9, 14] This solves the ***Shared Data problem***, but causes the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. Additionally, to facilitate the check-in process, we would also need merge functionality. It may also be advantageous to provide branching support. [7]
 
 #### The composition model
 Similar to the ***checkout/checkin*** model, we use repositories and workspaces, in addition to concurrency control through locking. However, configuratinos are based on system models and selection rules. [9]
 
 #### The change set model !!!
-Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased traceability, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
+Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased ***traceability***, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
 
 #### Two-tier model
-Development is seperated into two tiers; formal configuration control, and development (version control only). Code is worked on in ***personal workspaces*** and subsequently pushed to the development tier, and is not fully ironed out until pushed onto the formal configuration control tier. As such, developers are less burdened by overhead during development, but the end product remains well-tested and traceability is maintained. [12] 
+Development is seperated into two tiers; formal configuration control, and development (version control only). Code is worked on in ***personal workspaces*** and subsequently pushed to the development tier, and is not fully ironed out until pushed onto the formal configuration control tier. As such, developers are less burdened by overhead during development, but the end product remains well-tested and ***traceability*** is maintained. [12] 
 
 A ***configuration item*** may progress from the development stage to the formal configuration control stage once it has been dry-run tested or if it is acutely needed for review or use. If the latter is the case, it must be abundantly clear that the feature may have deficiencies. [12]
 
@@ -605,7 +642,20 @@ Neely and Stolt suggest using feature toggles. That way, features can be rolled 
 The hisory of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 ### Reproducibility
-We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13]
+We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
+
+### Traceability +++
+The ability to trace when changes were made, and by who. Enables reuseability. [14]
+
+### Patterns
+#### Organizational
+How the organization is structured; size of team, management style, e.t.c. [14]
+#### Architectural
+How the software is structured. [14]
+#### Process Defining
+Structures, such as directory hierarchy. Things that are defined at the start of development. [14]
+#### Maintaining
+Day-to-day processes at the organization. The line between this pattern and process defining is slightly blurry. [14]
 
 ---
 
@@ -624,3 +674,4 @@ We need to be able to recover the complete configuration at any point in time, s
 11. Chen
 12. Kelly
 13. Babich chapter 3;
+14. Appleton, et. al.
