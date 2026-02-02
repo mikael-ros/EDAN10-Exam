@@ -360,6 +360,13 @@ Addition means the topic came up several times
 
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
+## SCM in Agile Development
+Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often makes management too bureaucratic -- the responsibility often falls on the developers. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
+
+In Agile, there is typically a large focus on test-driven developement, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. [20]
+
+While the bureaucracy of SCM may sound counter-productive to agile, many of the procedures and principles are beneficial. 
+
 ## Roles within CM
 ### Configuration manager
 The role of a configuration manager depends on the scope of their duties. If they are in charge of software, they may be regarded as software manager, and if they are in charge of documentation, they may be seen as a ***librarian***. The breadth of the managers responsibility depends on to what end they've been assigned. They can be assigned a whole division, or just a subproject. [19]
@@ -386,13 +393,10 @@ As is discussed later in this document, SCM plans are also subject to ***configu
 Leon, who bases his structure mainly on IEEE, suggests the following SCM plan framework:
 1. Introduction
 2. SCM management: organization, responsibilities, e.t.c. [18]
-3. SCM activities: ***configuration identification***, ***configuration control***, ***change management***, ***status accounting***, ***configuration auditing***, e.t.c. [18]
+3. SCM activities: ***configuration identification***, ***configuration control***, ***change management***, ***status accounting***, ***configuration auditing***, e.t.c. [18, 20]
 4. SCM schedules: sequence of SCM activites, identification of lifecycle and milestone, and or where different ***baselines*** will be established. [18]
 5. SCM resources: identification of necessary tools, training, equipment, e.t.c. [18]
 6. SCM plan maintenance: how to upkeep the SCM plan. [18]
-
-## Configuration Control +++
-The control of changes to hardware, software, firmware, and documentation. [17]
 
 ## Concurrency problems
 ### Shared data problem !!!
@@ -404,7 +408,9 @@ When several versions of the same software are being maintained independently. I
 ### Simultaneous update problem !!!
 When several developers simultaneously access the same files, they can overwrite each-others changes by accident. [1]
 
-## Version management 
+## Version management / Version control
+A way of storing the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20]
+
 ### Revisions 
 A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
 
@@ -412,6 +418,9 @@ A version of the software intended to replace the old version. The intent is tha
 An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1]
 
 A set of them is called a variation set. [1] 
+
+## Build management
+The process of creating a runnable version of the system. Typically done automatically, and using the definitions within the ***system model***. [20]
 
 ## Metaphors
 Metaphors intend to describe an abstract concept through real-world intuitions, preferably entirely unrelated to the subject. Thus, facilitating faster learning. [2]
@@ -551,8 +560,8 @@ It is conducted in three stages:
 ### Team co-ordination and communication
 Since communication cannot always be ensured, it is important that it is also carried out indirectly, such as through documentation or comments. [2]
 
-#### Co-ordination strategies 
-*also known as concurrency control schemes* [9]
+#### Co-ordination strategies / Concurrency control
+*also known as concurrency control schemes* [9, 20]
 ##### Turn-taking / Locking / Conservative scheme / Serial development
 We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
@@ -617,10 +626,10 @@ Daniels identifies three primary forms of baselines:
 - product baseline (PBL) [16]
 
 ### Private workspaces
-Each developer has their own private workspace, containing a copy of the repository or ***baseline*** and current changes. When the developer is done, and has tested their code, they can contribute it to the baseline, [8, 9] as in the ***checkout/checkin model***. 
+Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/checkin model***. 
 
 ### Status accounting
-A means of documenting the status of ***configuration items***. It also provides for ***communication*** and ***traceability***, and provides updates on ***CCB*** activities. [16, 18]
+A means of documenting the status and implementation state of ***configuration items***. [16, 18, 20] It also provides for ***communication*** and ***traceability***, [16, 18, 20] and provides updates on ***CCB*** activities. [16, 18] This may be carried out in the form of ***transaction*** logs, ***change*** logs, or progress reports. [20]
 
 The aim is continually trace the development, such that all progress is attributed and dated. [16]
 
@@ -632,8 +641,10 @@ Daniels outlines that an effective status accounting system satisfies:
 - produces varied reports [16]
 - can account for security needs [16]
 
-### Change management
-The process of handling changes, including the approval process and attribution. [2, 17, 18] 
+### Change management / Configuration control
+The process of handling changes, including the approval process and attribution. [2, 17, 18, 20] The control of changes to hardware, software, firmware, and documentation. [17]
+
+!!! What in the world is the distinction between the two??? Source 20 makes a distinction but proceeds to define the same thing twice!
 
 #### Change control board
 The approval process is handled by a Change Control Board (CCB), [2, 17, 18] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
@@ -674,7 +685,7 @@ Versions are static, e.g. specific versions of components are used. [2, 9] Gener
 #### Partially bound configurations
 Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
 #### Configuration identification
-The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. Done by a configuration manager. Good configuration identification addresses ***traceability***. [16]
+The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20] Done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
 #### Configuration items
 *sometimes referred to as computer program / software configuration items (CPCI / CSCI)* [16]
 
@@ -696,14 +707,14 @@ Strict long transactions enforce the constraint that the software needs to work 
 ### Automation
 We can automate trivial and repetetive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
 
-### Continuous Delivery
+### Continuous Delivery / Continuous Integration (CI/CD)
 A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11]
 
 When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
 
 On the business end, it also allows us to keep up with competition. Instead of releasing a competetive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
 
-Integrating CI into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer branches (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10] Some corners may also have to be cut, such as the traditional ***change request board***. [11]
+Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10] Some corners may also have to be cut, such as the traditional ***change request board***. [11]
 
 Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
 
@@ -748,9 +759,9 @@ In configuration management, the verification process consists of audits and pro
 #### (Configuration) Audits
 The process of verifying that the technical documentation lines up with product performance and behavior. Furthermore, it also asserts that the product requirements are met. [17] 
 
-There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17] 
+There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17, 20] 
 
-There are two further subtypes of formal audits, namely FCA and PCA. The first verifies functionality, and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. [17]
+There are two further subtypes of formal audits, namely Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA). The first verifies functionality, and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. Typically carried out by a QA team. [17, 20]
 
 In software applications, ***status accounting*** and auditing are grouped together, which Daniels sees as unfortunate. [17]
 
@@ -789,3 +800,4 @@ There are several types of reviews that may be carried out during specific parts
 17. M.A. Daniels, chapter 2 and 5
 18. Leon
 19. Compton, Conner
+20. Bendix, Ekman
