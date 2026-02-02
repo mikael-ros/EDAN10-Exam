@@ -358,8 +358,30 @@ Addition means the topic came up several times
 !!! = needs further work
 +++ = additions I thought were relevant
 
+> Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
-## Configuration Control
+## Configuration management plans (CM plans)
+An initial draft of the CM plan can be created and circulated among involved groups. Once feedback is obtained, it can be incorporated into the SCM plan to improve it. [18]
+
+The CM plan is one othe three keys to success in establishing good CM, amongst a CM system and adoption strategy. It is intended to be an accurate and complete description of all tasks and procedures, e.g. SCM functions, involved in configuring the product or system and the equipment and knowledge required to carry them out. [18]
+
+The main motivation behind the creation of CM plans is that it increases ***awareness***, knowledge distribution, ***coordination***, and ***communication***. [18]
+
+The creation of such a plan can be approached in several ways. Of great preference, particularly in large organizations, is the incremental approach, where SCM functions are gradually introduced until full SCM implementation is reached -- however, this still requires some foresight, as the increments need to fit together. [18]
+
+Several standards exist for CM plans, such as ones by IEEE, NASA, and DOD (now "DOW"). They all seek to identify the tasks within SCM, but do so at different levels of generalization. The ISO implementation in particular focuses more on the topics contained within this document, such as: ***configuration identification***, ***configuration control***, ***status accounting***, and ***configuration audits***. [18]
+
+As is discussed later in this document, SCM plans are also subject to ***configuration auditing***. [17, 18] The quality of a CM plan can make or break the project. [18]
+
+Leon, who bases his structure mainly on IEEE, suggests the following SCM plan framework:
+1. Introduction
+2. SCM management: organization, responsibilities, e.t.c. [18]
+3. SCM activities: ***configuration identification***, ***configuration control***, ***change management***, ***status accounting***, ***configuration auditing***, e.t.c. [18]
+4. SCM schedules: sequence of SCM activites, identification of lifecycle and milestone, and or where different ***baselines*** will be established. [18]
+5. SCM resources: identification of necessary tools, training, equipment, e.t.c. [18]
+6. SCM plan maintenance: how to upkeep the SCM plan. [18]
+
+## Configuration Control +++
 The control of changes to hardware, software, firmware, and documentation. [17]
 
 ## Concurrency problems
@@ -588,7 +610,7 @@ Daniels identifies three primary forms of baselines:
 Each developer has their own private workspace, containing a copy of the repository or ***baseline*** and current changes. When the developer is done, and has tested their code, they can contribute it to the baseline, [8, 9] as in the ***checkout/checkin model***. 
 
 ### Status accounting
-A means of documenting the status of ***configuration items***. It also provides for ***communication*** and ***traceability***, and provides updates on ***CCB*** activities. [16]
+A means of documenting the status of ***configuration items***. It also provides for ***communication*** and ***traceability***, and provides updates on ***CCB*** activities. [16, 18]
 
 The aim is continually trace the development, such that all progress is attributed and dated. [16]
 
@@ -600,11 +622,11 @@ Daniels outlines that an effective status accounting system satisfies:
 - produces varied reports [16]
 - can account for security needs [16]
 
-### Change management !!!
-The process of handling changes, including the approval process and attribution. [2, 17] 
+### Change management
+The process of handling changes, including the approval process and attribution. [2, 17, 18] 
 
 #### Change control board
-The approval process is handled by a Change Control Board (CCB), [2, 17] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
+The approval process is handled by a Change Control Board (CCB), [2, 17, 18] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
 
 The CCB includes a chairperson, secretary, members, and specialists. [17]
 
@@ -755,3 +777,4 @@ There are several types of reviews that may be carried out during specific parts
 15. Van den Hamer, Lepoeter
 16. M.A. Daniels, chapters 3-4
 17. M.A. Daniels, chapter 2 and 5
+18. Leon
