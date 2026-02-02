@@ -360,7 +360,7 @@ Addition means the topic came up several times
 
 
 ## Configuration Control
-The control of changes to hardware, software, firmware, and documentation. [16]
+The control of changes to hardware, software, firmware, and documentation. [17]
 
 ## Concurrency problems
 ### Shared data problem !!!
@@ -600,10 +600,20 @@ Daniels outlines that an effective status accounting system satisfies:
 - produces varied reports [16]
 - can account for security needs [16]
 
-### Change management +++ !!!
-The process of handling changes, including the approval process and attribution. The approval process is handled by a Change Control Board (CCB), whose members must be adequately knowledgeable about the software and product. [2]
+### Change management !!!
+The process of handling changes, including the approval process and attribution. [2, 17] 
 
-This increases ***traceability***. [2]
+#### Change control board
+The approval process is handled by a Change Control Board (CCB), [2, 17] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
+
+The CCB includes a chairperson, secretary, members, and specialists. [17]
+
+#### The change process
+The CCB reviews the proposal both on the grounds of the necessity of the change, and it's impact and quality. The thoroughness of the implemenation is assured through testing and peer review. As the size of the change grows, so does the complexity of the verification. Furthermore, depending on how the organization is structured, many parties may need to be involved in the process of approving a change. Due to the scope of the change process, certain urgency labelling may be required in some cases. [17]
+
+A verdict is reached by the CCB. If it is declined, then it goes back the originator, e.g. the requester. Otherwise, it propagates up the chain of commad, if required. [17]
+
+While the process may look highly bureaucratic, the process increases ***traceability*** [2, 17], ***communication***, and information spread. [17]
 
 ### Models
 #### Checkout/checkin model
@@ -698,7 +708,31 @@ Tracking the status of different tasks, such as whether something is ready for t
 The reconfiguration of the product to fit many purposes, such as different operating systems. [15]
 
 ### Technical documentation +++
-Covers the baseline, and the changes to the baseline. [16]
+Covers the ***baseline***, and the changes to the ***baseline***. [16]
+
+### Verification
+In configuration management, the verification process consists of audits and program reviews. [17]
+
+#### (Configuration) Audits
+The process of verifying that the technical documentation lines up with product performance and behavior. Furthermore, it also asserts that the product requirements are met. [17] 
+
+There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17] 
+
+There are two further subtypes of formal audits, namely FCA and PCA. The first verifies functionality, and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. [17]
+
+In software applications, ***status accounting*** and auditing are grouped together, which Daniels sees as unfortunate. [17]
+
+##### Conducting audits
+An audit begins by defining what is to be audited, and the goals of the audit. In preparation, a so-called "data package" containing the relevant documentation needs to be collected. Secondarily, an audit team is gathered, including a chairperson and a recorder (note-taker). This team is often splintered during auditing. After conducting the audit, findings are collected, and a report is prepared. [17]
+
+#### Reviews +++
+There are several types of reviews that may be carried out during specific parts of the lifecycle. These include:
+- System Requirements: Establish functional ***baseline***. ***CM plan*** complete, and procedure development begun. [17]
+- System Design: Establish the allocated ***baseline***, verify ***traceability*** back to top-level requirements. ***CM plan*** is reviewed and ammended, and procedures (automated testing, e.t.c.) should be in place. [17]
+- Preliminary Design: Verify decomposition and ***configuration item*** selection. Review procedures, e.t.c. [17]
+- Critical Design: Establish developmental ***baseline***. Validate ***status accounting*** system. [17] 
+- Product or Functional Qualification: Assure that product is ready for customer. [17]
+
 
 ---
 
@@ -719,4 +753,5 @@ Covers the baseline, and the changes to the baseline. [16]
 13. Babich chapter 3;
 14. Appleton, et. al.
 15. Van den Hamer, Lepoeter
-16. M.A. Daniels, chapters 2-4 (mostly 3-4)
+16. M.A. Daniels, chapters 3-4
+17. M.A. Daniels, chapter 2 and 5
