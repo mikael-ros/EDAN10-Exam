@@ -360,6 +360,16 @@ Addition means the topic came up several times
 
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
+## Roles within CM
+### Configuration manager
+The role of a configuration manager depends on the scope of their duties. If they are in charge of software, they may be regarded as software manager, and if they are in charge of documentation, they may be seen as a ***librarian***. The breadth of the managers responsibility depends on to what end they've been assigned. They can be assigned a whole division, or just a subproject. [19]
+
+As is often the case, the role of software configuration manager is simply seen as a role of many assigned to the same person. It does not always make sense to have a dedicated configuration manager. Typically, this role is assigned to the software engineering manager. The usual prerequisites for the role are a background in software engineering or management, or both. The manager should be confident in the CM plan and it's contents, and vigilant about it's application, lest trust and application of the plan will weaken. [19]
+
+It often makes sense to conduct configuration management on the global level, as confusion can occur on the project level if one team member is working on several projects with entirely different approaches to SCM. [19]
+
+The configuration manager is typically very involved in, but not the chairman of, the ***CCB***. Their role typically comprises of reporting and providing insight. [19]
+
 ## Configuration management plans (CM plans)
 An initial draft of the CM plan can be created and circulated among involved groups. Once feedback is obtained, it can be incorporated into the SCM plan to improve it. [18]
 
@@ -778,3 +788,4 @@ There are several types of reviews that may be carried out during specific parts
 16. M.A. Daniels, chapters 3-4
 17. M.A. Daniels, chapter 2 and 5
 18. Leon
+19. Compton, Conner
