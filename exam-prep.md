@@ -419,6 +419,9 @@ When several versions of the same software are being maintained independently. I
 ### Simultaneous update problem
 When several developers simultaneously update the same files, they can overwrite each-others changes by accident. [1, 20] This may be solved by assigning identities, such as ***versions*** to the files, to enable recogntion of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
 
+### Multiple maintenance trap
+Very related to the ***double maintenance problem***. Occurs in an environment with ***variants***, where each ***variant*** may be customized to fit a particular need. Since ***variants*** are not necessarily linked to eachother, but descendants of the same ***version***, fixes in one ***variant*** need to be manually applied to each relevant ***variant***. [21]
+
 ## Version management / Version control
 A way of storing the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20]
 
@@ -768,7 +771,21 @@ Development is subdivided into subtasks, until it is made digestible. Another be
 #### Status
 Tracking the status of different tasks, such as whether something is ready for testing. [15]
 #### Variants
-The reconfiguration of the product to fit many purposes, such as different operating systems. [15]
+The reconfiguration of the product to fit many purposes, such as making the software run on different operating systems. [15, 21] They are essentially parallel ***versions***. [21]
+
+The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
+
+There are several approaches to variants, amongst them:
+- variant segregation: each variant has a seperate copy of a component. [21]
+- single source variants: each variant cherry picks parts of the repository during the build process. [21]
+
+Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
+
+Single source variants are popular within C, where it is achieved through conditional compilation. This approach avoids the redundancy and storage problems of the segregation approach, but it can become difficult to track the so-called meta programs. Unlike with segregation, it is hard to foresee what consequences a change will have on a particular meta program, as they are not explicit. As a subconsequence, this also means that ***traceability*** in the context of particular meta programs is reduced. [21]
+
+There are many more types of variants as well, such as aggregate, ***derivation***, and temporary variants. [21] 
+
+There is a lot more to the field of variant management not covered here, in the interest of time.
 
 ### Technical documentation +++
 Covers the ***baseline***, and the changes to the ***baseline***. [16]
