@@ -360,6 +360,15 @@ Addition means the topic came up several times
 
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
+## Product Data Management (PDM)
+Like SCM, PDM focuses on managing the design process. The difference is that SCM focuses on software, whereas PDM focuses on hardware. Many of the concepts overlap. [22]
+
+PDM is, however, more concerned about managing data and documentation for hardware. There is a larger focus on re-use and product structure. Instead of managing source code, PDM often manages things like CAD files and 3D models. [22]
+
+In some cases, SCM and PDM are used in unison, when a project requires both paradigms, though integration of them is not as simple as using both at the same time. [22] 
+
+They share, amongst other things: ***identification***, ***change management***, ***version management***, and ***variant management***. However, the particular ways they are approached may differ. [22]
+
 ## SCM in Agile Development
 Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often makes management too bureaucratic -- the responsibility often falls on the developers. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
 
@@ -578,6 +587,8 @@ Since communication cannot always be ensured, it is important that it is also ca
 
 #### Co-ordination strategies / Concurrency control
 *also known as concurrency control schemes* [9, 20]
+
+Methods of facilitating or preventing simultaneous access. [22]
 ##### Turn-taking / Locking / Conservative scheme / Serial development
 We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. [7, 20] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
@@ -661,7 +672,7 @@ Daniels outlines that an effective status accounting system satisfies:
 - can account for security needs [16]
 
 ### Change management / Configuration control
-The process of handling changes, including the approval process and attribution. [2, 17, 18, 20] The control of changes to hardware, software, firmware, and documentation. [17]
+The process of handling changes, including the approval process and attribution. [2, 17, 18, 20, 22] The control of changes to hardware, software, firmware, and documentation. [17]
 
 !!! What in the world is the distinction between the two??? Source 20 makes a distinction but proceeds to define the same thing twice!
 
@@ -839,3 +850,5 @@ There are several types of reviews that may be carried out during specific parts
 19. Compton, Conner
 20. Bendix, Ekman
 21. Mahler
+22. Crnkovic, et. al.
+23. Bendix, Pendleton, et. al.
