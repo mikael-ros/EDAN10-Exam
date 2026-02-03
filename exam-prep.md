@@ -360,7 +360,8 @@ Addition means the topic came up several times
 
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
-## Product Data Management (PDM)
+## SCM in other contexts
+### SCM vs. Product Data Management (PDM)
 Like SCM, PDM focuses on managing the design process. The difference is that SCM focuses on software, whereas PDM focuses on hardware. Many of the concepts overlap. [22]
 
 PDM is, however, more concerned about managing data and documentation for hardware. There is a larger focus on re-use and product structure. Instead of managing source code, PDM often manages things like CAD files and 3D models. [22]
@@ -369,7 +370,7 @@ In some cases, SCM and PDM are used in unison, when a project requires both para
 
 They share, amongst other things: ***identification***, ***change management***, ***version management***, and ***variant management***. However, the particular ways they are approached may differ. [22]
 
-## SCM in Agile Development
+### SCM in Agile Development
 Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often makes management too bureaucratic -- the responsibility often falls on the developers. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
 
 In Agile, there is typically a large focus on test-driven developement, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which are informal and fast ways to continually define requirements. [20] 
@@ -386,6 +387,16 @@ Some tasks within SCM that are typically ignored or difficult to implement withi
 - ***Roles***: since everyone is similarly involved in agile, it is important that everyone is similarly knowledgeable about SCM, as there is no room for dedicated SCM roles. [20]
 - ***CM plans***: the use of SCM processes at all is preferred to a comprehensive and monolithic SCM plan. Ideally, the processes are documented. [20]
 
+### SCM and DevOps
+The cross-functional nature of DevOps means that each team -- or even every person -- should be able to take care of all aspects of software development. This means, like in agile, there is no room for a specialized SCM role, as everyone should be able to perform it. [23]
+
+There is debate surrounding what DevOps exactly is, but Bendix, et. al. define it as a solution to the divide between Developers and Operations (management). If developers and operations are located in the same place and with good communication, conflicts and misunderstandings should decrease in frequency. [23]
+
+DevOps is useful in projects where there usually a divide between the consumers and the developers, e.g. where developers have little contact with the target user base. Thus, quickly gathering feedback from users is of great importance in DevOps. [23]
+
+There is also a great focus on release quality, whilst releasing often. The main idea is that the equal competence of all developers enables faster processes and thereby faster releases. [23]
+
+DevOps activities, such as ***continuous integration / continuous delivery (CI/CD)***, are supported by several facets of SCM, such as ***configuration control***, ***SCM plans***, ***status accounting***, ***version control***, ***communication***, ***configuraton identification***, and ***change management*** -- amongst many more. [23] 
 
 ## Roles within CM
 ### Configuration manager
