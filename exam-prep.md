@@ -400,7 +400,7 @@ DevOps activities, such as ***continuous integration / continuous delivery (CI/C
 
 ## Roles within CM
 ### Configuration manager
-The role of a configuration manager depends on the scope of their duties. If they are in charge of software, they may be regarded as software manager, and if they are in charge of documentation, they may be seen as a ***librarian***. The breadth of the managers responsibility depends on to what end they've been assigned. They can be assigned a whole division, or just a subproject. [19]
+The role of a configuration manager depends on the scope of their duties. If they are in charge of software, they may be regarded as software manager, and if they are in charge of documentation, they may be seen as a ***librarian***. [19, 24] The breadth of the managers responsibility depends on to what end they've been assigned. They can be assigned a whole division, or just a subproject. [19]
 
 As is often the case, the role of software configuration manager is simply seen as a role of many assigned to the same person. It does not always make sense to have a dedicated configuration manager. Typically, this role is assigned to the software engineering manager. The usual prerequisites for the role are a background in software engineering or management, or both. The manager should be confident in the CM plan and it's contents, and vigilant about it's application, lest trust and application of the plan will weaken. [19]
 
@@ -429,6 +429,8 @@ Leon, who bases his structure mainly on IEEE, suggests the following SCM plan fr
 5. SCM resources: identification of necessary tools, training, equipment, e.t.c. [18]
 6. SCM plan maintenance: how to upkeep the SCM plan. [18]
 
+Dart suggests a very similar model, with more granularity. [24]
+
 ## Concurrency problems
 ### Shared data problem !!!
 Occurs when several developers are simultaneously accessing the same files. A modification made by one developer in one file may break functionality which another file depends on. [1] One solution is the creation of ***private workspaces***. [20]
@@ -449,7 +451,7 @@ A way of storing the history of ***configuration items***. Versions, revisions, 
 A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
 
 ### Variants / Variations
-An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1]
+An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1, 24]
 
 A set of them is called a variation set. [1] 
 
@@ -670,7 +672,9 @@ It is where known good code goes. A developer should not commit from their works
 Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/checkin model***. 
 
 ### Status accounting
-A means of documenting the status and implementation state of ***configuration items***. [16, 18, 20] It also provides for ***communication*** and ***traceability***, [16, 18, 20] and provides updates on ***CCB*** activities. [16, 18] This may be carried out in the form of ***transaction*** logs, ***change*** logs, or progress reports. [20]
+*this seems to sometimes be referred to as status reporting.* [24]
+
+A means of documenting the status and implementation state of ***configuration items***. [15, 16, 18, 20, 24] It also provides for ***communication*** and ***traceability***, [16, 18, 20] and provides updates on ***CCB*** activities. [16, 18] This may be carried out in the form of ***transaction*** logs, ***change*** logs, or progress reports. [20]
 
 The aim is continually trace the development, such that all progress is attributed and dated. [16]
 
@@ -682,13 +686,14 @@ Daniels outlines that an effective status accounting system satisfies:
 - produces varied reports [16]
 - can account for security needs [16]
 
-### Change management / Configuration control
-The process of handling changes, including the approval process and attribution. [2, 17, 18, 20, 22] The control of changes to hardware, software, firmware, and documentation. [17]
+### Configuration contol
+The process of tracking changes and history, and attributing them to authors. [24]
 
-!!! What in the world is the distinction between the two??? Source 20 makes a distinction but proceeds to define the same thing twice!
+### Change management
+The process of handling changes, including the approval process. [2, 17, 18, 20, 22, 24] The control of changes to hardware, software, firmware, and documentation. [17] Somewhat intertwined with ***configuration control***, which tracks the changes after approval.
 
 #### Change control board
-The approval process is handled by a Change Control Board (CCB), [2, 17, 18] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
+The approval process is handled by a Change Control Board (CCB), [2, 17, 18, 24] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
 
 The CCB includes a chairperson, secretary, members, and specialists. [17]
 
@@ -707,7 +712,7 @@ A seperation of where files are stored, and where they are modified. The develop
 Similar to the ***checkout/checkin*** model, we use repositories and workspaces, in addition to concurrency control through locking. However, configuratinos are based on system models and selection rules. [9]
 
 #### The change set model !!!
-Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased ***traceability***, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
+Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. [9, 24] This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased ***traceability***, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
 
 #### Two-tier model
 Development is seperated into two tiers; formal configuration control, and development (version control only). Code is worked on in ***personal workspaces*** and subsequently pushed to the development tier, and is not fully ironed out until pushed onto the formal configuration control tier. As such, developers are less burdened by overhead during development, but the end product remains well-tested and ***traceability*** is maintained. [12] 
@@ -726,7 +731,7 @@ Versions are static, e.g. specific versions of components are used. [2, 9] Gener
 #### Partially bound configurations
 Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
 #### Configuration identification
-The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20] Done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
+The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20, 24] Done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
 #### Configuration items
 *sometimes referred to as computer program / software configuration items (CPCI / CSCI)* [16]
 
@@ -784,16 +789,16 @@ Day-to-day processes at the organization. The line between this pattern and proc
 
 ### The Five Dimensions
 The following dimensions can be used in isolation, or combined. 
-#### Version
+#### Version DDUPE
 Each step of development warrants a new version. It is important that versions do not overwrite eachother, it should be possible to ***reproduce*** earlier versions. [15]
 #### Views
 The development is divided into constituent and sequential parts of a process. For example, source code is made into compiled code, sketches are made into blueprints, e.t.c. Views encapsulate the steps contained within the development of one aspect of the project. [15]
 #### Hierarchy
 Development is subdivided into subtasks, until it is made digestible. Another benefit is that if said deliverables are common witin the project, such as a helper function, it can promote **reuse**. [15] It could be seen as a further compartmentalization of the view dimension. 
-#### Status
-Tracking the status of different tasks, such as whether something is ready for testing. [15]
-#### Variants
-The reconfiguration of the product to fit many purposes, such as making the software run on different operating systems. [15, 21] They are essentially parallel ***versions***. [21]
+#### Status DDUPE
+Tracking the status of different tasks, such as whether something is ready for testing [15] -- e.g. ***status accounting***.
+#### Variants DDUPE
+The reconfiguration of the product to fit many purposes, such as making the software run on different operating systems. [15, 21, 24] They are essentially parallel ***versions***. [21]
 
 The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
 
@@ -815,8 +820,8 @@ Covers the ***baseline***, and the changes to the ***baseline***. [16]
 ### Verification
 In configuration management, the verification process consists of audits and program reviews. [17]
 
-#### (Configuration) Audits
-The process of verifying that the technical documentation lines up with product performance and behavior. Furthermore, it also asserts that the product requirements are met. [17] 
+#### Configuration Audits
+The process of verifying that the technical documentation lines up with product performance and behavior. Furthermore, it also asserts that the product requirements are met. [17, 24] 
 
 There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17, 20] 
 
@@ -863,3 +868,5 @@ There are several types of reviews that may be carried out during specific parts
 21. Mahler
 22. Crnkovic, et. al.
 23. Bendix, Pendleton, et. al.
+24. Dart
+
