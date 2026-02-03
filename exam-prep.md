@@ -363,9 +363,20 @@ Addition means the topic came up several times
 ## SCM in Agile Development
 Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often makes management too bureaucratic -- the responsibility often falls on the developers. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
 
-In Agile, there is typically a large focus on test-driven developement, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. [20]
+In Agile, there is typically a large focus on test-driven developement, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which are informal and fast ways to continually define requirements. [20] 
 
-While the bureaucracy of SCM may sound counter-productive to agile, many of the procedures and principles are beneficial. 
+While the bureaucracy of SCM may sound counter-productive to agile, many of the procedures and principles are beneficial. [20]
+
+Where agile largely fails in regards to SCM is in maintaining a good relationship between the team and the customer. [20]
+
+Some tasks within SCM that are typically ignored or difficult to implement within agile are ***configuration identification***, ***configuration control**, ***status accounting***, ***audits***, ***roles***, ***tooling***, and ***CM plans***: [20]
+- ***Configuration identification***: may be resolved by defining rules for identification, rather than an initial structure. This removes the up-front cost of thoroughly defining all ***artifacts*** at the start. [20]
+- ***Configuration control***: while part of this task is handled through planning games or other agile activities, agile does not necessarily incorporate methods that preserve ***traceability***. In some cases, this is solved through having an explicit tracker role. [20]
+- ***Status accounting***: place relevant status information in the ***repository***. [20]
+- ***Configuration audits***: reduce ***audits*** to verification that ***audits*** have been carried out by QA. [20]
+- ***Roles***: since everyone is similarly involved in agile, it is important that everyone is similarly knowledgeable about SCM, as there is no room for dedicated SCM roles. [20]
+- ***CM plans***: the use of SCM processes at all is preferred to a comprehensive and monolithic SCM plan. Ideally, the processes are documented. [20]
+
 
 ## Roles within CM
 ### Configuration manager
@@ -400,13 +411,13 @@ Leon, who bases his structure mainly on IEEE, suggests the following SCM plan fr
 
 ## Concurrency problems
 ### Shared data problem !!!
-Occurs when several developers are simultaneously accessing the same files. A modification made by one developer in one file may break functionality which another file depends on. [1]
+Occurs when several developers are simultaneously accessing the same files. A modification made by one developer in one file may break functionality which another file depends on. [1] One solution is the creation of ***private workspaces***. [20]
 
 ### Double maintenance problem
-When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. If unchecked, this can over time lead to divergence between the versions. [1]
+When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. If unchecked, this can over time lead to divergence between the versions. [1, 20]
 
-### Simultaneous update problem !!!
-When several developers simultaneously access the same files, they can overwrite each-others changes by accident. [1]
+### Simultaneous update problem
+When several developers simultaneously update the same files, they can overwrite each-others changes by accident. [1, 20] This may be solved by assigning identities, such as ***versions*** to the files, to enable recogntion of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
 
 ## Version management / Version control
 A way of storing the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20]
@@ -472,6 +483,8 @@ Challenges include decreased communication, and reliance on the internet and goo
 
 
 #### Cases of distributed development
+From an SCM perspective, there is not difference between parallel work and distributed development. [20]
+
 ##### Locally
 All developers are on-site in the same location. [4]
 - Common file system [4]
@@ -563,10 +576,10 @@ Since communication cannot always be ensured, it is important that it is also ca
 #### Co-ordination strategies / Concurrency control
 *also known as concurrency control schemes* [9, 20]
 ##### Turn-taking / Locking / Conservative scheme / Serial development
-We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. [7, 20] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
 ### Split-combine
-Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor ***locking***. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8]
+Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor ***locking***. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
 
 ### Copy-merge / Optimistic scheme
 We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
@@ -614,9 +627,7 @@ Concerns within branching include safety, liveness, reusability, teamwork, and S
     Define relationships between branches such that changes are propagated in the order they were made. [14]
 
 ### Baselines !!!
-A shared project database, containing all artifacts / components for the software. [8] It also contains details on configuration, such as which dependencies the project relies on. ??????
-
-It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for versioning. [9] ???????
+It contains details on configuration, such as which dependencies the project relies on.
 
 Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
 
@@ -624,6 +635,11 @@ Daniels identifies three primary forms of baselines:
 - functional baseline (FBL) [16]
 - allocated baseline (ABL) [16]
 - product baseline (PBL) [16]
+
+### Repositories
+A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallelwork***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
+
+It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for ***versioning***. [9]
 
 ### Private workspaces
 Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/checkin model***. 
@@ -708,13 +724,15 @@ Strict long transactions enforce the constraint that the software needs to work 
 We can automate trivial and repetetive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
 
 ### Continuous Delivery / Continuous Integration (CI/CD)
-A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11]
+*in some sources, continuous delivery is referred to as "regular builds"* [20]
+
+A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11] Through the continuous integration of changes, we partially avoid the ***double maintenance problem***. [20]
 
 When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
 
 On the business end, it also allows us to keep up with competition. Instead of releasing a competetive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
 
-Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10] Some corners may also have to be cut, such as the traditional ***change request board***. [11]
+Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10, 20] Some corners may also have to be cut, such as the traditional ***change request board***. [11] ***Functional audits*** may be reduced to acceptance tests. [20]
 
 Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
 
@@ -725,7 +743,9 @@ The history of the software ***repository***. This is essential to maintain ***t
 We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
 
 ### Traceability +++
-The ability to trace when changes were made, and by who. Enables reuseability. [14]
+The ability to trace when changes were made, and by who. [14, 20] Additionally, also exactly what configuration was used to make a certain build or release. [20] Enables reuseability. [14]
+
+The intent is to increase ***co-ordination*** and improve impact analysis processes. [20]
 
 ### Patterns
 #### Organizational
@@ -801,3 +821,4 @@ There are several types of reviews that may be carried out during specific parts
 18. Leon
 19. Compton, Conner
 20. Bendix, Ekman
+21. Mahler
