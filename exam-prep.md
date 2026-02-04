@@ -360,6 +360,21 @@ Addition means the topic came up several times
 
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
+## SCM
+SCM benefits the development process in numerous ways. [24] It also increases business value, through various means: [25]
+- faster development means faster time to market [25]
+- better quality means less time spent debugging, more time spent enhancing [25]
+
+## Success factors
+Milligan identifies several factors of success, such as:
+- Safety: the project should be securely accessed, e.g. only by those authorized, and it should be easy to recover from mistakes or hardware failures. [25]
+- Stability: the developer should have self-governance of what is in their ***workspace***; e.g. they know that when they go into work the next day, their files will look the same. Likewise, they can be assured that they only integrate upstream code when they desire and feel ready to do so. [25]
+- Control: the system should have a robust way to handle ***changes*** and ***parallel*** development, but simultaneously be flexible enough to encourage experimentation. [25]
+- Auditability: it should be possible to ***audit*** the system. Likewise, it should be possible to view the ***history*** of the repository and ***trace changes***. [25]
+- ***Reproducibility***: it should be possible to fully emulate an older ***version*** of the software. [25] More on this in the section on ***reproducibility***.
+- ***Traceability***: it should be possible to understand what went into the creation of a ***version***. [25] More on this in the section on ***traceability***.
+- Scalability: the system needs to be flexible enough to suit small and large teams, grow quickly, and support ***distributed teams***. [25]
+
 ## SCM in other contexts
 ### SCM vs. Product Data Management (PDM)
 Like SCM, PDM focuses on managing the design process. The difference is that SCM focuses on software, whereas PDM focuses on hardware. Many of the concepts overlap. [22]
@@ -770,10 +785,10 @@ Neely and Stolt suggest using feature toggles. That way, features can be rolled 
 The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 ### Reproducibility
-We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
+We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. [13, 14, 25] This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
 
 ### Traceability +++
-The ability to trace when changes were made, and by who. [14, 20] Additionally, also exactly what configuration was used to make a certain build or release. [20] Enables reuseability. [14]
+The ability to trace when changes were made, and by who. [14, 20, 25] Additionally, also exactly what configuration was used to make a certain build or release. [20, 25] Enables reuseability. [14]
 
 The intent is to increase ***co-ordination*** and improve impact analysis processes. [20]
 
