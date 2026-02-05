@@ -267,9 +267,9 @@ A verdict is reached by the CCB. If it is declined, then it goes back the origin
 
 While the process may look highly bureaucratic, the process increases ***traceability*** [2, 17], ***communication***, and information spread. [17]
 
+### Baselines
+A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
 
-
-### Baselines !!!
 It contains details on configuration, such as which dependencies the project relies on.
 
 Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
@@ -299,7 +299,7 @@ While the bureaucracy of SCM may sound counter-productive to agile, many of the 
 
 Where agile largely fails in regards to SCM is in maintaining a good relationship between the team and the customer. [20]
 
-Some tasks within SCM that are typically ignored or difficult to implement within agile are ***configuration identification***, ***configuration control**, ***status accounting***, ***audits***, ***roles***, ***tooling***, and ***CM plans***: [20]
+Some tasks within SCM that are typically ignored or difficult to implement within agile are ***configuration identification***, ***configuration control***, ***status accounting***, ***audits***, ***roles***, ***tooling***, and ***CM plans***: [20]
 - ***Configuration identification***: may be resolved by defining rules for identification, rather than an initial structure. This removes the up-front cost of thoroughly defining all ***artifacts*** at the start. [20]
 - ***Configuration control***: while part of this task is handled through planning games or other agile activities, agile does not necessarily incorporate methods that preserve ***traceability***. In some cases, this is solved through having an explicit tracker role. [20]
 - ***Status accounting***: place relevant status information in the ***repository***. [20]
@@ -408,7 +408,7 @@ An example of the distance working or distributed groups cases.
 
 Members are geographically distributed, but not organized into teams. They modify the same shared software. [6]
 
-Architecture and management occurs at the site where most developers are located. Like the previous examples, the system is divided into components. In this case, components are assigned to individuals rather than teams. Shared code is inevetable, though. [6]
+Architecture and management occurs at the site where most developers are located. Like the previous examples, the system is divided into components. In this case, components are assigned to individuals rather than teams. Shared code is inevitable, though. [6]
 
 ##### Architectures
 ###### One server / site
@@ -417,7 +417,7 @@ Architecture and management occurs at the site where most developers are located
 ###### Several servers / sites
 - *Master-Slave connections*: One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
 - *Areas of responsibility*: Each site is responsible for a part of the project. Essentially, piece-wise "Master-Slave". [4]
-- *Equal servers*: All sites are synchronized with eachother and act like one logical site. Developers remote into the logical site, and get connected to whichever site makes most sense given their connection [4]
+- *Equal servers*: All sites are synchronized with each-other and act like one logical site. Developers remote into the logical site, and get connected to whichever site makes most sense given their connection [4]
 
 ###### Other
 - *Local access*: Developers make a copy to bring home. [4, 6]
@@ -510,9 +510,6 @@ A chain of several modifications, to several files, in a workspace -- a "logic c
 #### Strict long transactions
 Strict long transactions enforce the constraint that the software needs to work as intended. This means that any logical conflicts will be refused until resolved. [7]
 
-### Technical documentation !!!
-Covers the ***baseline***, and the changes to the ***baseline***. [16]
-
 ### Repositories
 A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallel work***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
 
@@ -521,7 +518,7 @@ It is where known good code goes. A developer should not commit from their works
 Repositories are considered immutable, and developers are required to make a copy to work on it. [2]
 
 ### Private workspaces
-Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/checkin model***. 
+Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/check-in model***. 
 
 
 
@@ -541,7 +538,7 @@ Each developer has their own private workspace, containing a copy of the ***repo
 10. Neely, Stolt
 11. Chen
 12. Kelly
-13. Babich chapter 3;
+13. Babich chapter 3; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 14. Appleton, et. al.
 15. Van den Hamer, Lepoeter
 16. M.A. Daniels, chapters 3-4
@@ -554,3 +551,4 @@ Each developer has their own private workspace, containing a copy of the ***repo
 23. Bendix, Pendleton, et. al.
 24. Dart
 25. Milligan
+26. https://www.perforce.com/blog/alm/best-practices-baselines
