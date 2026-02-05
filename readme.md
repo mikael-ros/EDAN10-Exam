@@ -120,10 +120,10 @@ Since communication cannot always be ensured, it is important that it is also ca
 
 Methods of facilitating or preventing simultaneous access. [22]
 ###### Turn-taking / Locking / Conservative scheme / Serial development
-We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel. [7, 20] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel, [7, 20] and developers can forget to release their lock. [3] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
 ##### Split-combine
-Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the needfor ***locking***. [7] However, it may still lead to situations where anothe developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
+Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
 
 ##### Copy-merge / Optimistic scheme
 We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
@@ -253,6 +253,8 @@ Daniels outlines that an effective status accounting system satisfies:
 #### Change management
 The process of handling changes, including the approval process. [2, 17, 18, 20, 22, 24] The control of changes to hardware, software, firmware, and documentation. [17] Somewhat intertwined with ***configuration control***, which tracks the changes after approval.
 
+Increases **traceability** and responsibility. [2, 3]
+
 ##### Change control board
 The approval process is handled by a Change Control Board (CCB), [2, 17, 18, 24] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
 
@@ -359,7 +361,7 @@ All developers are on-site in the same location. [4]
 - Synchronization can be achieved through meetings, but also opportunistically [4]
 - Less security issues, as less services are exposed [4]
 ##### Distance working
-Some developers are working off-site, such as from home. This is either achieved by allowing developers to bring a copy home (likely very uncommon these days) or by letting them remote login to the worksite. [4]
+Some developers are working off-site, such as from home. This is either achieved by allowing developers to bring a copy home or by letting them remote login to the worksite. [4]
 - Poorer communication, less opportunities for spontaneous synchronization [4]
 - More security issues, as more services need to be exposed [4]
 ##### Outsourcing
@@ -381,12 +383,16 @@ Work is performed in groups. Group members may be spread geographically. Similar
 
 ##### White's three scenarios
 ###### Multiple teams: Producer/consumer
-Teams are geographically distributed and share components in a producer/consumer relationship. The producer develops the component, and the consumer only uses it -- the consumer does NOT modify it. Can sometimes be an example of ***outsourcing***, but often it could be ***co-located groups***. It could be interpreted as one group producing a component for the other to incorporate. White argues that this decreases the amount of integration problems. It is, of course, necessary that the component breakdown makes sense, so some foresight is necessary. [6]
+Teams are geographically distributed and share components in a producer/consumer relationship. The producer develops the component, and the consumer uses it. However, the consumer does NOT modify it. [6]
+
+Can sometimes be an example of ***outsourcing***, but often it could be ***co-located groups***. 
+
+White argues that this decreases the amount of integration problems. It is necessary that the component breakdown makes sense, so foresight is necessary. [6]
 
 This presents some challenges:
 1. you'll need to identify the versions of each component and establish component ***baselines*** [6]
-2. components need a reliable way of being delivered to other teams / consumers [6]
-3. components need to be planned in advance, e.g. prepare stubs so that it integrates seamlessly when it's delivered [6]
+2. components need a reliable way of being delivered [6]
+3. components need to be structured in advance, such as through stubs [6]
 
 ###### Multiple teams: Shared source code
 Teams are geographically distributed, but modify the same shared software. [6]
@@ -406,60 +412,38 @@ Architecture and management occurs at the site where most developers are located
 
 ##### Architectures
 ###### One server / site
-**Locally to a server**
-
-All developers are in the same location, working on the same server. [4]
-
-**Remote login**
-
-Some developers are in the same location, some are distributed. They all remote to the same server [4, 6]
-
-**Web access**
-
-Same as remote login, but through the HTTP/HTTPS protocol. [6]
+- *Locally to a server*: All developers are in the same location, working on the same server. [4]
+- *Remote login*: Some developers are in the same location, some are distributed. The developers remote to the same server [4, 6] The protocol used to achieve this may vary. If HTTP/HTTPS is used, it is regarded as web access. [6]
 ###### Several servers / sites
-**By Master-Slave connections**
-
-One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
-
-**With differing areas of responsibility**
-
-One site has responsibility of one part of the repository, another the other. Essentially, piece-wise "Master-Slave". [4]
-
-**With equal servers**
-
-All sites are synchronized with eachother and act like one logical site. Developers remote into the logical site, and get connected to whichever site makes most sense [4]
+- *Master-Slave connections*: One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
+- *Areas of responsibility*: Each site is responsible for a part of the project. Essentially, piece-wise "Master-Slave". [4]
+- *Equal servers*: All sites are synchronized with eachother and act like one logical site. Developers remote into the logical site, and get connected to whichever site makes most sense given their connection [4]
 
 ###### Other
-**Local access**
-
-Developers make a copy to bring home. [4, 6]
-
-**Disconnected access**
-
-Developers login to the server to make a copy, then disconnect. Similar to local access, just the transfer process is different. [6]
+- *Local access*: Developers make a copy to bring home. [4, 6]
+- *Disconnected access*: Developers login to the server to make a copy, then disconnect. Similar to local access, just the transfer process is different. [6]
 
 
 ## Metaphors
 Metaphors intend to describe an abstract concept through real-world intuitions, preferably entirely unrelated to the subject. Thus, facilitating faster learning. [2]
 
 ### Construction site metaphor
-In a construction site, people of several trades need to work simultaneously on the same project. This can lead to situations where, for example, the drywall contractors have not finished mudding the walls, but the painters need to start painting. However some tasks can still be done in parallel, to varied success.
+In a construction site, people of varying trades need to work simultaneously on the same project. This can cause situations where some contractors have to wait for others to finish. Without foresight, it can be difficult to work in unison.
 
-In the context of software, this is equivalent to a project where several developers need to work at the same time. Since software is not made out of rooms, the concept of a drywall contractor finishing the drywall in one room as a painter paints another room is not immediately transferable. To work on the software simultaneously, the developers need their own copies of the ***artifact***. This immediately presents issues in the form of the ***Double Maintenance***, ***Shared Data***, and ***Simultaneous Update*** problems. [2]
+In the context of software, this is equivalent to a project with several developers. To work on the software simultaneously, the developers need their own copies of the ***artifact***. This immediately presents issues in the form of the ***Double Maintenance***, ***Shared Data***, and ***Simultaneous Update*** problems. Again, parallelization is difficult without foresight. [2]
 
-The easy solution is to prohibit anything but serialized work. The obvious downside being decreased productivity. The other option is to maintain good communication in addition to implementing a good ***change management system*** in order to increase ***traceability*** and responsibility. [2, 3] One option is ***locking***, but this presents the issue of someone forgetting to release their ***lock***. [3]
+The easy solution is to serialize, the obvious downside being decreased productivity. The other option is to maintain good ***communication*** in addition to a ***change management system***. [2, 3] One option is ***locking***, which presents it's own issues. [3]
 
-It is also important that build processes and tooling are consistent. [3]
+It is also important that ***build processes*** and tooling are consistent. [3]
 ### Study metaphor
 In a study, you bring in your study materials (books, e.t.c.), which you work with and produce new works, such as notes. You do so undisturbed, on your own. [2]
 
-In the context of software, this is equivalent to copying the software to your own machine to work on it, producing new ***artifacts***. You then contribute these back to the ***repository***. The ***repository*** is considered immutable, and the developers must create their own mutable copies. As such, the CM tool must provide the ability to create personal ***workspaces***. In order to facilitate consistency between ***workspaces***, it must also provide synchronization for configurations -- e.g. versions of dependencies. [2] This can cause the ***Double Maintenance problem*** without proper task assignment. [0]
+In the context of software, this is equivalent to the ***checkout/checkin model***. 
 
 ### Library metaphor
-We keep knowledge in libraries, organized in such a way that it is easy to retrieve and store information. Sometimes several people need access to the same information at the same time, which requires some form of management system. [2]
+We keep knowledge in libraries, organized in such a way that it is easy to retrieve and store information. The library also needs to manage access, such as through loans. [2]
 
-In software, this is comparable to tracking ***artifacts*** involved in the project. We need a way to store, recreate, and register the history of an ***artifact***. [2] At a CM level, the place where ***artifacts*** or ***configuration items*** are stored is referred to as a library. This includes both physical and digital items, [12] however the latter is far more common today. Like real libraries, items stored within them have permissions associated with them -- not just anyone could retrieve a brittle old book, for example. [12]
+In software, this is comparable to tracking ***artifacts*** involved in the project. We need a way to store, recreate, and register the history of an ***artifact***. [2] SCM facilitates this through whats often referred to as a ***CM library***.
 
 ## Models and patterns
 ### Models
@@ -505,11 +489,14 @@ The reconfiguration of the product to fit many purposes, such as making the soft
 ## Glossary
 What follows is a general set of terms, that didn't quite fit under any other umbrella.
 
-### Awareness +++
+### Awareness
 The collective understanding of the project within the team, particularly in regards to who is doing what. [0, 5, 7] One facet of this is provding versioning and a way to see the difference between two versions of the software, such as through a command like ``diff``. [7]
 
-### Artifact +++
+### Artifact
 A piece of software or documentation. The history of an artifact is tracked in log entries, and the differences between versions are called deltas. [2]
+
+### Library
+***Artifacts*** or ***configuration items*** are stored in a library. This includes both physical and digital items, [12] with the latter being more common today. Like real libraries, items stored within them have permissions associated with them. [12]
 
 ### Traceability
 The ability to trace when changes were made, and by who. [14, 20, 25] Additionally, also exactly what configuration was used to make a certain build or release. [20, 25] Enables reuseability. [14]
@@ -526,13 +513,15 @@ A chain of several modifications, to several files, in a workspace -- a "logic c
 #### Strict long transactions
 Strict long transactions enforce the constraint that the software needs to work as intended. This means that any logical conflicts will be refused until resolved. [7]
 
-### Technical documentation +++
+### Technical documentation !!!
 Covers the ***baseline***, and the changes to the ***baseline***. [16]
 
 ### Repositories
-A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallelwork***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
+A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallel work***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
 
-It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for ***versioning***. [9]
+It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for ***versioning*** [9] and needs to facilitate ***configuration management*** in order to facilitate consistency between ***workspaces***. [2]
+
+Repositories are considered immutable, and developers are required to make a copy to work on it. [2]
 
 ### Private workspaces
 Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/checkin model***. 
