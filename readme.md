@@ -47,7 +47,7 @@ The configuration manager is typically very involved in, but not the chairman of
 #### Configuration management plans (CM plans)
 An initial draft of the CM plan can be created and circulated among involved groups. Once feedback is obtained, it can be incorporated into the SCM plan to improve it. [18]
 
-The CM plan is one othe three keys to success in establishing good CM, amongst a CM system and adoption strategy. It is intended to be an accurate and complete description of all tasks and procedures, e.g. SCM functions, involved in configuring the product or system and the equipment and knowledge required to carry them out. [18]
+The CM plan is one other three keys to success in establishing good CM, amongst a CM system and adoption strategy. It is intended to be an accurate and complete description of all tasks and procedures, e.g. SCM functions, involved in configuring the product or system and the equipment and knowledge required to carry them out. [18]
 
 The main motivation behind the creation of CM plans is that it increases ***awareness***, knowledge distribution, ***coordination***, and ***communication***. [18]
 
@@ -61,7 +61,7 @@ Leon, who bases his structure mainly on IEEE, suggests the following SCM plan fr
 1. Introduction
 2. SCM management: organization, responsibilities, e.t.c. [18]
 3. SCM activities: ***configuration identification***, ***configuration control***, ***change management***, ***status accounting***, ***configuration auditing***, e.t.c. [18, 20]
-4. SCM schedules: sequence of SCM activites, identification of lifecycle and milestone, and or where different ***baselines*** will be established. [18]
+4. SCM schedules: sequence of SCM activities, identification of lifecycle and milestone, and or where different ***baselines*** will be established. [18]
 5. SCM resources: identification of necessary tools, training, equipment, e.t.c. [18]
 6. SCM plan maintenance: how to upkeep the SCM plan. [18]
 
@@ -95,7 +95,7 @@ A set of them is called a variation set. [1]
 The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
 
 There are several approaches to variants, amongst them:
-- variant segregation: each variant has a seperate copy of a component. [21]
+- variant segregation: each variant has a separate copy of a component. [21]
 - single source variants: each variant cherry picks parts of the repository during the build process. [21]
 
 Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
@@ -120,7 +120,7 @@ Since communication cannot always be ensured, it is important that it is also ca
 
 Methods of facilitating or preventing simultaneous access. [22]
 ###### Turn-taking / Locking / Conservative scheme / Serial development
-We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-checkin model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel, [7, 20] and developers can forget to release their lock. [3] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
+We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-check-in model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel, [7, 20] and developers can forget to release their lock. [3] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
 ##### Split-combine
 Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
@@ -152,7 +152,7 @@ Concerns within branching include safety, liveness, reusability, teamwork, and S
     Create a branch for a set of tasks. [14]
     1. Personal: again, a pet branch [14]
     2. Experimental: a pet branch for several developers [14]
-    3. Multi-project: seperating components into branches. Branches are used together when creating release build. [14]
+    3. Multi-project: separating components into branches. Branches are used together when creating release build. [14]
 ##### Branch policy patterns
 *only including the ones we needed to read about!*
 1. Merge Early and Often (P5)
@@ -164,7 +164,7 @@ Concerns within branching include safety, liveness, reusability, teamwork, and S
 ##### Branch structuring patterns
 *only including the ones we needed to read about!*
 1. Parallel Maintenance / Development Lines (S2)
-    Split maintenance and developement into seperate branches. Maintenance merges into the development branch. [14] (is that not backwards?)
+    Split maintenance and development into separate branches. Maintenance merges into the development branch. [14] (is that not backwards?)
 2. Staged Integration Lines (S5)
     Using several branches to represent a hierarchy, such as alpha -> beta -> development. Features work themselves upward in the hierarchy until ready for release. [14]
 3. Change Propagation Queues (S6)
@@ -186,7 +186,7 @@ The process of labelling or identifying all ***artifacts*** and selecting ***con
 ##### Configuration items
 *sometimes referred to as computer program / software configuration items (CPCI / CSCI)* [16]
 
-Configuration items are formally defined as anything which can be independently identified. They may be nested within eachother, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item) [12] -- this is sometimes referred to as the "lowest replaceable unit (LRU)". [16] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
+Configuration items are formally defined as anything which can be independently identified. They may be nested within each-other, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item) [12] -- this is sometimes referred to as the "lowest replaceable unit (LRU)". [16] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
 
 Daniels proposes a recursive method of defining configuration items, where there are several levels to a hierarchy. What counts as a configuration item is at the eye of the beholder. [16]
 
@@ -197,7 +197,7 @@ Configuration items are kept in the controlled area, sometimes referred to as a 
 
 
 ### Automation
-We can automate trivial and repetetive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
+We can automate trivial and repetitive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
 
 ### Continuous Delivery / Continuous Integration (CI/CD)
 *in some sources, continuous delivery is referred to as "regular builds"* [20]
@@ -206,7 +206,7 @@ A process which facilitates the ability to release at any point, negating the ne
 
 When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
 
-On the business end, it also allows us to keep up with competition. Instead of releasing a competetive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
+On the business end, it also allows us to keep up with competition. Instead of releasing a competitive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
 
 Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10, 20] Some corners may also have to be cut, such as the traditional ***change request board***. [11] ***Functional audits*** may be reduced to acceptance tests. [20]
 
@@ -227,10 +227,10 @@ In software applications, ***status accounting*** and auditing are grouped toget
 ###### Conducting audits
 An audit begins by defining what is to be audited, and the goals of the audit. In preparation, a so-called "data package" containing the relevant documentation needs to be collected. Secondarily, an audit team is gathered, including a chairperson and a recorder (note-taker). This team is often splintered during auditing. After conducting the audit, findings are collected, and a report is prepared. [17]
 
-##### Reviews +++
+##### Reviews
 There are several types of reviews that may be carried out during specific parts of the lifecycle. These include:
 - System Requirements: Establish functional ***baseline***. ***CM plan*** complete, and procedure development begun. [17]
-- System Design: Establish the allocated ***baseline***, verify ***traceability*** back to top-level requirements. ***CM plan*** is reviewed and ammended, and procedures (automated testing, e.t.c.) should be in place. [17]
+- System Design: Establish the allocated ***baseline***, verify ***traceability*** back to top-level requirements. ***CM plan*** is reviewed and amended, and procedures (automated testing, e.t.c.) should be in place. [17]
 - Preliminary Design: Verify decomposition and ***configuration item*** selection. Review procedures, e.t.c. [17]
 - Critical Design: Establish developmental ***baseline***. Validate ***status accounting*** system. [17] 
 - Product or Functional Qualification: Assure that product is ready for customer. [17]
@@ -256,14 +256,14 @@ The process of handling changes, including the approval process. [2, 17, 18, 20,
 Increases **traceability** and responsibility. [2, 3]
 
 ##### Change control board
-The approval process is handled by a Change Control Board (CCB), [2, 17, 18, 24] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineeringg, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
+The approval process is handled by a Change Control Board (CCB), [2, 17, 18, 24] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineering, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
 
 The CCB includes a chairperson, secretary, members, and specialists. [17]
 
 ##### The change process
-The CCB reviews the proposal both on the grounds of the necessity of the change, and it's impact and quality. The thoroughness of the implemenation is assured through testing and peer review. As the size of the change grows, so does the complexity of the verification. Furthermore, depending on how the organization is structured, many parties may need to be involved in the process of approving a change. Due to the scope of the change process, certain urgency labelling may be required in some cases. [17]
+The CCB reviews the proposal both on the grounds of the necessity of the change, and it's impact and quality. The thoroughness of the implementation is assured through testing and peer review. As the size of the change grows, so does the complexity of the verification. Furthermore, depending on how the organization is structured, many parties may need to be involved in the process of approving a change. Due to the scope of the change process, certain urgency labelling may be required in some cases. [17]
 
-A verdict is reached by the CCB. If it is declined, then it goes back the originator, e.g. the requester. Otherwise, it propagates up the chain of commad, if required. [17]
+A verdict is reached by the CCB. If it is declined, then it goes back the originator, e.g. the requester. Otherwise, it propagates up the chain of command, if required. [17]
 
 While the process may look highly bureaucratic, the process increases ***traceability*** [2, 17], ***communication***, and information spread. [17]
 
@@ -293,7 +293,7 @@ They share, amongst other things: ***identification***, ***change management***,
 #### SCM in Agile Development
 Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often makes management too bureaucratic -- the responsibility often falls on the developers. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
 
-In Agile, there is typically a large focus on test-driven developement, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which are informal and fast ways to continually define requirements. [20] 
+In Agile, there is typically a large focus on test-driven development, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which are informal and fast ways to continually define requirements. [20] 
 
 While the bureaucracy of SCM may sound counter-productive to agile, many of the procedures and principles are beneficial. [20]
 
@@ -308,7 +308,7 @@ Some tasks within SCM that are typically ignored or difficult to implement withi
 - ***CM plans***: the use of SCM processes at all is preferred to a comprehensive and monolithic SCM plan. Ideally, the processes are documented. [20]
 
 #### SCM and DevOps
-The cross-functional nature of DevOps means that each team -- or even every person -- should be able to take care of all aspects of software development. This means, like in agile, there is no room for a specialized SCM role, as everyone should be able to perform it. [23]
+Each team, or even every person, should be able to take care of any task. This means, like in agile, there is no specialized SCM role. [23]
 
 There is debate surrounding what DevOps exactly is, but Bendix, et. al. define it as a solution to the divide between Developers and Operations (management). If developers and operations are located in the same place and with good communication, conflicts and misunderstandings should decrease in frequency. [23]
 
@@ -316,7 +316,7 @@ DevOps is useful in projects where there usually a divide between the consumers 
 
 There is also a great focus on release quality, whilst releasing often. The main idea is that the equal competence of all developers enables faster processes and thereby faster releases. [23]
 
-DevOps activities, such as ***continuous integration / continuous delivery (CI/CD)***, are supported by several facets of SCM, such as ***configuration control***, ***SCM plans***, ***status accounting***, ***version control***, ***communication***, ***configuraton identification***, and ***change management*** -- amongst many more. [23] 
+DevOps activities, such as ***continuous integration / continuous delivery (CI/CD)***, are supported by several facets of SCM, such as ***configuration control***, ***SCM plans***, ***status accounting***, ***version control***, ***communication***, ***configuration identification***, and ***change management*** -- amongst many more. [23] 
 
 ## Parallel working, in general
 ### Concurrency problems
@@ -327,27 +327,27 @@ Occurs when several developers are simultaneously accessing the same files. A mo
 When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. If unchecked, this can over time lead to divergence between the versions. [1, 20]
 
 #### Simultaneous update problem
-When several developers simultaneously update the same files, they can overwrite each-others changes by accident. [1, 20] This may be solved by assigning identities, such as ***versions*** to the files, to enable recogntion of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
+When several developers simultaneously update the same files, they can overwrite each-others changes by accident. [1, 20] This may be solved by assigning identities, such as ***versions*** to the files, to enable recognition of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
 
 #### Multiple maintenance trap
-Very related to the ***double maintenance problem***. Occurs in an environment with ***variants***, where each ***variant*** may be customized to fit a particular need. Since ***variants*** are not necessarily linked to eachother, but descendants of the same ***version***, fixes in one ***variant*** need to be manually applied to each relevant ***variant***. [21]
+Very related to the ***double maintenance problem***. Occurs in an environment with ***variants***, where each ***variant*** may be customized to fit a particular need. Since ***variants*** are not necessarily linked to each-other, but descendants of the same ***version***, fixes in one ***variant*** need to be manually applied to each relevant ***variant***. [21]
 
 ### Distributed development
 Occurs when developers are physically, particularly geographically, separated. [4, 5] An increasingly common practice, as it allows companies to reach talent in different locations. [5]
 
 #### Challenges
-Challenges include decreased communication, and reliance on the internet and good CM practices. It can also lower team morale and knowledge spread. [4]
+Challenges include decreased communication, reliance on the internet, and implementing CM practices. It can also lower team morale and knowledge spread. [4]
 
 - Distributed groups usually do not get information on what other groups are doing, [4, 5] e.g. the group ***awareness*** is lowered [5]
-    > **Strategies:** Have well defined tasks and clear areas of responsibility. [5] 
+    > *Strategies:* Have well defined tasks and clear areas of responsibility. [5] 
 - Merge requests usually take longer, due to timezones and lowered group ***awareness***. The ***CCB*** may not recognize some of the code submitted, which creates research overhead. [5]
-    > **Strategies:** Improving communication and documentation. Having well defined tasks and clear areas of responsibility.
+    > *Strategies:* Improving communication and documentation. Having well defined tasks and clear areas of responsibility.
 - Different SCM environments lead to merge requests being handled differently [5]
-    > **Strategies:** Make sure all members adhere to the same CM plan. [5]
+    > *Strategies:* Make sure all members adhere to the same ***CM plan***. [5]
 - Lack of a planned ***baseline***. [5]
-    > **Strategies:** Establish ***baseline*** before development starts, and make sure all developers have adequate knowledge about it. [5]
+    > *Strategies:* Establish ***baseline*** before development starts, and make sure all developers have adequate knowledge about it. [5]
 - Lack of SCM principles [5]
-    > **Strategies:** Implement them... [5]
+    > *Strategies:* Implement them... [5]
 - Tasks are not always clearly distributed [6]
 - Lowered communication [6]
 
@@ -372,7 +372,7 @@ Some components of the system are developed by third parties, who work in a diff
 ##### Co-located groups
 Work is performed in groups, but the groups are in different locations. Such as different divisions of a company. [4]
 - Different file systems, hopefully same CM tools [4]
-- The groups deliver subproducts to eachother rather than developing together [4]
+- The groups deliver subproducts to each-other rather than developing together [4]
 - Synchronization is achieved solely through planned meetings [4]
 - ***Change management*** becomes particularly important [4]
 ##### Distributed groups
@@ -425,7 +425,6 @@ Architecture and management occurs at the site where most developers are located
 
 
 ## Metaphors
-Metaphors intend to describe an abstract concept through real-world intuitions, preferably entirely unrelated to the subject. Thus, facilitating faster learning. [2]
 
 ### Construction site metaphor
 In a construction site, people of varying trades need to work simultaneously on the same project. This can cause situations where some contractors have to wait for others to finish. Without foresight, it can be difficult to work in unison.
@@ -438,7 +437,7 @@ It is also important that ***build processes*** and tooling are consistent. [3]
 ### Study metaphor
 In a study, you bring in your study materials (books, e.t.c.), which you work with and produce new works, such as notes. You do so undisturbed, on your own. [2]
 
-In the context of software, this is equivalent to the ***checkout/checkin model***. 
+In the context of software, this is equivalent to the ***checkout/check-in model***. 
 
 ### Library metaphor
 We keep knowledge in libraries, organized in such a way that it is easy to retrieve and store information. The library also needs to manage access, such as through loans. [2]
@@ -447,40 +446,38 @@ In software, this is comparable to tracking ***artifacts*** involved in the proj
 
 ## Models and patterns
 ### Models
-#### Checkout/checkin model
-A seperation of where files are stored, and where they are modified. The developer checks out into their personal workspace a copy of the repository, and checks in when they are done. [7, 9, 14] This solves the ***Shared Data problem***, but causes the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. Additionally, to facilitate the check-in process, we would also need merge functionality. It may also be advantageous to provide branching support. [7]
+#### Checkout/check-in model
+A separation of where files are stored, and where they are modified. The developer "checks out" a copy of the repository, and "checks in" when they are done. [7, 9, 14] This solves the ***Shared Data problem***, but can cause the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. To facilitate the check-in process, we also need merge functionality and it may be advantageous to provide branching support. [7]
 
 #### The composition model
-Similar to the ***checkout/checkin*** model, we use repositories and workspaces, in addition to concurrency control through locking. However, configuratinos are based on system models and selection rules. [9]
+Similar to the ***checkout/check-in*** model, we use ***repositories*** and ***workspaces***, in addition to ***concurrency control*** through ***locking***. However, configurations are based on system models and selection rules. [9]
 
-#### The change set model !!!
-Individual modifications are grouped into identifiable change sets, such that they can be arbitrarily applied to a workspace. [9, 24] This links naturally with the concept of ***change requests***, as a developer could essentially request their change set to be merged into the baseline. Instead of tracking versions, the repository tracks the history as change sets. It lends itself to increased ***traceability***, as individual changes can be traced. They are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. Configurations are based on the change sets. [9]
+#### The change set model
+Individual modifications are grouped into identifiable ***change sets***, such that they can be arbitrarily applied to a workspace. [9, 24] This links naturally with the concept of ***change requests***, as a ***change set*** could become a ***change request***. The history is stored as a chain of ***change sets***, rather than ***versions***. It lends itself to increased ***traceability***, as individual changes can be traced. [9]
+
+***Change sets*** are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. ***Configurations*** are, in this case, based on the ***change sets***. [9]
 
 #### Two-tier model
-Development is seperated into two tiers; formal configuration control, and development (version control only). Code is worked on in ***personal workspaces*** and subsequently pushed to the development tier, and is not fully ironed out until pushed onto the formal configuration control tier. As such, developers are less burdened by overhead during development, but the end product remains well-tested and ***traceability*** is maintained. [12] 
+Development is separated into two tiers; formal configuration control, and development (version control only). Developers interact with what amounts to the ***checkout/check-in*** model. Once their contributions are ironed out, they escalate to the formal configuration control. Developers are thus less burdened by overhead, and we get to maintain SCM practices. [12] 
 
-A ***configuration item*** may progress from the development stage to the formal configuration control stage once it has been dry-run tested or if it is acutely needed for review or use. If the latter is the case, it must be abundantly clear that the feature may have deficiencies. [12]
+A ***configuration item*** escalates once it has been tested or when it is acutely needed for review or use. If the latter is the case, it must be made abundantly clear. [12]
 
-The limitiations to this model used to be space, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
+The limitations to this model used to be storage, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
 
 ### Patterns
-#### Organizational
-How the organization is structured; size of team, management style, e.t.c. [14]
-#### Architectural
-How the software is structured. [14]
-#### Process Defining
-Structures, such as directory hierarchy. Things that are defined at the start of development. [14]
-#### Maintaining
-Day-to-day processes at the organization. The line between this pattern and process defining is slightly blurry. [14]
+- Organizational: How the organization is structured; size of team, management style, e.t.c. [14]
+- Architectural: How the software is structured. [14]
+- Process Defining: Structures, such as directory hierarchy. Things that are defined at the start of development. [14]
+- Maintaining: Day-to-day processes at the organization. The line between this pattern and process defining is slightly blurry. [14]
 
 ### The Five Dimensions
 The following dimensions can be used in isolation, or combined. 
 #### Version
-Each step of development warrants a new version. It is important that versions do not overwrite eachother, it should be possible to ***reproduce*** earlier versions. [15]
+Each step of development warrants a new version. It is important that versions do not overwrite each-other, it should be possible to ***reproduce*** earlier versions. [15]
 #### Views
 The development is divided into constituent and sequential parts of a process. For example, source code is made into compiled code, sketches are made into blueprints, e.t.c. Views encapsulate the steps contained within the development of one aspect of the project. [15]
 #### Hierarchy
-Development is subdivided into subtasks, until it is made digestible. Another benefit is that if said deliverables are common witin the project, such as a helper function, it can promote **reuse**. [15] It could be seen as a further compartmentalization of the view dimension. 
+Development is subdivided into subtasks, until it is made digestible. Another benefit is that if said deliverables are common within the project, such as a helper function, it can promote **reuse**. [15] It could be seen as a further compartmentalization of the view dimension. 
 #### Status
 Tracking the status of different tasks, such as whether something is ready for testing [15] -- e.g. ***status accounting***.
 #### Variants
