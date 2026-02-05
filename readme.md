@@ -1,11 +1,9 @@
-- 4 + 3 + 4 Baselines, why and how to use them, the need for and the distinction between baselines and the private workspace
 - 4 Know of some problems in publishing results from workspaces
 - 4 + 4 What a Software-Bill-of-Materials (SBoM) is, and how to use it. what is and how to use a Bill-of-Materials (BoM)
 - 4 Know some solutions to selected problems when working alone
 - 4 Know of some problems in structuring a project library
 - 4 + 4 + 4 + 4 Know of some problems in facilitating easy access to knowledge and know some advanced, in-depth problems and solutions to knowledge handling and management. how SCM can support storing and sharing of knowledge. know some solutions to selected problems of collecting, representing and sharing of knowledge
 - 2 + 2 Each dimension in isolation - and how it relates to the course. how the combination of dimensions is even more useful 
-- 1 the context in which we treat the library. Pay attention to page 35 and try to figure out what it is I like about it.
 - 4 traditional SCM and its four activities
 - 4 how SCM is related to and can support other activities
 - 1 the main concepts of the two work models. Reflect on the strong and weak sides of the models.
@@ -81,7 +79,7 @@ It is conducted in three stages:
 
 ### Activities
 
-#### Version management / Version control
+#### Version management / Version control !!!
 A way of storing the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20]
 
 ##### Revisions 
@@ -106,7 +104,7 @@ There are many more types of variants as well, such as aggregate, ***derivation*
 
 There is a lot more to the field of variant management not covered here, in the interest of time.
 
-##### Derivations
+##### Derivations !!!
 The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 #### Build management
@@ -122,10 +120,10 @@ Methods of facilitating or preventing simultaneous access. [22]
 ###### Turn-taking / Locking / Conservative scheme / Serial development
 We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-check-in model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel, [7, 20] and developers can forget to release their lock. [3] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
-##### Split-combine
+##### Split-combine !!!
 Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
 
-##### Copy-merge / Optimistic scheme
+##### Copy-merge / Optimistic scheme !!!
 We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
 
 ##### Branching
@@ -137,7 +135,7 @@ Branching can exist on several levels. We may just branch the code, or we may br
 
 Branches may visually be represented as tree diagrams. [14]
 
-Concerns within branching include safety, liveness, reusability, teamwork, and SCM tool support. [14]
+Concerns within branching include safety, liveness, reusability, ***teamwork***, and SCM tool support. [14]
 
 ##### Branch creation patterns
 *only including the ones we needed to read about!*
@@ -147,7 +145,7 @@ Concerns within branching include safety, liveness, reusability, teamwork, and S
     2. Branch per ***Merge / Change request*** [14]
     3. Personal activity branch: pet branch used by one developer [14]
 2. Codeline per Codeline (C3)
-    Use a seperate codeline for each major and minor release (whatever codeline means...) [14]
+    Use a seperate branch for each major and minor release [14] Codeline usually means branch. [27]
 3. Subproject Line (C4)
     Create a branch for a set of tasks. [14]
     1. Personal: again, a pet branch [14]
@@ -170,16 +168,16 @@ Concerns within branching include safety, liveness, reusability, teamwork, and S
 3. Change Propagation Queues (S6)
     Define relationships between branches such that changes are propagated in the order they were made. [14]
 
-#### Configuration control
+#### Configuration control !!!
 The process of tracking changes and history, and attributing them to authors. [24]
 
-##### System model
+##### System model !!!
 A representation of the hierarchy of components used within the software. Relies on ***version selection rules***. [9]
-##### Version selection rules
+##### Version selection rules !!!
 The version selection rules indicate which versions of the dependencies and modules are being used. [9]
-##### Bound configurations
+##### Bound configurations !!!
 Versions are static, e.g. specific versions of components are used. [2, 9] Generally more stable. [9]
-##### Partially bound configurations
+##### Partially bound configurations !!!
 Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
 ##### Configuration identification
 The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20, 24] Done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
@@ -193,8 +191,6 @@ Daniels proposes a recursive method of defining configuration items, where there
 Kelly further defines "stepping stone" items, which are interim items that are not worth storing, [12] such as testing results.
 
 Configuration items are kept in the controlled area, sometimes referred to as a CM ***library (see metaphor)***. [12] 
-
-
 
 ### Automation
 We can automate trivial and repetitive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
@@ -267,7 +263,7 @@ A verdict is reached by the CCB. If it is declined, then it goes back the origin
 
 While the process may look highly bureaucratic, the process increases ***traceability*** [2, 17], ***communication***, and information spread. [17]
 
-### Baselines
+### Baselines !!! (identify diff types of baselines)
 A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
 
 It contains details on configuration, such as which dependencies the project relies on.
@@ -291,7 +287,7 @@ In some cases, SCM and PDM are used in unison, when a project requires both para
 They share, amongst other things: ***identification***, ***change management***, ***version management***, and ***variant management***. However, the particular ways they are approached may differ. [22]
 
 #### SCM in Agile Development
-Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often makes management too bureaucratic -- the responsibility often falls on the developers. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
+Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often clashes with the bureaucratic nature of SCM -- the responsibility often falls on the developers instead. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
 
 In Agile, there is typically a large focus on test-driven development, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which are informal and fast ways to continually define requirements. [20] 
 
@@ -307,7 +303,7 @@ Some tasks within SCM that are typically ignored or difficult to implement withi
 - ***Roles***: since everyone is similarly involved in agile, it is important that everyone is similarly knowledgeable about SCM, as there is no room for dedicated SCM roles. [20]
 - ***CM plans***: the use of SCM processes at all is preferred to a comprehensive and monolithic SCM plan. Ideally, the processes are documented. [20]
 
-#### SCM and DevOps
+#### SCM and DevOps !!!
 Each team, or even every person, should be able to take care of any task. This means, like in agile, there is no specialized SCM role. [23]
 
 There is debate surrounding what DevOps exactly is, but Bendix, et. al. define it as a solution to the divide between Developers and Operations (management). If developers and operations are located in the same place and with good communication, conflicts and misunderstandings should decrease in frequency. [23]
@@ -326,7 +322,7 @@ Occurs when several developers are simultaneously accessing the same files. A mo
 #### Double maintenance problem
 When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. If unchecked, this can over time lead to divergence between the versions. [1, 20]
 
-#### Simultaneous update problem
+#### Simultaneous update problem !!!
 When several developers simultaneously update the same files, they can overwrite each-others changes by accident. [1, 20] This may be solved by assigning identities, such as ***versions*** to the files, to enable recognition of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
 
 #### Multiple maintenance trap
@@ -413,7 +409,7 @@ Architecture and management occurs at the site where most developers are located
 ##### Architectures
 ###### One server / site
 - *Locally to a server*: All developers are in the same location, working on the same server. [4]
-- *Remote login*: Some developers are in the same location, some are distributed. The developers remote to the same server [4, 6] The protocol used to achieve this may vary. If HTTP/HTTPS is used, it is regarded as web access. [6]
+- *Remote login*: Some developers are in the same location, some are distributed. The developers remote to the same server. [4, 6] The protocol used to achieve this may vary. If HTTP/HTTPS is used, it is regarded as web access. [6]
 ###### Several servers / sites
 - *Master-Slave connections*: One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
 - *Areas of responsibility*: Each site is responsible for a part of the project. Essentially, piece-wise "Master-Slave". [4]
@@ -449,10 +445,10 @@ In software, this is comparable to tracking ***artifacts*** involved in the proj
 #### Checkout/check-in model
 A separation of where files are stored, and where they are modified. The developer "checks out" a copy of the repository, and "checks in" when they are done. [7, 9, 14] This solves the ***Shared Data problem***, but can cause the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. To facilitate the check-in process, we also need merge functionality and it may be advantageous to provide branching support. [7]
 
-#### The composition model
+#### The composition model !!!
 Similar to the ***checkout/check-in*** model, we use ***repositories*** and ***workspaces***, in addition to ***concurrency control*** through ***locking***. However, configurations are based on system models and selection rules. [9]
 
-#### The change set model
+#### The change set model !!!
 Individual modifications are grouped into identifiable ***change sets***, such that they can be arbitrarily applied to a workspace. [9, 24] This links naturally with the concept of ***change requests***, as a ***change set*** could become a ***change request***. The history is stored as a chain of ***change sets***, rather than ***versions***. It lends itself to increased ***traceability***, as individual changes can be traced. [9]
 
 ***Change sets*** are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. ***Configurations*** are, in this case, based on the ***change sets***. [9]
@@ -464,13 +460,13 @@ A ***configuration item*** escalates once it has been tested or when it is acute
 
 The limitations to this model used to be storage, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
 
-### Patterns
+### Patterns !!!
 - Organizational: How the organization is structured; size of team, management style, e.t.c. [14]
 - Architectural: How the software is structured. [14]
 - Process Defining: Structures, such as directory hierarchy. Things that are defined at the start of development. [14]
 - Maintaining: Day-to-day processes at the organization. The line between this pattern and process defining is slightly blurry. [14]
 
-### The Five Dimensions
+### The Five Dimensions !!!
 The following dimensions can be used in isolation, or combined. 
 #### Version
 Each step of development warrants a new version. It is important that versions do not overwrite each-other, it should be possible to ***reproduce*** earlier versions. [15]
@@ -503,11 +499,11 @@ The intent is to increase ***co-ordination*** and improve impact analysis proces
 ### Reproducibility
 We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. [13, 14, 25] This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
 
-### Transactions
+### Transactions !!!
 A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7, 9]
-#### The long transaction model
+#### The long transaction model !!!
 A chain of several modifications, to several files, in a workspace -- a "logic change". When we try to commit, a concurrency control scheme is executed. [9] Usually, this means that the ***version control tool*** will check if we are up-to-date on all files. If not, it forces us to pull the latest changes and merge them into our ***workspace***. This can cause issues, however, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. [7] 
-#### Strict long transactions
+#### Strict long transactions !!!
 Strict long transactions enforce the constraint that the software needs to work as intended. This means that any logical conflicts will be refused until resolved. [7]
 
 ### Repositories
@@ -552,3 +548,4 @@ Each developer has their own private workspace, containing a copy of the ***repo
 24. Dart
 25. Milligan
 26. https://www.perforce.com/blog/alm/best-practices-baselines
+27. https://perforce-user.perforce.narkive.com/W3G1i0Rn/what-is-a-codeline
