@@ -1,13 +1,5 @@
-- 4 Know of some problems in publishing results from workspaces
-- 4 + 4 What a Software-Bill-of-Materials (SBoM) is, and how to use it. what is and how to use a Bill-of-Materials (BoM)
 - 4 Know some solutions to selected problems when working alone
 - 4 Know of some problems in structuring a project library
-- 4 + 4 + 4 + 4 Know of some problems in facilitating easy access to knowledge and know some advanced, in-depth problems and solutions to knowledge handling and management. how SCM can support storing and sharing of knowledge. know some solutions to selected problems of collecting, representing and sharing of knowledge
-- 2 + 2 Each dimension in isolation - and how it relates to the course. how the combination of dimensions is even more useful 
-- 4 traditional SCM and its four activities
-- 4 how SCM is related to and can support other activities
-- 1 the main concepts of the two work models. Reflect on the strong and weak sides of the models.
-- 4 + 4 + 4 experience with carrying out an SCM-plan writing workshop with focus on helping people co-ordinate. experience with carrying out an SCM-plan writing workshop with focus on helping people in their individual work
 - 2 the SCM strategies used to deal with these issues 
 
 ---
@@ -78,34 +70,10 @@ It is conducted in three stages:
 3. Document: draft the CM plan, review it, and publish it [2]
 
 ### Activities
+Bendix and Ekman / Leon identify four main activities of traditional SCM, being: ***Configuration Identification***, ***Configuration Control***, ***Configuration Status Accounting*** and ***Configuration Audit*** [18, 20]
 
-#### Version management / Version control !!!
+#### Version management / Version control systems !!!
 A way of storing the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20]
-
-##### Revisions 
-A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
-
-##### Variants / Variations
-An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1, 24]
-
-A set of them is called a variation set. [1] 
-
-The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
-
-There are several approaches to variants, amongst them:
-- variant segregation: each variant has a separate copy of a component. [21]
-- single source variants: each variant cherry picks parts of the repository during the build process. [21]
-
-Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
-
-Single source variants are popular within C, where it is achieved through conditional compilation. This approach avoids the redundancy and storage problems of the segregation approach, but it can become difficult to track the so-called meta programs. Unlike with segregation, it is hard to foresee what consequences a change will have on a particular meta program, as they are not explicit. As a subconsequence, this also means that ***traceability*** in the context of particular meta programs is reduced. [21]
-
-There are many more types of variants as well, such as aggregate, ***derivation***, and temporary variants. [21] 
-
-There is a lot more to the field of variant management not covered here, in the interest of time.
-
-##### Derivations !!!
-The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 #### Build management
 The process of creating a runnable version of the system. Typically done automatically, and using the definitions within the ***system model***. [20]
@@ -192,22 +160,6 @@ Kelly further defines "stepping stone" items, which are interim items that are n
 
 Configuration items are kept in the controlled area, sometimes referred to as a CM ***library (see metaphor)***. [12] 
 
-### Automation
-We can automate trivial and repetitive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
-
-### Continuous Delivery / Continuous Integration (CI/CD)
-*in some sources, continuous delivery is referred to as "regular builds"* [20]
-
-A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11] Through the continuous integration of changes, we partially avoid the ***double maintenance problem***. [20]
-
-When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
-
-On the business end, it also allows us to keep up with competition. Instead of releasing a competitive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
-
-Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10, 20] Some corners may also have to be cut, such as the traditional ***change request board***. [11] ***Functional audits*** may be reduced to acceptance tests. [20]
-
-Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
-
 #### Configuration verification
 In configuration management, the verification process consists of audits and program reviews. [17]
 
@@ -231,7 +183,7 @@ There are several types of reviews that may be carried out during specific parts
 - Critical Design: Establish developmental ***baseline***. Validate ***status accounting*** system. [17] 
 - Product or Functional Qualification: Assure that product is ready for customer. [17]
 
-#### Status accounting
+#### Configuration status accounting
 *this seems to sometimes be referred to as status reporting.* [24]
 
 A means of documenting the status and implementation state of ***configuration items***. [15, 16, 18, 20, 24] It also provides for ***communication*** and ***traceability***, [16, 18, 20] and provides updates on ***CCB*** activities. [16, 18] This may be carried out in the form of ***transaction*** logs, ***change*** logs, or progress reports. [20]
@@ -262,19 +214,6 @@ The CCB reviews the proposal both on the grounds of the necessity of the change,
 A verdict is reached by the CCB. If it is declined, then it goes back the originator, e.g. the requester. Otherwise, it propagates up the chain of command, if required. [17]
 
 While the process may look highly bureaucratic, the process increases ***traceability*** [2, 17], ***communication***, and information spread. [17]
-
-### Baselines !!! (identify diff types of baselines)
-A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
-
-It contains details on configuration, such as which dependencies the project relies on.
-
-Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
-
-Daniels identifies three primary forms of baselines:
-- functional baseline (FBL) [16]
-- allocated baseline (ABL) [16]
-- product baseline (PBL) [16]
-
 
 ### SCM in other contexts
 #### SCM vs. Product Data Management (PDM)
@@ -330,6 +269,8 @@ Very related to the ***double maintenance problem***. Occurs in an environment w
 
 ### Distributed development
 Occurs when developers are physically, particularly geographically, separated. [4, 5] An increasingly common practice, as it allows companies to reach talent in different locations. [5]
+
+Git and Mercurial are examples of distributed tools.
 
 #### Challenges
 Challenges include decreased communication, reliance on the internet, and implementing CM practices. It can also lower team morale and knowledge spread. [4]
@@ -408,7 +349,7 @@ Architecture and management occurs at the site where most developers are located
 
 ##### Architectures
 ###### One server / site
-- *Locally to a server*: All developers are in the same location, working on the same server. [4]
+- *Locally to a server*: All developers are in the same location, working on the same server, [4] such as a CVS server.
 - *Remote login*: Some developers are in the same location, some are distributed. The developers remote to the same server. [4, 6] The protocol used to achieve this may vary. If HTTP/HTTPS is used, it is regarded as web access. [6]
 ###### Several servers / sites
 - *Master-Slave connections*: One site is considered "Master", and is synchronized to by the "Slaves". It is important that both sites use the same CM tooling. [4]
@@ -440,6 +381,23 @@ We keep knowledge in libraries, organized in such a way that it is easy to retri
 
 In software, this is comparable to tracking ***artifacts*** involved in the project. We need a way to store, recreate, and register the history of an ***artifact***. [2] SCM facilitates this through whats often referred to as a ***CM library***.
 
+## Solutions and strategies
+### Automation
+We can automate trivial and repetitive tasks. An early example of this is ``make``. In the present day, we have even more advanced tools with system models and build processes. [7] 
+
+### Continuous Delivery / Continuous Integration (CI/CD)
+*in some sources, continuous delivery is referred to as "regular builds"* [20]
+
+A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11] Through the continuous integration of changes, we partially avoid the ***double maintenance problem***. [20]
+
+When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
+
+On the business end, it also allows us to keep up with competition. Instead of releasing a competitive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
+
+Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10, 20] Some corners may also have to be cut, such as the traditional ***change request board***. [11] ***Functional audits*** may be reduced to acceptance tests. [20]
+
+Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
+
 ## Models and patterns
 ### Models
 #### Checkout/check-in model
@@ -459,6 +417,11 @@ Development is separated into two tiers; formal configuration control, and devel
 A ***configuration item*** escalates once it has been tested or when it is acutely needed for review or use. If the latter is the case, it must be made abundantly clear. [12]
 
 The limitations to this model used to be storage, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
+
+#### Distributed vs. Centralized model
+In a centralized model (CVS, Subversion), all code is stored on the same server, and developers work directly of it -- their commits are saved immediately onto the server. A distributed model (Git, Mercurial), by contrast, facilitates the creation of ***workspaces***, which allow developers to work independently and integrate when they please. The prior means increased control and ***traceability***, but the latter is more flexible. [31]
+
+A centralized model creates a single point of failure, whereas distributed models do not have ***locking*** -- which may be desired in some cases. [31]
 
 ### Patterns !!!
 - Organizational: How the organization is structured; size of team, management style, e.t.c. [14]
@@ -516,7 +479,49 @@ Repositories are considered immutable, and developers are required to make a cop
 ### Private workspaces
 Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/check-in model***. 
 
+### Baselines !!! (identify diff types of baselines)
+A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
 
+It contains details on configuration, such as which dependencies the project relies on.
+
+Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
+
+Daniels identifies three primary forms of baselines:
+- functional baseline (FBL) [16]
+- allocated baseline (ABL) [16]
+- product baseline (PBL) [16]
+
+### Software Bill of Materials (SBoM)
+A formal inventory of all dependencies and components in a project [28, 29, 30], usually those which are third party. The intention is to facilitate management of the software supply chain in order to increase security, track vulnerabilities, and comply with licenses. [29, 30]
+
+It includes details such as supplier and component names, ***version*** used, unique identifiers, licenses, and more. [29, 30] It is not too dissimilar from a system model.
+
+It may be directly included in the ***CI/CD*** pipelines, where the SBoM is automatically created through scanning the project at build time. [29, 30]
+
+### Revisions 
+A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
+
+### Variants / Variations
+An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1, 24]
+
+A set of them is called a variation set. [1] 
+
+The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
+
+There are several approaches to variants, amongst them:
+- variant segregation: each variant has a separate copy of a component. [21]
+- single source variants: each variant cherry picks parts of the repository during the build process. [21]
+
+Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
+
+Single source variants are popular within C, where it is achieved through conditional compilation. This approach avoids the redundancy and storage problems of the segregation approach, but it can become difficult to track the so-called meta programs. Unlike with segregation, it is hard to foresee what consequences a change will have on a particular meta program, as they are not explicit. As a subconsequence, this also means that ***traceability*** in the context of particular meta programs is reduced. [21]
+
+There are many more types of variants as well, such as aggregate, ***derivation***, and temporary variants. [21] 
+
+There is a lot more to the field of variant management not covered here, in the interest of time.
+
+### Derivations !!!
+The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 ---
 
@@ -549,3 +554,7 @@ Each developer has their own private workspace, containing a copy of the ***repo
 25. Milligan
 26. https://www.perforce.com/blog/alm/best-practices-baselines
 27. https://perforce-user.perforce.narkive.com/W3G1i0Rn/what-is-a-codeline
+28. https://www.cisa.gov/sbom
+29. https://www.ibm.com/think/topics/sbom
+30. https://www.blackduck.com/blog/software-bill-of-materials-bom.html
+31. Version Control Systems in Corporations: Centralized and Distributed, Högblom & Green: https://gupea.ub.gu.se/bitstreams/7f0e3f25-89df-4edb-a59b-3479ad8ca748/download
