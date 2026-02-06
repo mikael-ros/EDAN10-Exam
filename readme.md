@@ -72,8 +72,36 @@ It is conducted in three stages:
 ### Activities
 Bendix and Ekman / Leon identify four main activities of traditional SCM, being: ***Configuration Identification***, ***Configuration Control***, ***Configuration Status Accounting*** and ***Configuration Audit*** [18, 20]
 
-#### Version management / Version control systems !!!
-A way of storing the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20]
+#### Version management / Version control systems
+The means of storing, managing, and retrieving the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20] Potentially also derivations.
+
+##### Versions
+Versions of the software. Usually kept track of with version numbers. They are often ***baselined*** and released.
+
+##### Revisions 
+A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
+
+##### Variants / Variations
+An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1, 24]
+
+A set of them is called a variation set. [1] 
+
+The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
+
+There are several approaches to variants, amongst them:
+- variant segregation: each variant has a separate copy of a component. [21]
+- single source variants: each variant cherry picks parts of the repository during the build process. [21]
+
+Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
+
+Single source variants are popular within C, where it is achieved through conditional compilation. This approach avoids the redundancy and storage problems of the segregation approach, but it can become difficult to track the so-called meta programs. Unlike with segregation, it is hard to foresee what consequences a change will have on a particular meta program, as they are not explicit. As a subconsequence, this also means that ***traceability*** in the context of particular meta programs is reduced. [21]
+
+There are many more types of variants as well, such as aggregate, ***derivation***, and temporary variants. [21] 
+
+There is a lot more to the field of variant management not covered here, in the interest of time.
+
+##### Derivations
+The history of the software ***artifacts***. This is essential for maintaining ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
 
 #### Build management
 The process of creating a runnable version of the system. Typically done automatically, and using the definitions within the ***system model***. [20]
@@ -94,10 +122,9 @@ Split the architecture into well-defined components. As a result, we can be rela
 ##### Copy-merge / Optimistic scheme
 We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***double maintenance problem*** in mind. [7]
 
-#### Configuration control !!!
-The process of implementing changes. 
+#### Configuration control
+The process of regulating the implementation of approved changes, their history, and attribution. [24]
 
-The process of tracking changes and history, and attributing them to authors. [24]
 ##### Configuration identification
 The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20, 24] Usually done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
 ##### Configuration items
@@ -110,6 +137,26 @@ Daniels proposes a recursive method of defining configuration items, where there
 Kelly further defines "stepping stone" items, which are interim items that are not worth storing, [12] such as testing results.
 
 Configuration items are kept in the controlled area, sometimes referred to as a CM ***library (see metaphor)***. [12] 
+
+##### Baselines !!! (identify diff types of baselines)
+A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
+
+It contains details on configuration, such as which dependencies the project relies on.
+
+Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
+
+Daniels identifies three primary forms of baselines:
+- functional baseline (FBL) [16]
+- allocated baseline (ABL) [16]
+- product baseline (PBL) [16]
+
+##### Software Bill of Materials (SBoM)
+A formal inventory of all dependencies and components in a project [28, 29, 30], usually those which are third party. The intention is to facilitate management of the software supply chain in order to increase security, track vulnerabilities, and comply with licenses. [29, 30]
+
+It includes details such as supplier and component names, ***version*** used, unique identifiers, licenses, and more. [29, 30] It is not too dissimilar from a system model.
+
+It may be directly included in the ***CI/CD*** pipelines, where the SBoM is automatically created through scanning the project at build time. [29, 30]
+
 
 #### Configuration verification
 In configuration management, the verification process consists of audits and program reviews. [17]
@@ -150,7 +197,7 @@ Daniels outlines that an effective status accounting system satisfies:
 - can account for security needs [16]
 
 #### Change management
-The process of handling changes, including the approval process. [2, 17, 18, 20, 22, 24] The control of changes to hardware, software, firmware, and documentation. [17] Somewhat intertwined with ***configuration control***, which tracks the changes after approval.
+The process of handling changes, particularly the approval process. [2, 17, 18, 20, 22, 24] The control of changes to hardware, software, firmware, and documentation. [17] Somewhat intertwined with ***configuration control***, which tracks the implementation of approved changes.
 
 Increases **traceability** and responsibility. [2, 3]
 
@@ -193,10 +240,10 @@ Some tasks within SCM that are typically ignored or difficult to implement withi
 - ***Roles***: since everyone is similarly involved in agile, it is important that everyone is similarly knowledgeable about SCM, as there is no room for dedicated SCM roles. [20]
 - ***CM plans***: the use of SCM processes at all is preferred to a comprehensive and monolithic SCM plan. Ideally, the processes are documented. [20]
 
-#### SCM and DevOps !!!
-Each team, or even every person, should be able to take care of any task. This means, like in agile, there is no specialized SCM role. [23]
+#### SCM and DevOps
+Each team, or even every person, should be able to take care of any task. This means, like in ***agile***, there is no specialized SCM role. [23]
 
-There is debate surrounding what DevOps exactly is, but Bendix, et. al. define it as a solution to the divide between Developers and Operations (management). If developers and operations are located in the same place and with good communication, conflicts and misunderstandings should decrease in frequency. [23]
+There is debate surrounding what DevOps exactly is, but Bendix, et. al. define it as a solution to the divide between Developers and Operations (IT support). If developers and operations are located in the same place and with good communication, conflicts and misunderstandings should decrease in frequency. [23, 32]
 
 DevOps is useful in projects where there usually a divide between the consumers and the developers, e.g. where developers have little contact with the target user base. Thus, quickly gathering feedback from users is of great importance in DevOps. [23]
 
@@ -206,14 +253,14 @@ DevOps activities, such as ***continuous integration / continuous delivery (CI/C
 
 ## Parallel working, in general
 ### Concurrency problems
-#### Shared data problem !!!
-Occurs when several developers are simultaneously accessing the same files. A modification made by one developer in one file may break functionality which another file depends on. [1] One solution is the creation of ***private workspaces***. [20]
+#### Shared data problem 
+Occurs when several developers are simultaneously accessing and modifying the same files. A modification made by one developer in one file may break functionality which another developer depended on. [1] One solution is the creation of ***private workspaces***. [20]
 
 #### Double maintenance problem
-When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. If unchecked, this can over time lead to divergence between the versions. [1, 20]
+When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. Over time, this can lead to divergence between the versions. [1, 20]
 
-#### Simultaneous update problem !!!
-When several developers simultaneously update the same files, they can overwrite each-others changes by accident. [1, 20] This may be solved by assigning identities, such as ***versions*** to the files, to enable recognition of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
+#### Simultaneous update problem
+When several developers simultaneously update the same files, they can overwrite each-others changes by accident, which can lead to resolved bugs reappearing or added functionality disappearing. [1, 20] This may be solved by assigning identification, such as ***versions*** to the files, to enable recognition of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
 
 #### Multiple maintenance trap
 Very related to the ***double maintenance problem***. Occurs in an environment with ***variants***, where each ***variant*** may be customized to fit a particular need. Since ***variants*** are not necessarily linked to each-other, but descendants of the same ***version***, fixes in one ***variant*** need to be manually applied to each relevant ***variant***. [21]
@@ -443,47 +490,6 @@ Repositories are considered immutable, and developers are required to make a cop
 ### Private workspaces
 Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/check-in model***. 
 
-### Baselines !!! (identify diff types of baselines)
-A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
-
-It contains details on configuration, such as which dependencies the project relies on.
-
-Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
-
-Daniels identifies three primary forms of baselines:
-- functional baseline (FBL) [16]
-- allocated baseline (ABL) [16]
-- product baseline (PBL) [16]
-
-### Software Bill of Materials (SBoM)
-A formal inventory of all dependencies and components in a project [28, 29, 30], usually those which are third party. The intention is to facilitate management of the software supply chain in order to increase security, track vulnerabilities, and comply with licenses. [29, 30]
-
-It includes details such as supplier and component names, ***version*** used, unique identifiers, licenses, and more. [29, 30] It is not too dissimilar from a system model.
-
-It may be directly included in the ***CI/CD*** pipelines, where the SBoM is automatically created through scanning the project at build time. [29, 30]
-
-### Revisions 
-A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
-
-### Variants / Variations
-An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1, 24]
-
-A set of them is called a variation set. [1] 
-
-The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
-
-There are several approaches to variants, amongst them:
-- variant segregation: each variant has a separate copy of a component. [21]
-- single source variants: each variant cherry picks parts of the repository during the build process. [21]
-
-Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
-
-Single source variants are popular within C, where it is achieved through conditional compilation. This approach avoids the redundancy and storage problems of the segregation approach, but it can become difficult to track the so-called meta programs. Unlike with segregation, it is hard to foresee what consequences a change will have on a particular meta program, as they are not explicit. As a subconsequence, this also means that ***traceability*** in the context of particular meta programs is reduced. [21]
-
-There are many more types of variants as well, such as aggregate, ***derivation***, and temporary variants. [21] 
-
-There is a lot more to the field of variant management not covered here, in the interest of time.
-
 ### Branching
 We create a copy of the ***repository*** at a certain point in time and give it a new identifier. The development on the "main" branch continues as normal, while the new branch acts like a secondary ***repository*** from which another set of developers can work on. This may be used in conjunction with ***locking***, where the branching concept provides the ability for a developer to branch the ***repository*** to get around someones ***lock*** safely. [14] 
 
@@ -526,9 +532,6 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 3. Change Propagation Queues (S6)
     Define relationships between branches such that changes are propagated in the order they were made. [14]
 
-### Derivations !!!
-The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
-
 ---
 
 # Sources
@@ -564,3 +567,4 @@ The history of the software ***repository***. This is essential to maintain ***t
 29. https://www.ibm.com/think/topics/sbom
 30. https://www.blackduck.com/blog/software-bill-of-materials-bom.html
 31. Version Control Systems in Corporations: Centralized and Distributed, Högblom & Green: https://gupea.ub.gu.se/bitstreams/7f0e3f25-89df-4edb-a59b-3479ad8ca748/download
+32. https://www.atlassian.com/devops
