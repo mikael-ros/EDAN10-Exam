@@ -88,69 +88,20 @@ Methods of facilitating or preventing simultaneous access. [22]
 ###### Turn-taking / Locking / Conservative scheme / Serial development
 We simply lock the part of the repository that we are working on, such as a file or module, so no-one else can modify it. [7, 8, 9, 14, 20] Babich refers to the locking process as "charge-out", and the submission process as "charge-in". As with the ***checkout-check-in model***, it is important that the code being "charged in" is tested. [8] The obvious drawback is that it makes it impossible to work on tasks in parallel, [7, 20] and developers can forget to release their lock. [3] Usually, this strategy is motivated by a lack of confidence in the merge functionality. [7]
 
-##### Split-combine !!!
-Split the architecture into many components. Within these components, we can be relatively sure only one developer is working at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
+##### Split-combine 
+Split the architecture into well-defined components. As a result, we can be relatively sure only one developer is working on any component at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
 
-##### Copy-merge / Optimistic scheme !!!
-We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***Double Maintenance problem*** in mind. [7]
-
-##### Branching
-We create a copy of the ***repository*** at a certain point in time and give it a new identifier. The development on the "main" branch continues as normal, while the new branch acts like a secondary ***repository*** from which another set of developers can work on. This may be used in conjunction with ***locking***, where the branching concept provides the ability for a developer to branch the ***repository*** to get around someones ***lock*** safely. [14] 
-
-When changes within a branch need to be integrated into another, we merge. This is sometimes referred to as syncing or propagating. [14]
-
-Branching can exist on several levels. We may just branch the code, or we may branch the entire configuration. In some cases, we may branch the team itself. [14]
-
-Branches may visually be represented as tree diagrams. [14]
-
-Concerns within branching include safety, liveness, reusability, ***teamwork***, and SCM tool support. [14]
-
-##### Branch creation patterns
-*only including the ones we needed to read about!*
-1. Branch per Task (C2)
-    Create a branch for each task. [14]
-    1. Branch per Major Task: create a branch when implementing very large features or bug-fixes [14]
-    2. Branch per ***Merge / Change request*** [14]
-    3. Personal activity branch: pet branch used by one developer [14]
-2. Codeline per Codeline (C3)
-    Use a seperate branch for each major and minor release [14] Codeline usually means branch. [27]
-3. Subproject Line (C4)
-    Create a branch for a set of tasks. [14]
-    1. Personal: again, a pet branch [14]
-    2. Experimental: a pet branch for several developers [14]
-    3. Multi-project: separating components into branches. Branches are used together when creating release build. [14]
-##### Branch policy patterns
-*only including the ones we needed to read about!*
-1. Merge Early and Often (P5)
-    Merge contributions as soon as they are satisfiable and tested [14]
-2. Early Branching (P7)
-    Create the branch as soon as it is needed, don't dwell on it. [14]
-3. Deferred Branching (P8)
-    Do not create a branch unless it is strictly needed, such as when it starts conflicting with parallel work. [14]
-##### Branch structuring patterns
-*only including the ones we needed to read about!*
-1. Parallel Maintenance / Development Lines (S2)
-    Split maintenance and development into separate branches. Maintenance merges into the development branch. [14] (is that not backwards?)
-2. Staged Integration Lines (S5)
-    Using several branches to represent a hierarchy, such as alpha -> beta -> development. Features work themselves upward in the hierarchy until ready for release. [14]
-3. Change Propagation Queues (S6)
-    Define relationships between branches such that changes are propagated in the order they were made. [14]
+##### Copy-merge / Optimistic scheme
+We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***double maintenance problem*** in mind. [7]
 
 #### Configuration control !!!
-The process of tracking changes and history, and attributing them to authors. [24]
+The process of implementing changes. 
 
-##### System model !!!
-A representation of the hierarchy of components used within the software. Relies on ***version selection rules***. [9]
-##### Version selection rules !!!
-The version selection rules indicate which versions of the dependencies and modules are being used. [9]
-##### Bound configurations !!!
-Versions are static, e.g. specific versions of components are used. [2, 9] Generally more stable. [9]
-##### Partially bound configurations !!!
-Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the latest version may change during development and cause breaking changes. [9]
+The process of tracking changes and history, and attributing them to authors. [24]
 ##### Configuration identification
-The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20, 24] Done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
+The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20, 24] Usually done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
 ##### Configuration items
-*sometimes referred to as computer program / software configuration items (CPCI / CSCI)* [16]
+*sometimes referred to as computer program / software configuration items (CPCI / CSCI), depending on what the configuration item is* [16]
 
 Configuration items are formally defined as anything which can be independently identified. They may be nested within each-other, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item) [12] -- this is sometimes referred to as the "lowest replaceable unit (LRU)". [16] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
 
@@ -403,13 +354,24 @@ Neely and Stolt suggest using feature toggles. That way, features can be rolled 
 #### Checkout/check-in model
 A separation of where files are stored, and where they are modified. The developer "checks out" a copy of the repository, and "checks in" when they are done. [7, 9, 14] This solves the ***Shared Data problem***, but can cause the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. To facilitate the check-in process, we also need merge functionality and it may be advantageous to provide branching support. [7]
 
-#### The composition model !!!
-Similar to the ***checkout/check-in*** model, we use ***repositories*** and ***workspaces***, in addition to ***concurrency control*** through ***locking***. However, configurations are based on system models and selection rules. [9]
+#### The composition model
+Similar to the ***checkout/check-in*** model, we use ***repositories*** and ***workspaces***, in addition to ***concurrency control*** through ***locking***. Here, however, the configuration is based on system models and version selection rules. [9]
 
-#### The change set model !!!
+This enables ***reproducibility***, but introduces complexity and sometimes inflexibility.
+
+##### System model
+Lists the component that make up the system. Relies on ***version selection rules***. [9]
+##### Version selection rules
+The version selection rules indicate which versions of the dependencies and modules are being used in a system configuration. [9]
+###### Bound configurations 
+Versions are static, e.g. specific versions of components are used. They can be used as baselines. [2, 9] Generally more stable and ***reproducible***. [9]
+###### Partially bound configurations 
+Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2, 9] This can, of course, produce instability, as the rules may accidentally include versions with breaking changes. [9]
+
+#### The change-set model 
 Individual modifications are grouped into identifiable ***change sets***, such that they can be arbitrarily applied to a workspace. [9, 24] This links naturally with the concept of ***change requests***, as a ***change set*** could become a ***change request***. The history is stored as a chain of ***change sets***, rather than ***versions***. It lends itself to increased ***traceability***, as individual changes can be traced. [9]
 
-***Change sets*** are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. ***Configurations*** are, in this case, based on the ***change sets***. [9]
+***Change sets*** are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. ***Configurations*** can in this case be seen as a ***baseline*** in conjunction with ***change sets***, applied depending on desired configuration. [9]
 
 #### Two-tier model
 Development is separated into two tiers; formal configuration control, and development (version control only). Developers interact with what amounts to the ***checkout/check-in*** model. Once their contributions are ironed out, they escalate to the formal configuration control. Developers are thus less burdened by overhead, and we get to maintain SCM practices. [12] 
@@ -423,24 +385,26 @@ In a centralized model (CVS, Subversion), all code is stored on the same server,
 
 A centralized model creates a single point of failure, whereas distributed models do not have ***locking*** -- which may be desired in some cases. [31]
 
-### Patterns !!!
+### Patterns
 - Organizational: How the organization is structured; size of team, management style, e.t.c. [14]
 - Architectural: How the software is structured. [14]
 - Process Defining: Structures, such as directory hierarchy. Things that are defined at the start of development. [14]
 - Maintaining: Day-to-day processes at the organization. The line between this pattern and process defining is slightly blurry. [14]
 
-### The Five Dimensions !!!
+### The Five Dimensions 
 The following dimensions can be used in isolation, or combined. 
+
+Bendix particularly wants us to understand how they are related to the course, which is why I have not merged this into the correct parts of the summary.
 #### Version
-Each step of development warrants a new version. It is important that versions do not overwrite each-other, it should be possible to ***reproduce*** earlier versions. [15]
+Each step of development warrants a new version. It is important that versions do not overwrite each-other, it should be possible to ***reproduce*** earlier versions. [15] This is directly comparable to our other definitions of ***versions***.
 #### Views
-The development is divided into constituent and sequential parts of a process. For example, source code is made into compiled code, sketches are made into blueprints, e.t.c. Views encapsulate the steps contained within the development of one aspect of the project. [15]
+The development is divided into constituent and sequential parts of a process. For example, source code is made into compiled code, sketches are made into blueprints, e.t.c. Views encapsulate the steps contained within the development of one aspect of the project. [15] 
 #### Hierarchy
 Development is subdivided into subtasks, until it is made digestible. Another benefit is that if said deliverables are common within the project, such as a helper function, it can promote **reuse**. [15] It could be seen as a further compartmentalization of the view dimension. 
 #### Status
 Tracking the status of different tasks, such as whether something is ready for testing [15] -- e.g. ***status accounting***.
 #### Variants
-The reconfiguration of the product to fit many purposes, such as making the software run on different operating systems. [15, 21, 24] They are essentially parallel ***versions***. [21]
+The reconfiguration of the product to fit many purposes, such as making the software run on different operating systems. [15, 21, 24] They are essentially parallel ***versions***. [21] This is treated the same way we have defined ***variants*** previously.
 
 ## Glossary
 What follows is a general set of terms, that didn't quite fit under any other umbrella.
@@ -455,19 +419,19 @@ A piece of software or documentation. The history of an artifact is tracked in l
 ***Artifacts*** or ***configuration items*** are stored in a library. This includes both physical and digital items, [12] with the latter being more common today. Like real libraries, items stored within them have permissions associated with them. [12]
 
 ### Traceability
-The ability to trace when changes were made, and by who. [14, 20, 25] Additionally, also exactly what configuration was used to make a certain build or release. [20, 25] Enables reuseability. [14]
+The ability to trace when changes were made, and by who. [14, 20, 25] Additionally, also exactly what configuration was used to make a certain build or release. [20, 25] Enables reusability. [14]
 
 The intent is to increase ***co-ordination*** and improve impact analysis processes. [20]
 
 ### Reproducibility
 We need to be able to recover the complete configuration at any point in time, such that we can mimic the exact environment at that time. [13, 14, 25] This is critical for ***traceability*** and the ability to debug previously released versions. For reproducibility to work, ***derivations*** must be immutable. [13, 14]
 
-### Transactions !!!
+### Transactions
 A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7, 9]
-#### The long transaction model !!!
-A chain of several modifications, to several files, in a workspace -- a "logic change". When we try to commit, a concurrency control scheme is executed. [9] Usually, this means that the ***version control tool*** will check if we are up-to-date on all files. If not, it forces us to pull the latest changes and merge them into our ***workspace***. This can cause issues, however, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. [7] 
-#### Strict long transactions !!!
-Strict long transactions enforce the constraint that the software needs to work as intended. This means that any logical conflicts will be refused until resolved. [7]
+#### The long transaction model 
+A chain of several modifications, to several files, in a ***workspace*** -- a "logic change". When we try to commit, a ***concurrency control*** scheme is executed. [9] Usually, this means that the ***version control system*** will check if we are up-to-date on the files we have changed. If not, it forces us to pull the latest changes and merge them into our ***workspace***.  [7] 
+#### The strict long transaction model
+The usual long transaction model can cause issues, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. As such, strict long transactions enforce the constraint that all changes must be integrated, even changes to files we have not worked on. [7]
 
 ### Repositories
 A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallel work***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
@@ -519,6 +483,48 @@ Single source variants are popular within C, where it is achieved through condit
 There are many more types of variants as well, such as aggregate, ***derivation***, and temporary variants. [21] 
 
 There is a lot more to the field of variant management not covered here, in the interest of time.
+
+### Branching
+We create a copy of the ***repository*** at a certain point in time and give it a new identifier. The development on the "main" branch continues as normal, while the new branch acts like a secondary ***repository*** from which another set of developers can work on. This may be used in conjunction with ***locking***, where the branching concept provides the ability for a developer to branch the ***repository*** to get around someones ***lock*** safely. [14] 
+
+When changes within a branch need to be integrated into another, we merge. This is sometimes referred to as syncing or propagating. [14]
+
+Branching can exist on several levels. We may just branch the code, or we may branch the entire configuration. In some cases, we may branch the team itself. [14]
+
+Branches may visually be represented as tree diagrams. [14]
+
+Concerns within branching include safety, liveness, reusability, ***teamwork***, and SCM tool support. [14]
+
+#### Branch creation patterns
+*only including the ones we needed to read about!*
+1. Branch per Task (C2)
+    Create a branch for each task. [14]
+    1. Branch per Major Task: create a branch when implementing very large features or bug-fixes [14]
+    2. Branch per ***Merge / Change request*** [14]
+    3. Personal activity branch: pet branch used by one developer [14]
+2. Codeline per Codeline (C3)
+    Use a seperate branch for each major and minor release [14] Codeline usually means branch. [27]
+3. Subproject Line (C4)
+    Create a branch for a set of tasks. [14]
+    1. Personal: again, a pet branch [14]
+    2. Experimental: a pet branch for several developers [14]
+    3. Multi-project: separating components into branches. Branches are used together when creating release build. [14]
+#### Branch policy patterns
+*only including the ones we needed to read about!*
+1. Merge Early and Often (P5)
+    Merge contributions as soon as they are satisfiable and tested [14]
+2. Early Branching (P7)
+    Create the branch as soon as it is needed, don't dwell on it. [14]
+3. Deferred Branching (P8)
+    Do not create a branch unless it is strictly needed, such as when it starts conflicting with parallel work. [14]
+#### Branch structuring patterns
+*only including the ones we needed to read about!*
+1. Parallel Maintenance / Development Lines (S2)
+    Split maintenance and development into separate branches. Maintenance merges into the development branch. [14] (is that not backwards?)
+2. Staged Integration Lines (S5)
+    Using several branches to represent a hierarchy, such as alpha -> beta -> development. Features work themselves upward in the hierarchy until ready for release. [14]
+3. Change Propagation Queues (S6)
+    Define relationships between branches such that changes are propagated in the order they were made. [14]
 
 ### Derivations !!!
 The history of the software ***repository***. This is essential to maintain ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
