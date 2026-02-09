@@ -1,9 +1,3 @@
-- 4 Know some solutions to selected problems when working alone
-- 4 Know of some problems in structuring a project library
-- 2 the SCM strategies used to deal with these issues 
-
----
-
 # Course summary
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
@@ -130,25 +124,27 @@ The process of labelling or identifying all ***artifacts*** and selecting ***con
 ##### Configuration items
 *sometimes referred to as computer program / software configuration items (CPCI / CSCI), depending on what the configuration item is* [16]
 
-Configuration items are formally defined as anything which can be independently identified. They may be nested within each-other, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item) [12] -- this is sometimes referred to as the "lowest replaceable unit (LRU)". [16] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
+Configuration items are defined as anything which can and should be independently identified and managed. [12, 35] They may be nested within each-other, however the important part is that it makes sense to group them as configuration items -- e.g. the distinction should add value. The distinction should be made such that we would "mourn" it's loss (it would have consequences if anything happened to the configuration item) [12] -- this is sometimes referred to as the "lowest replaceable unit (LRU)". [16] A line of code would not be categorized as one, but the source file might; or maybe it makes more sense to see the whole module as one?
 
 Daniels proposes a recursive method of defining configuration items, where there are several levels to a hierarchy. What counts as a configuration item is at the eye of the beholder. [16]
 
 Kelly further defines "stepping stone" items, which are interim items that are not worth storing, [12] such as testing results.
 
-Configuration items are kept in the controlled area, sometimes referred to as a CM ***library (see metaphor)***. [12] 
+Configuration items are kept in the controlled area, sometimes referred to as a CM ***library (see metaphor)***. [12] Their status is tracked as a part of the ***status accounting*** process. [35]
 
-##### Baselines !!! (identify diff types of baselines)
-A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It can then enable further development. [26]
+They contain information such as status, attributes, and authorship / responsibility. [35]
+
+##### Baselines
+A milestone in the development process, such as a release. It can be seen as a known good configuration, frozen in time such that it is ***reproducible***. It is used as a basis for further development, but is itself immutable. [26]
 
 It contains details on configuration, such as which dependencies the project relies on.
 
 Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
 
 Daniels identifies three primary forms of baselines:
-- functional baseline (FBL) [16]
-- allocated baseline (ABL) [16]
-- product baseline (PBL) [16]
+- functional baseline (FBL): what the system should do [16, 37]
+- allocated baseline (ABL): how system functions and requirements are allocated to components, e.g. how the system is decomposed [16, 37]
+- product baseline (PBL): the complete products requirements both on a technical level and a physical level [16, 37]
 
 ##### Software Bill of Materials (SBoM)
 A formal inventory of all dependencies and components in a project [28, 29, 30], usually those which are third party. The intention is to facilitate management of the software supply chain in order to increase security, track vulnerabilities, and comply with licenses. [29, 30]
@@ -161,12 +157,12 @@ It may be directly included in the ***CI/CD*** pipelines, where the SBoM is auto
 #### Configuration verification
 In configuration management, the verification process consists of audits and program reviews. [17]
 
-##### Configuration Audits
-The process of verifying that the technical documentation lines up with product performance and behavior. Furthermore, it also asserts that the product requirements are met. [17, 24] 
+##### Configuration audits
+The process of verifying that the product performance and behavior lines up with specifications and requirements from the technical documentation. Furthermore, it also asserts that the product requirements are met. [17, 24] 
 
-There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17, 20] 
+There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their technical documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17, 20] 
 
-There are two further subtypes of formal audits, namely Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA). The first verifies functionality, and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. Typically carried out by a QA team. [17, 20]
+There are two further subtypes of formal audits, namely Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA). The first verifies functionality (ex. the ***functional baseline***), and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. Typically carried out by a QA team. [17, 20]
 
 In software applications, ***status accounting*** and auditing are grouped together, which Daniels sees as unfortunate. [17]
 
@@ -184,9 +180,9 @@ There are several types of reviews that may be carried out during specific parts
 #### Configuration status accounting
 *this seems to sometimes be referred to as status reporting.* [24]
 
-A means of documenting the status and implementation state of ***configuration items***. [15, 16, 18, 20, 24] It also provides for ***communication*** and ***traceability***, [16, 18, 20] and provides updates on ***CCB*** activities. [16, 18] This may be carried out in the form of ***transaction*** logs, ***change*** logs, or progress reports. [20]
+A means of documenting the status and implementation state of ***configuration items*** [15, 16, 18, 20, 24, 33, 34] through their entire lifecycle. [33, 34] It also provides for ***communication*** and ***traceability***, [16, 18, 20] and provides updates on ***CCB*** activities. [16, 18] This may be carried out in the form of ***transaction*** logs, ***change*** logs, or progress reports. [20]
 
-The aim is continually trace the development, such that all progress is attributed and dated. [16]
+The aim is continually trace the development, such that all progress is attributed and dated [16] and able to retrieved and ***reproduced***. [3$]
 
 Daniels outlines that an effective status accounting system satisfies:
 - is capable of handling many elements [16]
@@ -197,16 +193,22 @@ Daniels outlines that an effective status accounting system satisfies:
 - can account for security needs [16]
 
 #### Change management
-The process of handling changes, particularly the approval process. [2, 17, 18, 20, 22, 24] The control of changes to hardware, software, firmware, and documentation. [17] Somewhat intertwined with ***configuration control***, which tracks the implementation of approved changes.
+Focuses on managing organizational changes. [36]
+##### Change control
+The process of handling changes, particularly the approval process. [2, 17, 18, 20, 22, 24, 36] The control of changes to hardware, software, firmware, and documentation. [17] Somewhat intertwined with ***configuration control***, which tracks the implementation of approved changes.
 
-Increases **traceability** and responsibility. [2, 3]
+Increases **traceability** and responsibility. [2, 3, 36]
 
-##### Change control board
+It is not to be confused with change management, as it is a subset of it. [36]
+
+###### Change control board
+*sometimes referred to as a change advisory board.* [36]
+
 The approval process is handled by a Change Control Board (CCB), [2, 17, 18, 24] whose members must be adequately knowledgeable about the software and product. [2] The board is made up of members who represent the major parts of the organization (such as engineering, production, e.t.c.). The CCB establishes ***baselines***, but does not carry out detailed technical ***reviews*** -- these are carried out before the decision ends up by the board. [17]
 
 The CCB includes a chairperson, secretary, members, and specialists. [17]
 
-##### The change process
+###### The change process
 The CCB reviews the proposal both on the grounds of the necessity of the change, and it's impact and quality. The thoroughness of the implementation is assured through testing and peer review. As the size of the change grows, so does the complexity of the verification. Furthermore, depending on how the organization is structured, many parties may need to be involved in the process of approving a change. Due to the scope of the change process, certain urgency labelling may be required in some cases. [17]
 
 A verdict is reached by the CCB. If it is declined, then it goes back the originator, e.g. the requester. Otherwise, it propagates up the chain of command, if required. [17]
@@ -476,9 +478,9 @@ We need to be able to recover the complete configuration at any point in time, s
 ### Transactions
 A transaction is a unit of work, such as a modification of a file. The term is inherited from database theory. [7, 9]
 #### The long transaction model 
-A chain of several modifications, to several files, in a ***workspace*** -- a "logic change". When we try to commit, a ***concurrency control*** scheme is executed. [9] Usually, this means that the ***version control system*** will check if we are up-to-date on the files we have changed. If not, it forces us to pull the latest changes and merge them into our ***workspace***.  [7] 
+A chain of several modifications, to several files, in a ***workspace*** -- a "logic change". When we try to commit, a ***concurrency control*** scheme is executed. [9] Usually, this means that the ***version control system*** will check if we are up-to-date on the files we have updated. If not, it forces us to pull the latest changes and merge them into our ***workspace***.  [7] 
 #### The strict long transaction model
-The usual long transaction model can cause issues, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work. As such, strict long transactions enforce the constraint that all changes must be integrated, even changes to files we have not worked on. [7]
+The usual long transaction model can cause issues, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work even if the merge was successful. As such, strict long transactions enforce the constraint that all changes must be integrated, even changes to files we have not worked on. [7]
 
 ### Repositories
 A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallel work***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
@@ -535,7 +537,10 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 ---
 
 # Sources
+1-25 are part of the compendium. The rest have been found as part of my own research.
+
 0. Own intuition or experiences
+
 1. Babich chapter 1-2; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 2. Bendix, Vinter
 3. Mikkelsen, Pherigo
@@ -568,3 +573,8 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 30. https://www.blackduck.com/blog/software-bill-of-materials-bom.html
 31. Version Control Systems in Corporations: Centralized and Distributed, Högblom & Green: https://gupea.ub.gu.se/bitstreams/7f0e3f25-89df-4edb-a59b-3479ad8ca748/download
 32. https://www.atlassian.com/devops
+33. https://docs.microfocus.com/SM/9.50/Hybrid/Content/BestPracticesGuide_PD/ConfigurationManagementBestPractice/Configuration_Status_Accounting_Reporting.htm
+34. https://www.globalspec.com/reference/71660/203279/5-4-configuration-status-accounting
+35. https://www.ibm.com/docs/en/control-desk/7.6.1?topic=overview-configuration-items
+36. https://www.atlassian.com/itsm/change-management/change-control-process
+37. https://acqnotes.com/acqnote/careerfields/configuration-baselines
