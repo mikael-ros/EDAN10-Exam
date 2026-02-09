@@ -1,7 +1,7 @@
 # Course summary
 > Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
-## Source Configuration Management (SCM)
+## Software Configuration Management (SCM)
 SCM benefits the development process in numerous ways. [24] It also increases business value, through various means: [25]
 - faster development means faster time to market [25]
 - better quality means less time spent debugging, more time spent enhancing [25]
