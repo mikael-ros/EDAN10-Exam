@@ -6,6 +6,8 @@ SCM benefits the development process in numerous ways. [24] It also increases bu
 - faster development means faster time to market [25]
 - better quality means less time spent debugging, more time spent enhancing [25]
 
+It aims to maximize productivity, by minimizing the frequency of mistakes. [38]
+
 ### Success factors
 Milligan identifies several factors of success, such as:
 - Safety: the project should be securely accessed, e.g. only by those authorized, and it should be easy to recover from mistakes or hardware failures. [25]
@@ -50,13 +52,14 @@ Leon, who bases his structure mainly on IEEE, suggests the following SCM plan fr
 6. SCM plan maintenance: how to upkeep the SCM plan. [18]
 
 Dart suggests a very similar model, with more granularity. [24]
-### Workshops
+##### Workshops
 The purpose of workshops are to involve developers in the construction of CM plans and processes. Secondarily, to increase their knowledge about CM practices. [2]
 
 The pros include:
 - On the job training [2]
 - Development of company-wide CM plans and processes [2]
 - Spread of knowledge and experience between employees [2]
+- Increased morale, as employees feel personally responsible for the CM plan. [38]
 
 It is conducted in three stages:
 1. Prepare: select who should participate, when to conduct the workshop, and what background material needs to be made available [2]
@@ -67,13 +70,15 @@ It is conducted in three stages:
 Bendix and Ekman / Leon identify four main activities of traditional SCM, being: ***Configuration Identification***, ***Configuration Control***, ***Configuration Status Accounting*** and ***Configuration Audit*** [18, 20]
 
 #### Version management / Version control systems
-The means of storing, managing, and retrieving the history of ***configuration items***. Versions, revisions, and variants are identified and stored. [20] Potentially also derivations.
+The means of storing, managing, and retrieving the history of ***configuration items***. Versions, revisions, derivations, and variants are identified and stored. [20] The ***configuration items*** themselves are the subject of ***configuration control / management***.
+
+They are superior to a simple backup system, as they are more granular and therefore ensure ***reproducibility*** and ***traceability***. [38] 
 
 ##### Versions
-Versions of the software. Usually kept track of with version numbers. They are often ***baselined*** and released.
+Versions of the software. Not necessarily linear. Considered immutable and usually kept track of with version numbers. They are often ***baselined*** and released.
 
 ##### Revisions 
-A version of the software intended to replace the old version. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1]
+A version of the software intended to replace the old version in a linear fashion. The intent is that this version has fewer bugs or more functionality. They are numbered such that they can be recognized and retrieved if necessary. Intuitively numbered with ascending indices. [1] 
 
 ##### Variants / Variations
 An alternative version of the software intended to be used as one of several options for configuring the software. Such as an enterprise vs. personal version of a program. [1, 24]
@@ -114,10 +119,10 @@ We simply lock the part of the repository that we are working on, such as a file
 Split the architecture into well-defined components. As a result, we can be relatively sure only one developer is working on any component at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
 
 ##### Copy-merge / Optimistic scheme
-We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the double maintenance problem in mind. [7]
+We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, especially if the project is large in comparison to team size, so long as we keep the double maintenance problem in mind. [7]
 
-#### Configuration control
-The process of regulating the implementation of approved changes, their history, and attribution. [24]
+#### Configuration control / management
+The process of regulating the implementation of approved ***changes***, their history, and attribution, [24] as well as ***identifying*** and ***coordinating*** ***configuration items***, e.t.c.
 
 ##### Configuration identification
 The process of labelling or identifying all ***artifacts*** and selecting ***configuration items***. For some ***artifacts***, this may entail the application of serial numbers or other unique identifiers. [16, 20, 24] Usually done by a ***configuration manager***. Good configuration identification addresses ***traceability***. [16]
@@ -256,10 +261,10 @@ DevOps activities, such as ***continuous integration / continuous delivery (CI/C
 ## Parallel working, in general
 ### Concurrency problems
 #### Shared data problem 
-Occurs when several developers are simultaneously accessing and modifying the same files. A modification made by one developer in one file may break functionality which another developer depended on. [1] One solution is the creation of ***private workspaces***. [20]
+Occurs when several developers are simultaneously accessing and modifying the same files. A modification made by one developer in one file may break functionality which another developer depended on. [1] One solution is the creation of ***private workspaces***. [20] It is impossible to fully resolve, even if there is only one developer, as even they can end up writing dependency-breaking code. [38]
 
 #### Double maintenance problem
-When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. Over time, this can lead to divergence between the versions. [1, 20]
+When several versions of the same software are being maintained independently. If a modification, such as a bug fix, occurs in one version, then that modification has to be manually transplanted to all other versions. At worst, developers may independently fix the same bug twice, maybe in different ways. Over time, this can lead to divergence between the versions. [1, 20] This problem is independent of the amount of developers, as any situation where several copies co-exist will cause the problem. [38] This is resolved by careful merging rules and ***co-ordination***.
 
 #### Simultaneous update problem
 When several developers simultaneously update the same files, they can overwrite each-others changes by accident, which can lead to resolved bugs reappearing or added functionality disappearing. [1, 20] This may be solved by assigning identification, such as ***versions*** to the files, to enable recognition of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
@@ -268,9 +273,7 @@ When several developers simultaneously update the same files, they can overwrite
 Very related to the ***double maintenance problem***. Occurs in an environment with ***variants***, where each ***variant*** may be customized to fit a particular need. Since ***variants*** are not necessarily linked to each-other, but descendants of the same ***version***, fixes in one ***variant*** need to be manually applied to each relevant ***variant***. [21]
 
 ### Distributed development
-Occurs when developers are physically, particularly geographically, separated. [4, 5] An increasingly common practice, as it allows companies to reach talent in different locations. [5]
-
-Git and Mercurial are examples of distributed tools.
+Occurs when developers are physically, particularly geographically, separated. [4, 5] An increasingly common practice, as it allows companies to reach talent in different locations (Global Software Development). [5]
 
 #### Challenges
 Challenges include decreased communication, reliance on the internet, and implementing CM practices. It can also lower team morale and knowledge spread. [4]
@@ -388,15 +391,15 @@ We can automate trivial and repetitive tasks. An early example of this is ``make
 ### Continuous Delivery / Continuous Integration (CI/CD)
 *in some sources, continuous delivery is referred to as "regular builds"* [20]
 
-A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt and tested. [11] Through the continuous integration of changes, we partially avoid the ***double maintenance problem***. [20]
+A process which facilitates the ability to release at any point, negating the need for timed releases. [10, 11] At each commit, the repository is rebuilt, tested, and deployed. [11] Through the continuous integration of changes, we partially avoid the ***double maintenance problem***. [20]
 
-When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
+When releasing on regular schedules, shippable features may be lost as the cut-off approached. This means that a feature completed in, say, week 7 may not be released until week 16. Continuous delivery avoids this problem, as the feature would simply be released when it is complete. The constant feedback cycle also means that problems arise quicker, rather than several weeks after the feature was supposedly complete. [10] As the testing process is made as automatic as possible, it also drastically decreases the time required to test. Considering the frequency of tests, releases end up more reliable as well. [11]
 
 On the business end, it also allows us to keep up with competition. Instead of releasing a competitive version of the software next release cycle, we can release it as soon as possible. [10, 11] It also allows us to weed out unwanted features. [11]
 
 Integrating continuous integration into the workflow presents challenges, however. A lot of things need to be automated, and it may take time. A good approach is to incrementally automate the project. Integration itself needs to be made more efficient as well; this could be achieved by using fewer ***branches*** (if any), and small features and commits. Automated, reliable, fast, and credible testing is likewise incredibly important. [10, 20] Some corners may also have to be cut, such as the traditional ***change request board***. [11] ***Functional audits*** may be reduced to acceptance tests. [20]
 
-Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***.
+Neely and Stolt suggest using feature toggles. That way, features can be rolled out selectively, and rolled back at request. When releasing, the necessary features can be toggled, [10] similar to the ***change-set model***. This enables another similar solution, so-called "canary deployments", where new features are released to a small portion of the user base first.
 
 ## Models and patterns
 ### Models
@@ -404,7 +407,7 @@ Neely and Stolt suggest using feature toggles. That way, features can be rolled 
 A separation of where files are stored, and where they are modified. The developer "checks out" a copy of the repository, and "checks in" when they are done. [7, 9, 14] This solves the ***Shared Data problem***, but can cause the ***Double Maintenance problem***. The ***Simultaneous Update problem*** may also occur if someone checks in a modification to the same file as the developer intends to update between checking out and checking in. To avoid the ***Simultaneous Update problem***, we need to provide ***versioning*** support. To facilitate the check-in process, we also need merge functionality and it may be advantageous to provide branching support. [7]
 
 #### The composition model
-Similar to the ***checkout/check-in*** model, we use ***repositories*** and ***workspaces***, in addition to ***concurrency control*** through ***locking***. Here, however, the configuration is based on system models and version selection rules. [9]
+Similar to the ***checkout/check-in*** model, we use ***repositories*** and ***workspaces***, in addition to ***concurrency control*** through ***locking***. Here, however, the configuration is based on system models and version selection rules. [9] The selection rules may come in the form of ***bound configurations***.
 
 This enables ***reproducibility***, but introduces complexity and sometimes inflexibility.
 
@@ -420,7 +423,7 @@ Versions are relative, e.g. "use latest version of", "version < 2.9", e.t.c. [2,
 #### The change-set model 
 Individual modifications are grouped into identifiable ***change sets***, such that they can be arbitrarily applied to a workspace. [9, 24] This links naturally with the concept of ***change requests***, as a ***change set*** could become a ***change request***. The history is stored as a chain of ***change sets***, rather than ***versions***. It lends itself to increased ***traceability***, as individual changes can be traced. [9]
 
-***Change sets*** are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. ***Configurations*** can in this case be seen as a ***baseline*** in conjunction with ***change sets***, applied depending on desired configuration. [9]
+***Change sets*** are similar to ***long transactions***, but differ in that the developer is able to resolve some of the conflicts, and changes are seen at the line level rather than the file level. ***Configurations*** can in this case be seen as a ***baseline*** in conjunction with a list of ***change sets***, applied depending on desired configuration. [9]
 
 #### Two-tier model
 Development is separated into two tiers; formal configuration control, and development (version control only). Developers interact with what amounts to the ***checkout/check-in*** model. Once their contributions are ironed out, they escalate to the formal configuration control. Developers are thus less burdened by overhead, and we get to maintain SCM practices. [12] 
@@ -428,6 +431,8 @@ Development is separated into two tiers; formal configuration control, and devel
 A ***configuration item*** escalates once it has been tested or when it is acutely needed for review or use. If the latter is the case, it must be made abundantly clear. [12]
 
 The limitations to this model used to be storage, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
+
+An extension of this, the three-tier model, can be seen as the addition of a ***CM library*** tier. [38]
 
 #### Distributed vs. Centralized model
 In a centralized model (CVS, Subversion), all code is stored on the same server, and developers work directly of it -- their commits are saved immediately onto the server. A distributed model (Git, Mercurial), by contrast, facilitates the creation of ***workspaces***, which allow developers to work independently and integrate when they please. The prior means increased control and ***traceability***, but the latter is more flexible. [31]
@@ -462,7 +467,7 @@ What follows is a general set of terms, that didn't quite fit under any other um
 The collective understanding of the project within the team, particularly in regards to who is doing what. [0, 5, 7] One facet of this is provding versioning and a way to see the difference between two versions of the software, such as through a command like ``diff``. [7]
 
 ### Artifact
-A piece of software or documentation. The history of an artifact is tracked in log entries, and the differences between versions are called deltas. [2]
+Anything created during development, such as a piece of code or documentation. [2] They are not necessarily the subject of any formal ***configuration control***, but can be if desired. A formalized artifact is often regarded as a ***configuration item***. [38]
 
 ### Library
 ***Artifacts*** or ***configuration items*** are stored in a library. This includes both physical and digital items, [12] with the latter being more common today. Like real libraries, items stored within them have permissions associated with them. [12]
@@ -480,9 +485,11 @@ A transaction is a unit of work, such as a modification of a file. The term is i
 #### The long transaction model 
 A chain of several modifications, to several files, in a ***workspace*** -- a "logic change". When we try to commit, a ***concurrency control*** scheme is executed. [9] Usually, this means that the ***version control system*** will check if we are up-to-date on the files we have updated. If not, it forces us to pull the latest changes and merge them into our ***workspace***.  [7] 
 #### The strict long transaction model
-The usual long transaction model can cause issues, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work even if the merge was successful. As such, strict long transactions enforce the constraint that all changes must be integrated, even changes to files we have not worked on. [7]
+The usual long transaction model can cause issues, since the sum of parts in this case may be lesser than the whole -- e.g. the new merged version may not even work even if the merge was successful. As such, strict long transactions enforce the constraint that all changes must be integrated, even changes to files we have not worked on. [7] Enforcing them can cause it's own headaches, such as slower development.
 
 ### Repositories
+*sometimes referred to as Version Object Bases (VOBs)* [38]
+
 A shared project database, containing all ***artifacts*** / components of the the software. [8, 20] It's main responsibility is to co-ordinate ***parallel work***, through the facilitation of ***workspace*** creation and ***version control***. Most repositories are able to handle ***parallel work*** without the need for ***locking***. [20]
 
 It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for ***versioning*** [9] and needs to facilitate ***configuration management*** in order to facilitate consistency between ***workspaces***. [2]
@@ -490,7 +497,10 @@ It is where known good code goes. A developer should not commit from their works
 Repositories are considered immutable, and developers are required to make a copy to work on it. [2]
 
 ### Private workspaces
-Each developer has their own private workspace, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/check-in model***. 
+Each developer has their own private workspace, a long-lived and isolated environment, containing a copy of the ***repository*** and current changes. When the developer is done, and has tested their code, they can contribute it to the ***repository***, [8, 9, 20] as in the ***checkout/check-in model***. 
+
+### Commits
+Snapshot of changes made in the ***workspace***. [38]
 
 ### Branching
 We create a copy of the ***repository*** at a certain point in time and give it a new identifier. The development on the "main" branch continues as normal, while the new branch acts like a secondary ***repository*** from which another set of developers can work on. This may be used in conjunction with ***locking***, where the branching concept provides the ability for a developer to branch the ***repository*** to get around someones ***lock*** safely. [14] 
@@ -580,3 +590,4 @@ Sources are not thoroughly cited according to any format. It is sloppy, but I ho
 35. https://www.ibm.com/docs/en/control-desk/7.6.1?topic=overview-configuration-items
 36. https://www.atlassian.com/itsm/change-management/change-control-process
 37. https://acqnotes.com/acqnote/careerfields/configuration-baselines
+38. Other students resources, which I cannot share without permission
