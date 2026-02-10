@@ -1,5 +1,5 @@
 # Course summary
-> Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else -- see ***baselines***. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
+> Note that this summary is based solely on my own interpretation of the sources contained within the compendium. As a consequence of the age of the respective sources, it has been particularly difficult to comprehend the contents of the course. Not only because the sources read different, but also because some of the stem from an early era of CM where terms had not been agreed upon. As a result, it has been difficult to recognize when sources are corroborating on an already defined concept, and when they are talking about something else. View this document as a resource to check yourself against, not a complete source of knowledge. // Mikael
 
 ## Software Configuration Management (SCM)
 SCM benefits the development process in numerous ways. [24] It also increases business value, through various means: [25]
@@ -84,7 +84,7 @@ The ***multiple maintenance trap*** arises when using variants. It is resolved b
 
 There are several approaches to variants, amongst them:
 - variant segregation: each variant has a separate copy of a component. [21]
-- single source variants: each variant cherry picks parts of the repository during the build process. [21]
+- single source variants: each variant is created by cherry picking parts of the repository during the build process. [21]
 
 Variant segregation is usually chosen, but may not always be ideal, as it introduces redundancy and increases storage usage -- in addition to the ***multiple maintenance trap***. The system can grow even more complex, if there is a need for subvariants, such as for each version of an operating system (for example one for Windows 7, 8, 10, 11, e.t.c.). [21]
 
@@ -114,7 +114,7 @@ We simply lock the part of the repository that we are working on, such as a file
 Split the architecture into well-defined components. As a result, we can be relatively sure only one developer is working on any component at a time, negating the need for ***locking***. [7] However, it may still lead to situations where another developer accidentally uses a newer revision of a model when testing their code built for an older version. [8] The ***shared data*** and ***simultaneous update*** problems can still occur, particularly during the combine procedure. [20]
 
 ##### Copy-merge / Optimistic scheme
-We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the ***double maintenance problem*** in mind. [7]
+We create a copy, edit whatever we need to, and hope no-one else has edited the same files. If they have, we trust the merge functionality to help us. [9] This usually works out fine, so long as we keep the double maintenance problem in mind. [7]
 
 #### Configuration control
 The process of regulating the implementation of approved changes, their history, and attribution. [24]
@@ -223,7 +223,7 @@ PDM is, however, more concerned about managing data and documentation for hardwa
 
 In some cases, SCM and PDM are used in unison, when a project requires both paradigms, though integration of them is not as simple as using both at the same time. [22] 
 
-They share, amongst other things: ***identification***, ***change management***, ***version management***, and ***variant management***. However, the particular ways they are approached may differ. [22]
+They share, amongst other things: ***identification***, ***change management***, ***version control***, and ***variant management***. However, the particular ways they are approached may differ. [22]
 
 #### SCM in Agile Development
 Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often clashes with the bureaucratic nature of SCM -- the responsibility often falls on the developers instead. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
@@ -332,7 +332,7 @@ This presents some challenges:
 3. components need to be structured in advance, such as through stubs [6]
 
 ###### Multiple teams: Shared source code
-Teams are geographically distributed, but modify the same shared software. [6]
+Teams are geographically distributed, but modify the same shared project. [6]
 
 White advises to avoid this as much as possible, unless, in one of these (non-exhaustive) situations:
 - Monolithic architecture [6]
@@ -343,7 +343,7 @@ White advises to avoid this as much as possible, unless, in one of these (non-ex
 ###### Single team: Distributed members
 An example of the distance working or distributed groups cases.
 
-Members are geographically distributed, but not organized into teams. They modify the same shared software. [6]
+Members are geographically distributed, but not organized into teams. They modify the same shared project. [6]
 
 Architecture and management occurs at the site where most developers are located. Like the previous examples, the system is divided into components. In this case, components are assigned to individuals rather than teams. Shared code is inevitable, though. [6]
 
@@ -537,7 +537,9 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 ---
 
 # Sources
-1-25 are part of the compendium. The rest have been found as part of my own research.
+1-25 are part of the compendium. The rest have been found as part of my own research. 
+
+Sources are not thoroughly cited according to any format. It is sloppy, but I hope you can find the original sources regardless.
 
 0. Own intuition or experiences
 
