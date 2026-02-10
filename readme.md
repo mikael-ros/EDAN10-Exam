@@ -163,11 +163,11 @@ It may be directly included in the ***CI/CD*** pipelines, where the SBoM is auto
 In configuration management, the verification process consists of audits and program reviews. [17]
 
 ##### Configuration audits
-The process of verifying that the product performance and behavior lines up with specifications and requirements from the technical documentation. Furthermore, it also asserts that the product requirements are met. [17, 24] 
+There are various types of audits, roughly grouped into special and formal audits. 
 
-There are various types of audits, roughly grouped into special and formal audits. Formal audits verify that ***configuration items*** line up with their technical documentation, that the selection of them is appropriate, and that the naming and numbering conventions are good. Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17, 20] 
+Configuration audits are a type of formal audit whose purpose is to verify that the product lines up with specifications and requirements from the technical documentation, and that the ***configuration item*** selection and naming convention is appropriate. [17, 24] Furthermore, it is checked whether the ***configuration item's*** relationship to the ***baseline*** is appropriate, and whether the ***status accounting*** system is valid. [17, 20] 
 
-There are two further subtypes of formal audits, namely Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA). The first verifies functionality (ex. the ***functional baseline***), and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. Typically carried out by a QA team. [17, 20]
+There are two subtypes of configuration audits, namely Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA). The first verifies functionality (ex. the ***functional baseline***), and the latter verifies form, fit, and function. FCA is often carried out during integration and qualification testing, whereas PCA is carried out during later evaluation. Typically carried out by a QA team. [17, 20]
 
 In software applications, ***status accounting*** and auditing are grouped together, which Daniels sees as unfortunate. [17]
 
