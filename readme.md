@@ -695,7 +695,8 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 Lars will hone in on your weaknesses. It is important that you know when to acknowledge that you do not know the answer. Sometimes he'll ask questions with very simple answers, and you should therefore employ occam's razor when possible -- don't seek a more complex answer.
 
 Some other notes, that apply to the content above:
-- the ***change request board*** does rarely have a democratic process, decisions are made by one person
+
+- the ***change request board*** does not commonly have a democratic process, decisions are made by one person
 - requirements can be seen as ***change requests***, as far as SCM is concerned
 
 When preparing, I:

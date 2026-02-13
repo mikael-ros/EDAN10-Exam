@@ -6,6 +6,6 @@ if ! command -v pandoc >/dev/null 2>&1
 then
 	echo "Pandoc is not available. Install Pandoc."
 else
-	pandoc readme.md -V geometry:margin=0.2in -V classoption=twocolumn -o readme.pdf
+	pandoc readme.md -V geometry:margin=0.2in -V classoption=twocolumn -o print-ready.pdf
 	echo "PDF has been compiled!"
 fi
