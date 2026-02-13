@@ -16,6 +16,7 @@ This work is licensed under a
 ## Software Configuration Management (SCM)
 
 SCM benefits the development process in numerous ways. [24] It also increases business value, through various means: [25]
+
 - faster development means faster time to market [25]
 - better quality means less time spent debugging, more time spent enhancing [25]
 
@@ -24,6 +25,7 @@ It aims to maximize productivity, by minimizing the frequency of mistakes. [38]
 ### Success factors
 
 Milligan identifies several factors of success, such as:
+
 - Safety: the project should be securely accessed, e.g. only by those authorized, and it should be easy to recover from mistakes or hardware failures. [25]
 - Stability: the developer should have self-governance of what is in their ***workspace***; e.g. they know that when they go into work the next day, their files will look the same. Likewise, they can be assured that they only integrate upstream code when they desire and feel ready to do so. [25]
 - Control: the system should have a robust way to handle ***changes*** and ***parallel*** development, but simultaneously be flexible enough to encourage experimentation. [25]
@@ -63,6 +65,7 @@ Several standards exist for CM plans, such as ones by IEEE, NASA, and DOD (now "
 As is discussed later in this document, SCM plans are also subject to ***configuration auditing***. [17, 18] The quality of a CM plan can make or break the project. [18]
 
 Leon, who bases his structure mainly on IEEE, suggests the following SCM plan framework:
+
 1. Introduction
 2. SCM management: organization, responsibilities, e.t.c. [18]
 3. SCM activities: ***configuration identification***, ***configuration control***, ***change management***, ***status accounting***, ***configuration auditing***, e.t.c. [18, 20]
@@ -77,12 +80,14 @@ Dart suggests a very similar model, with more granularity. [24]
 The purpose of workshops are to involve developers in the construction of CM plans and processes. Secondarily, to increase their knowledge about CM practices. [2]
 
 The pros include:
+
 - On the job training [2]
 - Development of company-wide CM plans and processes [2]
 - Spread of knowledge and experience between employees [2]
 - Increased morale, as employees feel personally responsible for the CM plan. [38]
 
 It is conducted in three stages:
+
 1. Prepare: select who should participate, when to conduct the workshop, and what background material needs to be made available [2]
 2. Execute: present the objectives of the workshop and present the content (such as the three ***metaphors***) [2]
 3. Document: draft the CM plan, review it, and publish it [2]
@@ -114,6 +119,7 @@ A set of them is called a variation set. [1]
 The ***multiple maintenance trap*** arises when using variants. It is resolved by maintaining a good composition of ***artifacts***, such that variants are created through the customization of the few rather than the many -- e.g., any code that can be made invariant between variants should be made invariant. In the cases where code cannot be shared between variants, there must be clear documentation and ***change management***. [21]
 
 There are several approaches to variants, amongst them:
+
 - variant segregation: each variant has a separate copy of a component. [21]
 - single source variants: each variant is created by cherry picking parts of the repository during the build process. [21]
 
@@ -186,6 +192,7 @@ It contains details on configuration, such as which dependencies the project rel
 Certain ***bound configurations*** can form a baseline, [2, 14] sometimes referred to as a baselevel [14] or approved configuration, [16] e.g. a basis for further development with formal ***change management***. [2]
 
 Daniels identifies three primary forms of baselines:
+
 - functional baseline (FBL): what the system should do [16, 37]
 - allocated baseline (ABL): how system functions and requirements are allocated to components, e.g. how the system is decomposed [16, 37]
 - product baseline (PBL): the complete products requirements both on a technical level and a physical level [16, 37]
@@ -220,6 +227,7 @@ An audit begins by defining what is to be audited, and the goals of the audit. I
 ##### Reviews
 
 There are several types of reviews that may be carried out during specific parts of the lifecycle. These include:
+
 - System Requirements: Establish functional ***baseline***. ***CM plan*** complete, and procedure development begun. [17]
 - System Design: Establish the allocated ***baseline***, verify ***traceability*** back to top-level requirements. ***CM plan*** is reviewed and amended, and procedures (automated testing, e.t.c.) should be in place. [17]
 - Preliminary Design: Verify decomposition and ***configuration item*** selection. Review procedures, e.t.c. [17]
@@ -235,6 +243,7 @@ A means of documenting the status and implementation state of ***configuration i
 The aim is continually trace the development, such that all progress is attributed and dated [16] and able to retrieved and ***reproduced***. [3$]
 
 Daniels outlines that an effective status accounting system satisfies:
+
 - is capable of handling many elements [16]
 - is flexible (can be adjusted to current needs) [16]
 - is easy to use [16]
@@ -293,6 +302,7 @@ While the bureaucracy of SCM may sound counter-productive to agile, many of the 
 Where agile largely fails in regards to SCM is in maintaining a good relationship between the team and the customer. [20]
 
 Some tasks within SCM that are typically ignored or difficult to implement within agile are ***configuration identification***, ***configuration control***, ***status accounting***, ***audits***, ***roles***, ***tooling***, and ***CM plans***: [20]
+
 - ***Configuration identification***: may be resolved by defining rules for identification, rather than an initial structure. This removes the up-front cost of thoroughly defining all ***artifacts*** at the start. [20]
 - ***Configuration control***: while part of this task is handled through planning games or other agile activities, agile does not necessarily incorporate methods that preserve ***traceability***. In some cases, this is solved through having an explicit tracker role. [20]
 - ***Status accounting***: place relevant status information in the ***repository***. [20]
@@ -370,6 +380,7 @@ From an SCM perspective, there is not difference between parallel work and distr
 ##### Locally
 
 All developers are on-site in the same location. [4]
+
 - Common file system [4]
 - Complete development and test environment [4]
 - Synchronization can be achieved through meetings, but also opportunistically [4]
@@ -378,12 +389,14 @@ All developers are on-site in the same location. [4]
 ##### Distance working
 
 Some developers are working off-site, such as from home. This is either achieved by allowing developers to bring a copy home or by letting them remote login to the worksite. [4]
+
 - Poorer communication, less opportunities for spontaneous synchronization [4]
 - More security issues, as more services need to be exposed [4]
 
 ##### Outsourcing
 
 Some components of the system are developed by third parties, who work in a different location. [4]
+
 - Requires clear instructions from the purchaser [4]
 - Supplier must be able to update the development and test environments [4]
 - The purchaser and supplier may not use the same tools, particularly CM and build tools, which may complicate integration [4]
@@ -391,6 +404,7 @@ Some components of the system are developed by third parties, who work in a diff
 ##### Co-located groups
 
 Work is performed in groups, but the groups are in different locations. Such as different divisions of a company. [4]
+
 - Different file systems, hopefully same CM tools [4]
 - The groups deliver subproducts to each-other rather than developing together [4]
 - Synchronization is achieved solely through planned meetings [4]
@@ -399,6 +413,7 @@ Work is performed in groups, but the groups are in different locations. Such as 
 ##### Distributed groups
 
 Work is performed in groups. Group members may be spread geographically. Similar to the case of distance working. Can usually be avoided by subgrouping. [4]
+
 - Communication becomes very important [4]
 - Simultaneous access must be possible [4]
 - Solutions using locking work poorly [4]
@@ -414,6 +429,7 @@ Can sometimes be an example of ***outsourcing***, but often it could be ***co-lo
 White argues that this decreases the amount of integration problems. It is necessary that the component breakdown makes sense, so foresight is necessary. [6]
 
 This presents some challenges:
+
 1. you'll need to identify the versions of each component and establish component ***baselines*** [6]
 2. components need a reliable way of being delivered [6]
 3. components need to be structured in advance, such as through stubs [6]
@@ -423,6 +439,7 @@ This presents some challenges:
 Teams are geographically distributed, but modify the same shared project. [6]
 
 White advises to avoid this as much as possible, unless, in one of these (non-exhaustive) situations:
+
 - Monolithic architecture [6]
 - System is in maintenance mode [6]
 - Several teams NEED to access it simultaneously [6]
