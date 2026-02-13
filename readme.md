@@ -692,7 +692,7 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 
 # Notes on the exam process
 
-Lars will hone in on your weaknesses. It is important that you know when to acknowledge that you do not know. Sometimes he'll ask questions with very simple answers, and you should therefore employ occam's razor when possible -- don't seek a more complex answer.
+Lars will hone in on your weaknesses. It is important that you know when to acknowledge that you do not know the answer. Sometimes he'll ask questions with very simple answers, and you should therefore employ occam's razor when possible -- don't seek a more complex answer.
 
 Some other notes, that apply to the content above:
 - the ***change request board*** does rarely have a democratic process, decisions are made by one person
@@ -710,7 +710,7 @@ When preparing, I:
 
 1-25 are part of the compendium. The rest have been found as part of my own research. 
 
-Sources are not thoroughly cited according to any format. It is sloppy, but I hope you can find the original sources regardless.
+Sources are not thoroughly cited according to any format. It is sloppy, but I hope you can find the original sources regardless. You can use Lars' course page as a reference: https://fileadmin.cs.lth.se/cs/Education/EDAN10/
 
 1. Babich chapter 1-2; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 2. Bendix, Vinter
