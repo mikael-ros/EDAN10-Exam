@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Yes, this is a little unnecessary, but I figured that it might be useful to write it down.
+
+if ! command -v pandoc >/dev/null 2>&1
+then
+	echo "Pandoc is not available. Install Pandoc."
+else
+	pandoc readme.md -V geometry:margin=0.2in -V classoption=twocolumn -o readme.pdf
+	echo "PDF has been compiled!"
+fi

@@ -116,7 +116,7 @@ There is a lot more to the field of variant management not covered here, in the 
 
 ##### Derivations
 
-The history of the software ***artifacts***. This is essential for maintaining ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. [0] 
+The history of ***artifacts***. This is essential for maintaining ***traceability***, and particularly important for debugging. For the derivations to have any meaning, they must have identification and details. Such details include what tool with what options and input created an ***artifact***, why it was used that way, who did it, and when. Verbose derivations enable developers to quickly discover if the bug is the result of logical errors or setup issues. Documenting the derivations is also critical, such as providing changelogs or keeping copies of older versions [13] -- something tools do for us these days. 
 
 #### Build management
 
@@ -275,7 +275,7 @@ They share, amongst other things: ***identification***, ***change management***,
 
 Agile methods embrace change and focus on how to respond rapidly to changes in the requirements and environment. The haste of the project often clashes with the bureaucratic nature of SCM -- the responsibility often falls on the developers instead. It become more difficult to consistently adhere to procedures, reviews, and audits. [20]
 
-In Agile, there is typically a large focus on test-driven development, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which are informal and fast ways to continually define requirements. [20] 
+In Agile, there is typically a large focus on test-driven development, ***automation***, refactoring, ***parallel work***, and ***continuous integration***. It also incorporates so-called planning games, which is an informal and fast way to continually define requirements. [20] 
 
 While the bureaucracy of SCM may sound counter-productive to agile, many of the procedures and principles are beneficial. [20]
 
@@ -315,7 +315,7 @@ When several versions of the same software are being maintained independently. I
 
 #### Simultaneous update problem
 
-When several developers simultaneously update the same files, they can overwrite each-others changes by accident, which can lead to resolved bugs reappearing or added functionality disappearing. [1, 20] This may be solved by assigning identification, such as ***versions*** to the files, to enable recognition of desynchronization [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
+When several developers simultaneously update the same files, they can overwrite each-others changes by accident, which can lead to resolved bugs reappearing or added functionality disappearing. [1, 20] This may be solved by utilizing ***version control*** and ***configuration control***, to enable recognition of desynchronization. [20] -- e.g. through ***long or strict long transactions***. More on this in the section on ***co-ordination strategies***.
 
 #### Multiple maintenance trap
 
@@ -530,7 +530,7 @@ Development is separated into two tiers; formal configuration control, and devel
 
 A ***configuration item*** escalates once it has been tested or when it is acutely needed for review or use. If the latter is the case, it must be made abundantly clear. [12]
 
-The limitations to this model used to be storage, in which case we could compress the files, [12] but this is rarely ever a problem anymore. [0]
+The limitations to this model used to be storage, in which case we could compress the files, [12] but this is rarely ever a problem anymore. 
 
 An extension of this, the three-tier model, can be seen as the addition of a ***CM library*** tier. [38]
 
@@ -619,7 +619,7 @@ A shared project database, containing all ***artifacts*** / components of the th
 
 It is where known good code goes. A developer should not commit from their workspace any faulty code. [8] The repository is responsible for ***versioning*** [9] and needs to facilitate ***configuration management*** in order to facilitate consistency between ***workspaces***. [2]
 
-Repositories are considered immutable, and developers are required to make a copy to work on it. [2]
+Repositories are considered externally immutable, and developers are required to make a copy to work on it. [2]
 
 ### Private workspaces
 
@@ -665,7 +665,7 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 2. Early Branching (P7)
     Create the branch as soon as it is needed, don't dwell on it. [14]
 3. Deferred Branching (P8)
-    Do not create a branch unless it is strictly needed, such as when it starts conflicting with parallel work. [14]
+    Do not create a branch unless it is strictly needed, such as when it starts conflicting with parallel work, otherwise we risk creating the double maintenance problem. [14]
 
 #### Branch structuring patterns
 
@@ -679,13 +679,27 @@ Concerns within branching include safety, liveness, reusability, ***teamwork***,
 
 ---
 
+# Notes on the exam process
+
+Lars will hone in on your weaknesses. It is important that you know when to acknowledge that you do not know. Sometimes he'll ask questions with very simple answers, and you should therefore employ occam's razor when possible -- don't seek a more complex answer.
+
+Some other notes, that apply to the content above:
+- the ***change request board*** does rarely have a democratic process, decisions are made by one person
+- requirements can be seen as ***change requests***, as far as SCM is concerned
+
+When preparing, I:
+1. Assembled all learning goals, like suggested. I graded them with a 1-4 grading system, so 1 = browse, e.t.c. After grading them I went through and tried to merge them into broader goals and sum together the grades. The sums of grades were ultimately used as prioritization scores. You can see this score in an earlier commit of the repository.
+2. Read through each source in order of occurrence, and created headings as I encountered new topics. If a source corroborated on something, I added it to the same heading. I'd suggest to cite, just like how I have here, because by the end you'll discover what is most agreed upon and what's "fringe".
+3. Categorized headings into larger sections that make sense and refined the contents. Tried to corroborate with online sources.
+4. Made my text into anki cards. (You can find them here: https://github.com/mikael-ros/LTH-Anki)
+
+---
+
 # Sources
 
 1-25 are part of the compendium. The rest have been found as part of my own research. 
 
 Sources are not thoroughly cited according to any format. It is sloppy, but I hope you can find the original sources regardless.
-
-0. Own intuition or experiences
 
 1. Babich chapter 1-2; https://archive.org/details/softwareconfigur0000babi/page/2/mode/2up
 2. Bendix, Vinter
